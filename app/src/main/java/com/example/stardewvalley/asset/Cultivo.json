@@ -1,0 +1,151 @@
+[
+  {
+    "id": 1,
+    "nombre": "Allium azul",
+    "precioSemilla": 30,
+    "diasCrecimiento": 7,
+    "cosechaMaximaPorEstacion": 3,
+    "Venta": 50,
+    "beneficioPorDia": 2.86,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Coliflor",
+    "precioSemilla": 80,
+    "diasCrecimiento": 12,
+    "cosechaMaximaPorEstacion": 2,
+    "Venta": 175,
+    "beneficioPorDia": 7.92,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Ajo",
+    "precioSemilla": 40,
+    "diasCrecimiento": 4,
+    "cosechaMaximaPorEstacion": 6,
+    "Venta": 60,
+    "beneficioPorDia": 5,
+    "estacion": "Primavera",
+    "año": 2
+  },
+  {
+    "id": 4,
+    "nombre": "Col rizada",
+    "precioSemilla": 70,
+    "diasCrecimiento": 6,
+    "cosechaMaximaPorEstacion": 4,
+    "Venta": 110,
+    "beneficioPorDia": 6.67,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Chirivía",
+    "precioSemilla": 20,
+    "diasCrecimiento": 4,
+    "cosechaMaximaPorEstacion": 6,
+    "Venta": 35,
+    "beneficioPorDia": 3.75,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 6,
+    "nombre": "Patata",
+    "precioSemilla": 50,
+    "diasCrecimiento": 13,
+    "cosechaMaximaPorEstacion": 2,
+    "Venta": 80,
+    "beneficioPorDia": 5,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 7,
+    "nombre": "Ruibarbo",
+    "precioSemilla": 100,
+    "diasCrecimiento": 13,
+    "cosechaMaximaPorEstacion": 2,
+    "Venta": 220,
+    "beneficioPorDia": 9.23,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 8,
+    "nombre": "Tulipán",
+    "precioSemilla": 20,
+    "diasCrecimiento": 6,
+    "cosechaMaximaPorEstacion": 4,
+    "Venta": 30,
+    "beneficioPorDia": 1.67,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 9,
+    "nombre": "Arroz sin moler",
+    "precioSemilla": 40,
+    "diasCrecimiento": 8,
+    "cosechaMaximaPorEstacion": 4,
+    "Venta": 30,
+    "beneficioPorDia": -1.25,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 10,
+    "nombre": "Zanahoria",
+    "precioSemilla": 0,
+    "diasCrecimiento": 3,
+    "cosechaMaximaPorEstacion": 9,
+    "Venta": 35,
+    "beneficioPorDia": 11.67,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 11,
+    "nombre": "Grano de café",
+    "precioSemilla": 2500,
+    "diasCrecimiento": 10,
+    "creceDeNuevo": 2,
+    "cosechaMaximaPorEstacion": 23,
+    "Venta": 15,
+    "multiplicadorCosecha": 4,
+    "beneficioPorDia": -20.74,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 12,
+    "nombre": "Judía verde",
+    "precioSemilla": 60,
+    "diasCrecimiento": 10,
+    "creceDeNuevo": 3,
+    "cosechaMaximaPorEstacion": 6,
+    "Venta": 40,
+    "multiplicadorCosecha": 1,
+    "beneficioPorDia": 7.2,
+    "estacion": "Primavera",
+    "año": 1
+  },
+  {
+    "id": 13,
+    "nombre": "Fresa",
+    "precioSemilla": 100,
+    "diasCrecimiento": 8,
+    "creceDeNuevo": 4,
+    "cosechaMaximaPorEstacion": 2,
+    "seVendePor": 120,
+    "multiplicadorCosecha": 1,
+    "beneficioPorDia": 11.67,
+    "estacion": "Primavera",
+    "año": 1
+  }
+]

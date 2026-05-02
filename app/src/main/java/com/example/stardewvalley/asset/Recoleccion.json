@@ -1,0 +1,98 @@
+[
+  {
+    "id": 201,
+    "nombre": "Rábano silvestre",
+    "temporada": "Primavera",
+    "precioBase": 50,
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 52 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 42 },
+      { "ubicacion": "Montaña", "probabilidad": 42 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 }
+    ]
+  },
+  {
+    "id": 202,
+    "nombre": "Narciso",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 30,
+    "lugares": [
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 100 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 45 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 45 }
+    ]
+  },
+  {
+    "id": 203,
+    "nombre": "Puerro",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 60,
+    "lugares": [
+      { "ubicacion": "Bosque trasero", "probabilidad": 58 },
+      { "ubicacion": "Montaña", "probabilidad": 58 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 20 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 20 }
+    ]
+  },
+  {
+    "id": 204,
+    "nombre": "Diente de león",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 40,
+    "lugares": [
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 35 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 35 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 }
+    ]
+  },
+  {
+    "id": 205,
+    "nombre": "Cebolleta",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 8,
+    "lugares": [
+      { "ubicacion": "Bosque Tizón", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 206,
+    "nombre": "Colmenilla",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 150,
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 32 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 207,
+    "nombre": "Seta común",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 40,
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 16 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 208,
+    "nombre": "Frambuesa",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 5,
+    "lugares": [
+      { "ubicacion": "Arbustos de temporada", "detalles": "Primavera 15 - 18" },
+      { "ubicacion": "Cueva de la Granja (Murciélagos)", "probabilidad": 100 }
+    ]
+  }
+]

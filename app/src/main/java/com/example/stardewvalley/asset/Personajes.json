@@ -1,0 +1,295 @@
+[
+  {
+    "id": 1,
+    "nombre": "Emily",
+    "cumpleanos": "Primavera 27",
+    "imagen": "emily.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Amatista",
+        "Aguamarina",
+        "Tela",
+        "Esmeralda",
+        "Jade",
+        "Rubí",
+        "Huevo de loro",
+        "Hamburguesa",
+        "Topacio",
+        "Lana"
+      ],
+      "leGusta": [
+        "Narciso",
+        "Cuarzo"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Anguila frita",
+        "Helado",
+        "Arroz con leche",
+        "Frambuesa",
+        "Anguila picante"
+      ],
+      "odia": [
+        "Taco de pescado",
+        "Acebo",
+        "Rollitos maki",
+        "Banquete de salmón",
+        "Sashimi"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Pierre",
+    "cumpleanos": "Primavera 26",
+    "imagen": "pierre.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Calamares fritos",
+        "Catálogo de Precios"
+      ],
+      "leGusta": [
+        "Todas las Leches",
+        "Narciso",
+        "Diente de león"
+      ],
+      "neutral": [
+
+      ],
+      "noLeGusta": [
+        "Chantarela",
+        "Seta común",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Frambuesa",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Peces",
+        "Maíz",
+        "Ajo",
+        "Sopa de chirivía",
+        "Tortilla de maíz"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Shane",
+    "cumpleanos": "Primavera 20",
+    "imagen": "shane.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Cerveza",
+        "Chile",
+        "Bocaditos de pimiento",
+        "Pizza"
+      ],
+      "leGusta": [
+      ],
+      "neutral": [
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Alga",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Encurtidos",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Pam",
+    "cumpleanos": "Primavera 18",
+    "imagen": "pam.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Cerveza",
+        "Higo chumbo",
+        "Ñames glaseados",
+        "Hidromiel",
+        "Cerveza pálida",
+        "Chirivía",
+        "Sopa de chirivía",
+        "Piña Colada"
+      ],
+      "leGusta": [
+        "Narciso"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Huevos",
+        "Cuarzo",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Acebo",
+        "Pulpo",
+        "Calamar"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Haley",
+    "cumpleanos": "Primavera 14",
+    "imagen": "haley.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Coco",
+        "Macedonia",
+        "Pastel rosa",
+        "Girasol"
+      ],
+      "leGusta": [
+        "Narciso"
+      ],
+      "neutral": [
+      ],
+      "noLeGusta": [
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Sirope místico",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Arcilla",
+        "Esquirla prismática",
+        "Rábano silvestre"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Vincent",
+    "cumpleanos": "Primavera 10",
+    "imagen": "vincent.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Caracol",
+        "Dulce de grosellas",
+        "Pastel rosa",
+        "Uva"
+      ],
+      "leGusta": [
+        "Coco",
+        "Narciso"
+      ],
+      "neutral": [
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Arcilla",
+        "Café con triple de expreso",
+        "Rábano silvestre",
+        "Piña Colada"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "Lewis",
+    "cumpleanos": "Primavera 7",
+    "imagen": "lewis.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Botín otoñal",
+        "Ñames glaseados",
+        "Chile",
+        "Estofado vegetal",
+        "Té verde"
+      ],
+      "leGusta": [
+        "Arándano",
+        "Higo chumbo",
+        "Coco"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todas las Leches",
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Acebo",
+        "Cuarzo"
+      ]
+    }
+  }
+]
