@@ -1,16 +1,18 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.Stardewvalley" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    <!-- El nombre debe coincidir con el que tienes en el AndroidManifest.xml -->
+    <style name="Theme.Stardewvalley" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Color de la barra de estado (donde sale la hora y batería) -->
+        <item name="colorPrimary">#4E2C12</item>
+        <item name="colorPrimaryVariant">#351E0C</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Color de acento (para botones y controles) -->
+        <item name="colorSecondary">#FFEB3B</item>
+        <item name="colorSecondaryVariant">#FBC02D</item>
+        <item name="colorOnSecondary">#000000</item>
+
+        <!-- Esto hace que el fondo de las ventanas sea transparente si es necesario -->
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

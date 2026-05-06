@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Stardewvalley</string>
+    <string name="app_name">Stardew Valley</string>
+    <!-- Agrega esta línea -->
+    <string name="default_farm_name">Nombre de Granja</string>
+    <string name="hint_farm_name">Escribe el nombre aquí...</string>
+    <string name="error_empty_name">¡Debes ingresar un nombre de granja!</string>
 </resources>

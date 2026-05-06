@@ -13,14 +13,21 @@
         android:theme="@style/Theme.Stardewvalley"
         tools:targetApi="31">
 
+        <!-- MainActivity con la ruta de la carpeta .ui -->
         <activity
-            android:name="com.example.stardewvalley.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- LoginScreen (Ahora con la ruta .ui también) -->
+        <activity
+            android:name=".ui.screen.LoginScreen"
+            android:exported="false" />
+
     </application>
 
 </manifest>

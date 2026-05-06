@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
+    android:layout_gravity="center">
+
+    <!-- Fondo del cartel -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/cartel"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de tu Granja"
+            android:textColor="#4E2C12"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- EL INPUT CLAVE -->
+        <EditText
+            android:id="@+id/etFarmName"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:hint="Escribe aquí..."
+            android:textColorHint="#8B4513"
+            android:textColor="#4E2C12"
+            android:background="#A0F4E4BC"
+            android:padding="10dp"
+            android:gravity="center"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+            android:selectAllOnFocus="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:backgroundTint="#8B4513"
+                android:layout_marginEnd="10dp"/>
+
+            <Button
+                android:id="@+id/btnAceptar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Vale!"
+                android:backgroundTint="#4E9A06"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
