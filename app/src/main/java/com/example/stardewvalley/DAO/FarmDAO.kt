@@ -16,8 +16,8 @@ interface FarmDao {
     fun insertFarm(farm: Farm)
 
     @Update
-    fun updateFarm(farm: Farm) // Para el lápiz
+    fun updateFarm(farm: Farm)
 
     @Delete
-    fun deleteFarm(farm: Farm) // Para el basurero
+    fun deleteFarm(farm: Farm)
 }

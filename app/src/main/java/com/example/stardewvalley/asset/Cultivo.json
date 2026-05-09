@@ -2,6 +2,7 @@
   {
     "id": 1,
     "nombre": "Allium azul",
+    "imagen": "allium.webbp",
     "precioSemilla": 30,
     "diasCrecimiento": 7,
     "cosechaMaximaPorEstacion": 3,
@@ -13,6 +14,7 @@
   {
     "id": 2,
     "nombre": "Coliflor",
+    "imagen": "coliflor.webbp",
     "precioSemilla": 80,
     "diasCrecimiento": 12,
     "cosechaMaximaPorEstacion": 2,
@@ -24,6 +26,7 @@
   {
     "id": 3,
     "nombre": "Ajo",
+    "imagen": "col.webbp",
     "precioSemilla": 40,
     "diasCrecimiento": 4,
     "cosechaMaximaPorEstacion": 6,
@@ -35,6 +38,7 @@
   {
     "id": 4,
     "nombre": "Col rizada",
+    "imagen": "col.webbp",
     "precioSemilla": 70,
     "diasCrecimiento": 6,
     "cosechaMaximaPorEstacion": 4,
@@ -46,6 +50,7 @@
   {
     "id": 5,
     "nombre": "Chirivía",
+    "imagen": "chirivia.webbp",
     "precioSemilla": 20,
     "diasCrecimiento": 4,
     "cosechaMaximaPorEstacion": 6,
@@ -57,6 +62,7 @@
   {
     "id": 6,
     "nombre": "Patata",
+    "imagen": "patata.webbp",
     "precioSemilla": 50,
     "diasCrecimiento": 13,
     "cosechaMaximaPorEstacion": 2,
@@ -68,6 +74,7 @@
   {
     "id": 7,
     "nombre": "Ruibarbo",
+    "imagen": "ruibarbo.webbp",
     "precioSemilla": 100,
     "diasCrecimiento": 13,
     "cosechaMaximaPorEstacion": 2,
@@ -79,6 +86,7 @@
   {
     "id": 8,
     "nombre": "Tulipán",
+    "imagen": "tulipan.webbp",
     "precioSemilla": 20,
     "diasCrecimiento": 6,
     "cosechaMaximaPorEstacion": 4,
@@ -90,6 +98,7 @@
   {
     "id": 9,
     "nombre": "Arroz sin moler",
+    "imagen": "puerro.png",
     "precioSemilla": 40,
     "diasCrecimiento": 8,
     "cosechaMaximaPorEstacion": 4,
@@ -101,6 +110,7 @@
   {
     "id": 10,
     "nombre": "Zanahoria",
+    "imagen": "zanahoria.webbp",
     "precioSemilla": 0,
     "diasCrecimiento": 3,
     "cosechaMaximaPorEstacion": 9,
@@ -112,6 +122,7 @@
   {
     "id": 11,
     "nombre": "Grano de café",
+    "imagen": "puerro.png",
     "precioSemilla": 2500,
     "diasCrecimiento": 10,
     "creceDeNuevo": 2,
@@ -125,6 +136,7 @@
   {
     "id": 12,
     "nombre": "Judía verde",
+    "imagen": "judia.webbp",
     "precioSemilla": 60,
     "diasCrecimiento": 10,
     "creceDeNuevo": 3,
@@ -138,6 +150,7 @@
   {
     "id": 13,
     "nombre": "Fresa",
+    "imagen": "fresa.webbp",
     "precioSemilla": 100,
     "diasCrecimiento": 8,
     "creceDeNuevo": 4,

@@ -15,7 +15,7 @@
 
         <!-- MainActivity con la ruta de la carpeta .ui -->
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.screen.LoginScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,9 +23,9 @@
             </intent-filter>
         </activity>
 
-        <!-- LoginScreen (Ahora con la ruta .ui también) -->
+        <!-- Asegúrate de que MainActivity NO tenga el intent-filter de Launcher ahora -->
         <activity
-            android:name=".ui.screen.LoginScreen"
+            android:name=".ui.MainActivity"
             android:exported="false" />
 
     </application>

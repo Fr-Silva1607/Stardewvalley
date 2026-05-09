@@ -9,3 +9,7 @@ val WhiteSoft = Color(0xFFFFFFFF)
 val StardewSkyBlue = Color(0xFFB3E5FC)
 val StardewRed = Color(0xFFB11212)
 val StardewWood = Color(0xFF704024)
+val StardewMarrone = Color(0xFF704020) // Borde madera
+val StardewBeige = Color(0xFFF3D091)   // Fondo celdas
+val StardewTexto = Color(0xFF4A2511)   // Texto oscuro
+val StardewSeleccion = Color(0xFFFFEB3B) // Amarillo brillante para selección

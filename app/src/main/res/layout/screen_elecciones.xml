@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- 1. Barra Superior -->
+        <include layout="@layout/superior" />
+
+        <!-- 2. Margen desde la barra superior (ajusta el height si quieres más arriba o abajo) -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="110dp" />
+
+        <!-- 3. Botón Centro Cívico -->
+        <FrameLayout
+            android:id="@+id/btnCentroCivico"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/cartel"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Centro Cívico"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- 4. Botón MercaJoja -->
+        <FrameLayout
+            android:id="@+id/btnJoja"
+            android:layout_width="300dp"
+            android:layout_height="120dp"
+            android:background="@drawable/cartel_mercajoja"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="MercaJoja"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- 5. Este espacio empuja todo lo de arriba hacia el techo -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,105 @@
+[
+  {
+    "nombre": "Coliflor",
+    "fases": [
+      "fase1coliflor.webp",
+      "fase2coliflor.webp",
+      "fase3coliflor.webp",
+      "fase4coliflor.webp",
+      "fase5coliflor.webp",
+      "fase6coliflor.webp"
+    ]
+  },
+  {
+    "nombre": "Zanahoria",
+    "fases": [
+      "fase1zanahoria.webp",
+      "fase2zanahoria.webp",
+      "fase3zanahoria.webp",
+      "fase4zanahoria.webp"
+    ]
+  },
+  {
+    "nombre": "Fresa",
+    "fases": [
+      "fase1fresa.webp",
+      "fase2fresa.webp",
+      "fase3fresa.webp",
+      "fase4fresa.webp",
+      "fase5fresa.webp",
+      "fase6fresa.webp"
+    ]
+  },
+  {
+    "nombre": "Patata",
+    "fases": [
+      "fase1patata.webp",
+      "fase2patata.webp",
+      "fase3patata.webp",
+      "fase4patata.webp",
+      "fase5patata.webp",
+      "fase6patata.webp"
+    ]
+  },
+  {
+    "nombre": "Judia",
+    "fases": [
+      "fase1judia.webp",
+      "fase2judia.webp",
+      "fase3judia.webp",
+      "fase4judia.webp",
+      "fase5judia.webp",
+      "fase6judia.webp"
+    ]
+  },
+  {
+    "nombre": "Col",
+    "fases": [
+      "fase1col.webp",
+      "fase2col.webp",
+      "fase3col.webp",
+      "fase4col.webp",
+      "fase5col.webp"
+    ]
+  },
+  {
+    "nombre": "Chirivia",
+    "fases": [
+      "fase1chirivia.webp",
+      "fase2chirivia.webp",
+      "fase3chirivia.webp",
+      "fase4chirivia.webp",
+      "fase5chirivia.webp",
+      "fase6chirivia.webp"
+    ]
+  },
+  {
+    "nombre": "Tulipan",
+    "fases": [
+      "fase1tulipan.webp",
+      "fase2tulipan.webp",
+      "fase3tulipan.webp",
+      "fase4tulipan.webp"
+    ]
+  },
+  {
+    "nombre": "Ruibarbo",
+    "fases": [
+      "fase1ruibarbo.webp",
+      "fase2ruibarbo.webp",
+      "fase3ruibarbo.webp",
+      "fase4ruibarbo.webp",
+      "fase5ruibarbo.webp",
+      "fase6ruibarbo.webp"
+    ]
+  },
+  {
+    "nombre": "Allium",
+    "fases": [
+      "fase1allium.webp",
+      "fase2allium.webp",
+      "fase3allium.webp",
+      "fase4allium.webp"
+    ]
+  }
+]
