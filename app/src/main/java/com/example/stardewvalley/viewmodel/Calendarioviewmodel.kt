@@ -91,5 +91,3 @@ class CalendarioViewModel : ViewModel() {
     }
 }
 
-
-data class CultivoPlantado(val nombre: String, val cantidad: Int, val diaPlante: Int)

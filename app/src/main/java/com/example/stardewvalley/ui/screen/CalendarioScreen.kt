@@ -49,13 +49,14 @@ import com.example.stardewvalley.ui.theme.StardewMarrone
 import com.example.stardewvalley.ui.theme.StardewTexto
 import com.example.stardewvalley.viewmodel.ContenidoPopUp
 import com.example.stardewvalley.viewmodel.CultivoPlantado
-import com.example.stardewvalley.viewmodel.CultivoViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.window.Dialog
+import com.example.stardewvalley.viewmodel.CultivoCargado
+import com.example.stardewvalley.viewmodel.CultivoViewModel
 
 
 // --- 1. MODELOS DE DATOS ---
@@ -215,7 +216,7 @@ fun CalendarioScreen(
 }
 
 @Composable
-fun CrecimientoVisualItem(cultivo: CultivoPlantado, diaActual: Int, viewModel: CultivoViewModel) {
+ fun CrecimientoVisualItem(cultivo: CultivoPlantado, diaActual: Int, viewModel: CultivoViewModel) {
     val context = LocalContext.current
 
     // IMPORTANTE: Asegúrate de que obtenerImagenFase acepte estos 4 parámetros en tu CultivoViewModel
@@ -408,10 +409,9 @@ fun PopUpEventos(
     dia: Int,
     onDismiss: () -> Unit,
     onDiaCambiar: (Int) -> Unit,
-    viewModel: CalendarioViewModel // <--- Asegúrate de usar CalendarioViewModel
+    viewModel: CalendarioViewModel
 ) {
     val context = LocalContext.current
-    // Usamos el nombre correcto de la función y el índice de temporada
     val contenido = viewModel.obtenerContenidoDia(dia, viewModel.temporadaActualIndex.collectAsState().value)
 
     val painterIzquierda = rememberDrawablePainter(ContextCompat.getDrawable(context, R.drawable.fi_civico_))
@@ -550,54 +550,37 @@ fun DiaCelda(
 
 @Composable
 fun SeccionPlanificador(diaActual: Int, viewModel: CultivoViewModel) {
-    // CAMBIO: Usamos el nombre exacto que está en el ViewModel
     val todosLosCultivos by viewModel.listaProcesadaDelJson.collectAsState()
     val seleccionadosEfectivos = todosLosCultivos.filter { it.cantidad > 0 }
 
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-            .background(Color(0xFFF5E6D3), RoundedCornerShape(8.dp))
-            .border(3.dp, Color(0xFF4E2C0A), RoundedCornerShape(8.dp))
-            .padding(12.dp)
-    ) {
+    Column(modifier = Modifier.padding(16.dp).background(Color(0xFFF5E6D3)).padding(12.dp)) {
         Text("Planificador de Siembra", color = Color(0xFF4E2C0A), style = MaterialTheme.typography.titleLarge)
 
-        if (seleccionadosEfectivos.isEmpty()) {
-            Text("Selecciona cultivos en la tabla para ver el cálculo.", color = Color.Gray)
-        }
-
         seleccionadosEfectivos.forEach { cultivo ->
-            // CAMBIO: Aseguramos que los parámetros coincidan con tu función calcularRentabilidad
             val mensaje = viewModel.calcularRentabilidad(
-                cultivo.nombre,
-                cultivo.precioSemilla,
-                cultivo.venta,
-                cultivo.diasCrecimiento,
-                diaActual,
-                cultivo.cantidad
+                precio = cultivo.precioSemilla,
+                venta = cultivo.venta,
+                crecimiento = cultivo.diasCrecimiento,
+                dia = diaActual,
+                cant = cultivo.cantidad
             )
 
             Column(modifier = Modifier.padding(vertical = 4.dp)) {
                 Text("${cultivo.nombre} (x${cultivo.cantidad})", fontWeight = FontWeight.Bold)
                 Text(
                     text = mensaje,
-                    color = if (mensaje.contains("PERDERÁS")) Color.Red else Color(0xFF2E7D32),
-                    style = MaterialTheme.typography.bodyMedium
+                    color = if (mensaje.contains("PERDERÁS")) Color.Red else Color(0xFF2E7D32)
                 )
-                Divider(color = Color(0xFF4E2C0A).copy(alpha = 0.2f))
             }
+        }
+
+        // Botón para mover de la tabla al huerto
+        Button(onClick = { viewModel.guardarCultivosMasivo() }) {
+            Text("Plantar Selección")
         }
     }
 }
-data class CultivoCargado(
-    val id: Int,
-    val nombre: String,
-    val precioSemilla: Int,
-    val diasCrecimiento: Int,
-    val venta: Int, // Cambiado de 'Venta' para consistencia
-    var cantidad: Int = 0 // Esto conectará la tabla con el cálculo
-)
+
 
 @Composable
 fun PantallaPrincipal(viewModel: CultivoViewModel = viewModel()) {
