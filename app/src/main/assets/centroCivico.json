@@ -1,0 +1,338 @@
+{
+  "centro_civico": {
+    "Sala de manualidades": {
+      "recompensa_zona": "Puente reparado (Acceso a la Cantera)",
+      "lotes": [
+        {
+          "nombre": "Lote Recolección Primaveral",
+          "recompensa": "Semillas primaverales (30)",
+          "elementos": [
+            {"item": "Rábano silvestre", "detalles": "Recolección en Primavera", "imagen": "rabanosilvestre"},
+            {"item": "Narciso", "detalles": "Recolección en Primavera, adquirido de Pierre durante la Danza floral", "imagen": "narciso"},
+            {"item": "Puerro", "detalles": "Recolección en Primavera", "imagen": "puerro"},
+            {"item": "Diente de león", "detalles": "Recolección en Primavera, adquirido de Pierre durante la Danza floral", "imagen": "dientedeleon"}
+          ]
+        },
+        {
+          "nombre": "Lote Recolección Veraniega",
+          "recompensa": "Semillas veraniegas (30)",
+          "elementos": [
+            {"item": "Uva", "detalles": "Verano: Bosque trasero (62%), Montaña (62%), Parada de autobús (27%), Ferrocarril (27%), Granja forestal (25%)", "imagen": "uva"},
+            {"item": "Baya especiada", "detalles": "Verano: Bosque Tizón (40%), Bosque trasero (38%), Montaña (38%), Parada de autobús (27%), Ferrocarril (27%), Granja forestal (25%), Cueva", "imagen": "bayaespeciada"},
+            {"item": "Guisante dulce", "detalles": "Verano: Pueblo Pelícano (100%), Bosque Tizón (60%), Parada de autobús (47%), Ferrocarril (47%), Granja forestal (25%)", "imagen": "gisantedulce"}
+          ]
+        },
+        {
+          "nombre": "Lote Recolección Otoñal",
+          "recompensa": "Semillas otoñales (30)",
+          "elementos": [
+            {"item": "Seta común", "detalles": "Recolección en Otoño (Bosque secreto 25%, Cueva de la Granja)", "imagen": "stecomun"},
+            {"item": "Ciruela salvaje", "detalles": "Recolección en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "ciruelasalvaje"},
+            {"item": "Avellana", "detalles": "Recolección en Otoño", "imagen": "avellana"},
+            {"item": "Mora", "detalles": "Recolección en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "mora"}
+          ]
+        },
+        {
+          "nombre": "Lote Recolección Invernal",
+          "recompensa": "Semillas invernales (30)",
+          "elementos": [
+            {"item": "Raíz invernal", "detalles": "Arando tierra o Lugares de Artefactos en Invierno, botín de Babas Azules en los pisos 41-79 de Las minas", "imagen": "raizinvernal"},
+            {"item": "Fruta de cristal", "detalles": "Recolección en Invierno, botín de Duendes del polvo en los pisos 41-79 de Las minas", "imagen": "frutadecristal"},
+            {"item": "Ñame nival", "detalles": "Arando tierra o Lugares de Artefactos en Invierno", "imagen": "ñamenival"},
+            {"item": "Azafrán", "detalles": "Recolección en Invierno", "imagen": "azafran"}
+          ]
+        },
+        {
+          "nombre": "Lote Construcción",
+          "recompensa": "Horno de carbón (1)",
+          "elementos": [
+            {"item": "Madera (99)", "detalles": "Talando Árboles o ramas con un Hacha, Carpintería", "imagen": "madera"},
+            {"item": "Madera (99)", "detalles": "Talando Árboles o ramas con un Hacha, Carpintería", "imagen": "madera"},
+            {"item": "Piedra (99)", "detalles": "Picando rocas con un Pico, Carpintería", "imagen": "piedra"},
+            {"item": "Madera noble (10)", "detalles": "Talando Tocones grandes o Troncos grandes con un Hacha mejorada, rompiendo cajas en Las Minas", "imagen": "maderanoble"}
+          ]
+        },
+        {
+          "nombre": "Lote Recolección exótica",
+          "recompensa": "Botín otoñal (5)",
+          "elementos": [
+            {"item": "Coco", "detalles": "Recolección en El Desierto, Oasis", "imagen": "coco"},
+            {"item": "Higo chumbo", "detalles": "Recolección en El Desierto, Oasis", "imagen": "higochumbo"},
+            {"item": "Zanahoria cavernaria", "detalles": "Las Minas, ya sea rompiendo cajas o arando tierra blanda", "imagen": "zanahoriacavernaria"},
+            {"item": "Seta roja", "detalles": "Recolección en Las minas, Bosque Secreto (22%), Cueva de Granja", "imagen": "setaroja"},
+            {"item": "Seta lila", "detalles": "Las Minas, La Cueva de Granja (Opción de Setas), Recolectando en la Granja Forestal en Otoño", "imagen": "setalila"},
+            {"item": "Jarabe de arce", "detalles": "Resinera en un Arce", "imagen": "jarabedearce"},
+            {"item": "Resina de roble", "detalles": "Resinera en un Roble", "imagen": "resinaderoble"},
+            {"item": "Brea de pino", "detalles": "Resinera en un Pino", "imagen": "breadepino"},
+            {"item": "Colmenilla", "detalles": "Recolección en el Bosque secreto o la Granja Forestal en Primavera, La Cueva de Granja (Opción de Setas)", "imagen": "colmenilla"}
+          ]
+        }
+      ]
+    },
+    "Alacena": {
+      "recompensa_zona": "Invernadero reparado en la granja",
+      "lotes": [
+        {
+          "nombre": "Lote Cultivos de Primavera",
+          "recompensa": "Acelerador básico (20)",
+          "elementos": [
+            {"item": "Chirivía", "detalles": "Cultivo de Primavera", "imagen": "chirivia"},
+            {"item": "Judía verde", "detalles": "Cultivo de Primavera", "imagen": "judia"},
+            {"item": "Coliflor", "detalles": "Cultivo de Primavera", "imagen": "coliflor"},
+            {"item": "Patata", "detalles": "Cultivo de Primavera", "imagen": "patata"}
+          ]
+        },
+        {
+          "nombre": "Lote Cultivos de Verano",
+          "recompensa": "Aspersor de calidad (1)",
+          "elementos": [
+            {"item": "Arándano", "detalles": "Semilla: 80o. Crece: 13 días. Re-cosecha: 4 días. Produce 3 por planta. Venta: 50o (x3).", "imagen": "arandano"},
+            {"item": "Grano de café", "detalles": "Carro Ambulante: 2500o. Crece: 10 días. Re-cosecha: 2 días. Produce 4 por planta. (Primavera/Verano). Venta: 15o (x4).", "imagen": "granodecafe"},
+            {"item": "Maíz", "detalles": "Semilla: 150o. Crece: 14 días. Re-cosecha: 4 días. (Verano/Otoño). Venta: 50o.", "imagen": "maiz"},
+            {"item": "Lúpulo", "detalles": "Semilla: 60o. Crece: 11 días. Re-cosecha: 1 día. Venta: 25o.", "imagen": "lupudo"},
+            {"item": "Chile", "detalles": "Semilla: 40o. Crece: 5 días. Re-cosecha: 3 días. Venta: 40o.", "imagen": "chile"},
+            {"item": "Tomate", "detalles": "Semilla: 50o. Crece: 11 días. Re-cosecha: 4 días. Venta: 60o.", "imagen": "tomate"},
+            {"item": "Melón", "detalles": "Cultivo de Verano", "imagen": "melon"}
+          ]
+        },
+        {
+          "nombre": "Lote Cultivos de Otoño",
+          "recompensa": "Colmena (1)",
+          "elementos": [
+            {"item": "Maíz", "detalles": "Semilla: 150o. Crece: 14 días. Re-cosecha: 4 días. (Verano/Otoño). Venta: 50o.", "imagen": "maiz"},
+            {"item": "Berenjena", "detalles": "Cultivo de Otoño", "imagen": "berenjena"},
+            {"item": "Calabaza", "detalles": "Cultivo de Otoño", "imagen": "calabaza"},
+            {"item": "Ñame", "detalles": "Cultivo de Otoño, botín de Cavadorín en los pisos 6-29 de Las Minas (3%)", "imagen": "ñame"}
+          ]
+        },
+        {
+          "nombre": "Lote Cultivos de Calidad",
+          "recompensa": "Envasadora (1)",
+          "elementos": [
+            {"item": "Chirivía (5)", "detalles": "Calidad oro", "imagen": "chirivia"},
+            {"item": "Melón (5)", "detalles": "Calidad oro", "imagen": "melon"},
+            {"item": "Calabaza (5)", "detalles": "Calidad oro", "imagen": "calabaza"},
+            {"item": "Maíz (5)", "detalles": "Calidad oro. Semilla: 150o. Crece: 14 días. Re-cosecha: 4 días.", "imagen": "maiz"}
+          ]
+        },
+        {
+          "nombre": "Lote Origen Animal",
+          "recompensa": "Prensa de queso (1)",
+          "elementos": [
+            {"item": "Leche XXL", "detalles": "Vacas", "imagen": "lechexxl"},
+            {"item": "Huevo XXL marrón", "detalles": "Gallina marrón", "imagen": "huevoxxlmarron"},
+            {"item": "Huevo XXL", "detalles": "Gallina blanca", "imagen": "huevoxxl"},
+            {"item": "Leche de cabra XXL", "detalles": "Cabras", "imagen": "lechedecabraxxl"},
+            {"item": "Lana", "detalles": "Oveja, Conejos", "imagen": "lana"},
+            {"item": "Huevo de pato", "detalles": "Patos", "imagen": "huevodepato"}
+          ]
+        },
+        {
+          "nombre": "Lote Origen Artesanal",
+          "recompensa": "Barril (1)",
+          "elementos": [
+            {"item": "Aceite de trufa", "detalles": "Hecho de Trufas en una Aceitera", "imagen": "aceitedetrufa"},
+            {"item": "Tela", "detalles": "Telar, recli de un Periódico empapado en una Máquina recicladora, Comerciante del desierto, botín de Momias en la Caverna Calavera", "imagen": "tela"},
+            {"item": "Queso de cabra", "detalles": "Hecho de Leche de cabra en una Prensa de queso", "imagen": "quesodecabra"},
+            {"item": "Queso", "detalles": "Hecho de Leche en una Prensa de queso, Comerciante del desierto", "imagen": "queso"},
+            {"item": "Miel", "detalles": "Colmena, Oasis", "imagen": "miel"},
+            {"item": "Mermelada", "detalles": "Hecha de Frutas en una Envasadora", "imagen": "mermelada"},
+            {"item": "Manzana", "detalles": "Manzano durante Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "manzana"},
+            {"item": "Albaricoque", "detalles": "Albaricoquero durante Primavera, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "albaricoque"},
+            {"item": "Naranja", "detalles": "Naranjo durante Verano, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "naranja"},
+            {"item": "Melocotón", "detalles": "Melocotonero durante Verano, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "melocoton"},
+            {"item": "Granada", "detalles": "Granado durante Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "granada"},
+            {"item": "Cereza", "detalles": "Cerezo durante Primavera, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "cereza"}
+          ]
+        }
+      ]
+    },
+    "Pecera": {
+      "recompensa_zona": "Peñasco brillante retirado y Batea de cobre entregada por Willy",
+      "lotes": [
+        {
+          "nombre": "Lote Peces Fluviales",
+          "recompensa": "Cebo de lujo (30)",
+          "elementos": [
+            {"item": "Pez sol", "detalles": "Se encuentra en Ríos, 6:00 AM – 7:00 PM, Primavera, y Verano durante clima soleado", "imagen": "pezsol"},
+            {"item": "Pez gato", "detalles": "Se encuentra en Ríos y Bosque Secreto, 6:00 AM hasta la media noche, Primavera y Otoño. Solo cuando llueve. Puede ser encontrado en Verano mientras llueve en el Bosque Secreto y el Pantano de la Bruja, Invierno con un Tótem de lluvia.", "imagen": "pezgato"},
+            {"item": "Sábadolo", "detalles": "Se encuentra en Ríos, 9:00 AM hasta las 2:00 AM, Primavera, Verano y Otoño. Sólo cuando llueve.", "imagen": "sabadolo"},
+            {"item": "Trucha tigre", "detalles": "Se encuentra en Ríos, 6:00 AM – 7:00 PM, Otoño e Invierno. Puede pescarse en cualquier clima.", "imagen": "truchatigre"}
+          ]
+        },
+        {
+          "nombre": "Lote Peces de Lago",
+          "recompensa": "Girador disfrazado (1)",
+          "elementos": [
+            {"item": "Perca", "detalles": "Se encuentra en el Lago de la Montaña, 6:00 AM – 7:00 PM, Todas las estaciones.", "imagen": "perca"},
+            {"item": "Carpa", "detalles": "Se encuentra en el Lago de la Montaña, A cualquier hora, durante Primavera, Verano y Otoño. Se puede pescar en el Bosque Secreto o Las Cloacas, a cualquier hora, en cualquier estación.", "imagen": "carpa"},
+            {"item": "Siluro", "detalles": "Se encuentra en el Lago de la Montaña. A cualquier hora. Todas las estaciones", "imagen": "siluro"},
+            {"item": "Esturión", "detalles": "Se encuentra en el Lago de la Montaña, 6:00 AM – 7:00 PM, Verano e Invierno", "imagen": "esturion"}
+          ]
+        },
+        {
+          "nombre": "Lote Peces Marinos",
+          "recompensa": "Tótem de viaje: Playa (5)",
+          "elementos": [
+            {"item": "Sardina", "detalles": "Se encuentra en el océano, 6:00 AM – 7:00 PM, Primavera, Otoño e Invierno", "imagen": "sardina"},
+            {"item": "Atún", "detalles": "Se encuentra en el océano, 6:00 AM – 7:00 PM, Verano e Invierno", "imagen": "atun"},
+            {"item": "Pargo colorado", "detalles": "Se encuentra en el océano, 6:00 AM – 7:00 PM, Verano y Otoño. Sólo cuando llueve", "imagen": "pargocolorado"},
+            {"item": "Tilapia", "detalles": "Se encuentra en el océano, 6:00 AM – 2:00 PM, Verano y Otoño", "imagen": "tilapia"}
+          ]
+        },
+        {
+          "nombre": "Lote Peces Nocturnos",
+          "recompensa": "Anillo brillante (1)",
+          "elementos": [
+            {"item": "Lucio", "detalles": "Se encuentra en el Río, el Lago de la Montaña, y el estanque del Bosque Tizón, 12:00 PM – 2:00 AM, Otoño, (Invierno con Tótem de lluvia.) Sólo cuando llueve.", "imagen": "lucio"},
+            {"item": "Besugo", "detalles": "Se encuentra en Ríos, 6:00 PM – 2:00 AM. Todas las estaciones.", "imagen": "besugo"},
+            {"item": "Anguila", "detalles": "Se encuentra en el océano, 4:00 PM – 2:00 AM, Primavera y Otoño. Sólo cuando llueve.", "imagen": "anguila"}
+          ]
+        },
+        {
+          "nombre": "Lote Trampa para Cangrejos",
+          "recompensa": "Trampa para cangrejos (3)",
+          "elementos": [
+            {"item": "Langosta", "detalles": "Capturado en una Trampa para cangrejos (Océano)", "imagen": "langosta"},
+            {"item": "Cangrejo de río", "detalles": "Capturado en una Trampa para cangrejos (Agua dulce)", "imagen": "cangrejoderio"},
+            {"item": "Cangrejo", "detalles": "Capturado en una Trampa para cangrejos (Océano), botín de Cangrejos de roca o Cangrejos de lava en Las minas", "imagen": "cangrejo"},
+            {"item": "Berberecho", "detalles": "Capturado en una Trampa para cangrejos (Océano), Recolección en La Playa", "imagen": "berberecho"},
+            {"item": "Mejillón", "detalles": "Capturado en una Trampa para cangrejos (Océano), Recolección en La Playa", "imagen": "mejillon"},
+            {"item": "Gamba", "detalles": "Capturada en una Trampa para cangrejos (Océano)", "imagen": "gamba"},
+            {"item": "Caracol", "detalles": "Capturado en una Trampa para cangrejos (Agua dulce)", "imagen": "caracol"},
+            {"item": "Bígaro", "detalles": "Capturado en una Trampa para cangrejos (Agua dulce)", "imagen": "bigaro"},
+            {"item": "Ostra", "detalles": "Capturada en una Trampa para cangrejos (Océano), Recolección en La Playa", "imagen": "ostra"},
+            {"item": "Almeja", "detalles": "Capturada en una Trampa para cangrejos (Océano), Recolección en La Playa", "imagen": "almeja"}
+          ]
+        },
+        {
+          "nombre": "Lote Peces Especiales",
+          "recompensa": "Plato de alta mar (5)",
+          "elementos": [
+            {"item": "Pez globo", "detalles": "Se encuentra en el Océano, 12:00 PM – 4:00 PM, Verano durante un día soleado.", "imagen": "pezglobo"},
+            {"item": "Pez fantasma", "detalles": "Se encuentra en los estanques de Las minas, piso 20 y 60, A cualquier hora, Todas las estaciones. También es botín de Fantasmas.", "imagen": "pezfantasma"},
+            {"item": "Lenguado", "detalles": "Se encuentra en el estanque del Desierto de Calico, 6:00 AM – 10:00 PM, Todas las estaciones.", "imagen": "lenguado"},
+            {"item": "Muyu", "detalles": "Se encuentra en el Bosque Secreto and la Granja Forestal, A cualquier hora, Todas las estaciones.", "imagen": "muyu"}
+          ]
+        }
+      ]
+    },
+    "Sala de calderas": {
+      "recompensa_zona": "Vagonetas reparadas (Viaje rápido entre Parada de autobús, Las Minas, Cantera y el Pueblo)",
+      "lotes": [
+        {
+          "nombre": "Lote Herrero",
+          "recompensa": "Horno (1)",
+          "elementos": [
+            {"item": "Lingote de cobre", "detalles": "Fundiendo Menas de cobre en un Horno", "imagen": "lingotedecobre"},
+            {"item": "Lingote de hierro", "detalles": "Fundiendo Menas de hierro en un Horno, Fabricándolo con la receta 'Transmutar (Fe)'", "imagen": "lingotedehierro"},
+            {"item": "Lingote de oro", "detalles": "Fundiendo Menas de oro en un Horno, Fabricándolo con la receta 'Transmutar (Au)'", "imagen": "lingotedeoro"}
+          ]
+        },
+        {
+          "nombre": "Lote Geólogo",
+          "recompensa": "Omnigeoda (5)",
+          "elementos": [
+            {"item": "Cuarzo", "detalles": "Recolectándolo en cualquier piso de Las minas.", "imagen": "cuarzo"},
+            {"item": "Cristal terrestre", "detalles": "Recolectándolo en los pisos 1-39 de Las minas, Geodas, botín de Cavadorines en Las minas. (Pisos 6-29)", "imagen": "cristalterrestre"},
+            {"item": "Lágrima helada", "detalles": "Recolectándola en los pisos 41-79 de Las minas, Geodas de hielo, Omnigeodas, botín de Duendes del polvo en Las minas. (Pisos 41-79)", "imagen": "lagrimahelada"},
+            {"item": "Cuarzo de fuego", "detalles": "Recolectándolo en los pisos 81-119 de Las minas, Geodas de magma, Omnigeodas.", "imagen": "cuarzodefuego"}
+          ]
+        },
+        {
+          "nombre": "Lote Aventurero",
+          "recompensa": "Pequeño anillo magnético (1)",
+          "elementos": [
+            {"item": "Baba (99)", "detalles": "Botín de Babas.", "imagen": "baba"},
+            {"item": "Ala de murciélago (10)", "detalles": "Botín de Murciélagos en Las minas o la Caverna Calavera.", "imagen": "alademurcielago"},
+            {"item": "Esencia solar", "detalles": "Botín de Fantasmas, Niños calamar o Cabezas de metal en Las minas, botín de Momias o Murciélagos de iridio en la Caverna Calavera; producido por Pez sol en el Estanque de peces; comprando a Krobus.", "imagen": "esenciasolar"},
+            {"item": "Esencia sombría", "detalles": "Botín de Bestias de las sombras o Chamanes de las sombras en Las minas o Serpientes en la Caverna Calavera; producido por Salmón de vacío en el Estanque de peces; comprando a Krobus.", "imagen": "esenciasombria"}
+          ]
+        }
+      ]
+    },
+    "Tablón de anuncios": {
+      "recompensa_zona": "Aumento de amistad (+2 corazones / 500 puntos) con aldeanos no candidatos al matrimonio",
+      "lotes": [
+        {
+          "nombre": "Lote Chef",
+          "recompensa": "Pastel rosa (3)",
+          "elementos": [
+            {"item": "Jarabe de arce", "detalles": "Resinera en un Arce.", "imagen": "jarabedearce"},
+            {"item": "Helecho", "detalles": "Recolección en el Bosque secreto (78% en Verano)", "imagen": "helecho"},
+            {"item": "Trufa", "detalles": "Cerdos.", "imagen": "trufa"},
+            {"item": "Amapola", "detalles": "Cultivo de Verano.", "imagen": "amapola"},
+            {"item": "Rollitos maki", "detalles": "Cocina (Receta: La reina de la salsa (21 de Verano, Año 1), Salón Fruta Estelar)", "imagen": "rollitosmaki"},
+            {"item": "Huevo frito", "detalles": "Cocina.", "imagen": "huevofrito"}
+          ]
+        },
+        {
+          "nombre": "Lote Tinte",
+          "recompensa": "Semilladora (1)",
+          "elementos": [
+            {"item": "Seta roja", "detalles": "Recolección en Las minas, Bosque Secreto, Cueva de Granja", "imagen": "setaroja"},
+            {"item": "Erizo de mar", "detalles": "Recolección en La Playa tras usar 300 de madera para arreglar el puente a la derecha de La playa o cualquier lado de la playa durante la temporada de apareamiento del cangrejo; Recolección en la Granja de la playa.", "imagen": "erizodemar"},
+            {"item": "Girasol", "detalles": "Cultivo de Verano/Otoño.", "imagen": "girasol"},
+            {"item": "Pluma de pato", "detalles": "Patos.", "imagen": "plumadepato"},
+            {"item": "Aguamarina", "detalles": "Piedra aguamarina y cajas de Las minas, Pescando cofres del tesoro.", "imagen": "aguamarina"},
+            {"item": "Lombarda", "detalles": "Cultivo de Verano (Las Semillas de lombarda están disponibles en la Tienda local Pierre's a partir del año 2, en el Carro Ambulante, o botín de Serpientes, Momias, y Babas púrpuras)", "imagen": "lombarda"}
+          ]
+        },
+        {
+          "nombre": "Lote Estudio de Campo",
+          "recompensa": "Máquina recicladora (1)",
+          "elementos": [
+            {"item": "Seta lila", "detalles": "Recolección en Las minas, La Cueva de Granja (Opción de Setas), Recolección en la Granja Forestal en Otoño", "imagen": "setalila"},
+            {"item": "Concha de nautilo", "detalles": "Recolección en La Playa en Invierno, Recolección en la Granja de la Playa en cualquier estación. Regalo aleatorio de Demetrius (Nota: No confundir con Fósil de nautilo)", "imagen": "conchadenautilo"},
+            {"item": "Barbo", "detalles": "Se encuentra en Lago de la Montaña y los Ríos en todas las estaciones.", "imagen": "barbo"},
+            {"item": "Geoda de hielo", "detalles": "Las minas (Pisos 41-79)", "imagen": "geodadehielo"}
+          ]
+        },
+        {
+          "nombre": "Lote Pienso",
+          "recompensa": "Radiador (1)",
+          "elementos": [
+            {"item": "Trigo (10)", "detalles": "Cosechándolo en Verano / Otoño", "imagen": "trigo"},
+            {"item": "Heno (10)", "detalles": "Comprándolo en el Rancho de Marnie o del Comerciante del desierto, cortando Hierba o Trigo con la Guadaña teniendo un Silo", "imagen": "heno"},
+            {"item": "Manzana (3)", "detalles": "Manzano en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "manzana"}
+          ]
+        },
+        {
+          "nombre": "Lote Encantador",
+          "recompensa": "Lingote de oro (5)",
+          "elementos": [
+            {"item": "Resina de roble", "detalles": "Resinera en un Roble", "imagen": "resinaderoble"},
+            {"item": "Vino", "detalles": "Hecho de Frutas en un Barril", "imagen": "vino"},
+            {"item": "Pata de conejo", "detalles": "Conejo, botín de Serpientes en la Caverna Calavera (0.8%)", "imagen": "patadeconejo"},
+            {"item": "Granada", "detalles": "Granado en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "granada"}
+          ]
+        }
+      ]
+    },
+    "Caja fuerte": {
+      "recompensa_zona": "Autobús reparado (Acceso al Desierto de Calico)",
+      "lotes": [
+        {
+          "nombre": "Lote 2,500",
+          "recompensa": "Pastel de chocolate (3)",
+          "elementos": [{"item": "2,500 Oro", "detalles": "Donación", "imagen": "oro"}]
+        },
+        {
+          "nombre": "Lote 5,000",
+          "recompensa": "Fertilizante deluxe (30)",
+          "elementos": [{"item": "5,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+        },
+        {
+          "nombre": "Lote 10,000",
+          "recompensa": "Pararrayos (1)",
+          "elementos": [{"item": "10,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+        },
+        {
+          "nombre": "Lote 25,000",
+          "recompensa": "Cristalario (1)",
+          "elementos": [{"item": "25,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1630 @@
+[
+  {
+    "id": 1,
+    "nombre": "Emily",
+    "cumpleanos": "Primavera 27",
+    "imagen": "emily.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Amatista",
+        "Aguamarina",
+        "Tela",
+        "Esmeralda",
+        "Jade",
+        "Rubí",
+        "Huevo de loro",
+        "Hamburguesa",
+        "Topacio",
+        "Lana"
+      ],
+      "leGusta": [
+        "Narciso",
+        "Cuarzo"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Anguila frita",
+        "Helado",
+        "Arroz con leche",
+        "Frambuesa",
+        "Anguila picante"
+      ],
+      "odia": [
+        "Taco de pescado",
+        "Acebo",
+        "Rollitos maki",
+        "Banquete de salmón",
+        "Sashimi"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Pierre",
+    "cumpleanos": "Primavera 26",
+    "imagen": "pierre.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Calamares fritos",
+        "Catálogo de Precios"
+      ],
+      "leGusta": [
+        "Todas las Leches",
+        "Narciso",
+        "Diente de león"
+      ],
+      "neutral": [
+
+      ],
+      "noLeGusta": [
+        "Chantarela",
+        "Seta común",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Frambuesa",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Peces",
+        "Maíz",
+        "Ajo",
+        "Sopa de chirivía",
+        "Tortilla de maíz"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Shane",
+    "cumpleanos": "Primavera 20",
+    "imagen": "shane.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Cerveza",
+        "Chile",
+        "Bocaditos de pimiento",
+        "Pizza"
+      ],
+      "leGusta": [
+      ],
+      "neutral": [
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Alga",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Encurtidos",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Pam",
+    "cumpleanos": "Primavera 18",
+    "imagen": "pam.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Cerveza",
+        "Higo chumbo",
+        "Ñames glaseados",
+        "Hidromiel",
+        "Cerveza pálida",
+        "Chirivía",
+        "Sopa de chirivía",
+        "Piña Colada"
+      ],
+      "leGusta": [
+        "Narciso"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Huevos",
+        "Cuarzo",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Acebo",
+        "Pulpo",
+        "Calamar"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Haley",
+    "cumpleanos": "Primavera 14",
+    "imagen": "haley.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Coco",
+        "Macedonia",
+        "Pastel rosa",
+        "Girasol"
+      ],
+      "leGusta": [
+        "Narciso"
+      ],
+      "neutral": [
+      ],
+      "noLeGusta": [
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Sirope místico",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Arcilla",
+        "Esquirla prismática",
+        "Rábano silvestre"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Vincent",
+    "cumpleanos": "Primavera 10",
+    "imagen": "vincent.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Caracol",
+        "Dulce de grosellas",
+        "Pastel rosa",
+        "Uva"
+      ],
+      "leGusta": [
+        "Coco",
+        "Narciso"
+      ],
+      "neutral": [
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Arcilla",
+        "Café con triple de expreso",
+        "Rábano silvestre",
+        "Piña Colada"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "Lewis",
+    "cumpleanos": "Primavera 7",
+    "imagen": "lewis.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Botín otoñal",
+        "Ñames glaseados",
+        "Chile",
+        "Estofado vegetal",
+        "Té verde"
+      ],
+      "leGusta": [
+        "Arándano",
+        "Higo chumbo",
+        "Coco"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todas las Leches",
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Acebo",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "nombre": "Jas",
+    "cumpleanos": "Verano 4",
+    "imagen": "jas.png",
+    "gustos": {
+      "leEncanta": [
+        "Pastel rosa",
+        "Pudin de ciruela",
+        "Rosa hada",
+        "Muñeco antiguo",
+        "Caja de hadas",
+        "Muñeco extraño (verde)",
+        "Muñeco extraño (amarillo)"
+      ],
+      "leGusta": [
+        "Coco",
+        "Narciso"
+      ],
+      "neutral": [
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Raíz invernal",
+        "Chantarela",
+        "Jengibre",
+        "Seta magmática",
+        "Todos los Huevos",
+        "Todas las Frutas",
+        "Todos los Vegetales"
+      ],
+      "odia": [
+        "Arcilla",
+        "Café con triple de expreso",
+        "Rábano silvestre",
+        "Piña Colada",
+        "Todos los Productos artesanales"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "nombre": "Gus",
+    "cumpleanos": "Verano 8",
+    "imagen": "gus.png",
+    "gustos": {
+      "leEncanta": [
+        "Curry tropical",
+        "Diamante",
+        "Escargot",
+        "Naranja",
+        "Taco de pescado"
+      ],
+      "leGusta": [
+        "Narciso",
+        "Trufa"
+      ],
+      "neutral": [
+        "Todos los Huevos",
+        "Todas las Frutas",
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Chucrut",
+        "Acebo",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "nombre": "Sam",
+    "cumpleanos": "Verano 17",
+    "imagen": "sam.jpg",
+    "gustos": {
+      "leEncanta": [
+        "Bollito de arce",
+        "Higo chumbo",
+        "Ojo de tigre",
+        "Pizza"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados"
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "nombre": "Maru",
+    "cumpleanos": "Verano 10",
+    "imagen": "maru.png",
+    "gustos": {
+      "leEncanta": [
+        "Pila",
+        "Coliflor",
+        "Coliflor gratinada",
+        "Diamante",
+        "Lingote de oro",
+        "Lingote de iridio",
+        "Capricho de minero",
+        "Bocaditos de pimiento",
+        "Lingote radiactivo",
+        "Tarta de ruibarbo",
+        "Fresa"
+      ],
+      "leGusta": [
+        "Lingote de cobre",
+        "Lingote de hierro",
+        "Resina de roble",
+        "Brea de pino",
+        "Cuarzo",
+        "Mineral radiactivo"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Mora",
+        "Seta común",
+        "Fruta de cristal",
+        "Jarabe de arce",
+        "Frambuesa"
+      ],
+      "odia": [
+        "Acebo",
+        "Miel",
+        "Encurtidos",
+        "Ñame nival",
+        "Trufa"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "nombre": "Alex",
+    "cumpleanos": "Verano 13",
+    "imagen": "alex.png",
+    "gustos": {
+      "leEncanta": [
+        "Banquete de salmón",
+        "Desayuno inglés",
+        "Jack sé ágil, Jack sé fuerte"
+      ],
+      "leGusta": [
+        "Barrita campestre",
+        "Huevo de dinosaurio",
+        "Huevo de loro"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Huevo de rana",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Acebo",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "nombre": "Demetrius",
+    "cumpleanos": "Verano 19",
+    "imagen": "demetrius.png",
+    "gustos": {
+      "leEncanta": [
+        "Estofado de judías",
+        "Helado",
+        "Arroz con leche",
+        "Fresa"
+      ],
+      "leGusta": [
+        "Huevo de dinosaurio",
+        "Seta lila"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Cuarzo"
+      ],
+      "odia": [
+        "Acebo"
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "nombre": "Enano",
+    "cumpleanos": "Verano 22",
+    "imagen": "enano.png",
+    "gustos": {
+      "leEncanta": [
+        "Amatista",
+        "Aguamarina",
+        "Esmeralda",
+        "Jade",
+        "Limonita",
+        "Anguila de lava",
+        "Omnigeoda",
+        "Rubí",
+        "Topacio"
+      ],
+      "leGusta": [
+        "Todas las leches",
+        "Todos los Universalmente Agradables",
+        "Todos los artefactos",
+        "Cuarzo",
+        "Zanahoria cavernaria"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todas las Frutas",
+        "Esencia solar",
+        "Esencia sombría"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables",
+        "Todos los Huevos",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Frambuesa",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados"
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "nombre": "Willy",
+    "cumpleanos": "Verano 24",
+    "imagen": "willy.png",
+    "gustos": {
+      "leEncanta": [
+        "Calabaza",
+        "Diamante",
+        "El Arte del Cangrejo",
+        "Esturión",
+        "Hidromiel",
+        "Joyas del Mar",
+        "Lingote de iridio",
+        "Lingote de oro",
+        "Pepino de mar",
+        "Pez gato",
+        "Pulpo"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Toda la Cocina",
+        "Cuarzo",
+        "Bacalao largo",
+        "Trucha tigre",
+        "Pescado asado",
+        "Sorpresa de carpa",
+        "Crema de almeja",
+        "Tortas de cangrejo",
+        "Perca crujiente",
+        "Caldereta",
+        "Taco de pescado",
+        "Calamares fritos",
+        "Anguila frita",
+        "Crema de langosta",
+        "Banquete de salmón",
+        "Budín de espuma de mar",
+        "Sopa de trucha",
+        "Cebo y Corcho"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todos los Huevos",
+        "Todos los Peces",
+        "Todas las Frutas",
+        "Todas las Leches",
+        "Plato de alta mar",
+        "Rollitos maki",
+        "Sashimi"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Elixir de vida",
+        "Colmenilla",
+        "Seta lila",
+        "Frambuesa",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados"
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "nombre": "Leo",
+    "cumpleanos": "Verano 26",
+    "imagen": "leo.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Pluma de pato",
+        "Mango",
+        "Huevo de avestruz",
+        "Poi"
+      ],
+      "leGusta": [
+        "Todos los Universalmente agradables",
+        "Arroz pegajoso de mango",
+        "Diente de dragón",
+        "Concha de nautilo",
+        "Concha arcoíris",
+        "Cuarzo",
+        "Erizo de mar",
+        "Baya especiada"
+      ],
+      "neutral": [
+        "Todos los Universalmente neutrales",
+        "Todos los Huevos",
+        "Todos los Peces",
+        "Todas las Frutas",
+        "Todas las Leches",
+        "Café"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables",
+        "Todos los Platos Cocinados",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Elixir de vida",
+        "Seta magmática",
+        "Encurtidos",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Cerveza",
+        "Acebo",
+        "Lúpulo",
+        "Hidromiel",
+        "Colmenilla",
+        "Aceite",
+        "Cerveza pálida",
+        "Piña Colada",
+        "Café con triple de expreso",
+        "Arroz sin moler",
+        "Vino"
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "nombre": "Penny",
+    "cumpleanos": "Otoño 2",
+    "imagen": "penny.png",
+    "gustos": {
+      "leEncanta": [
+        "Diamante",
+        "Esmeralda",
+        "Melón",
+        "Amapola",
+        "Muffin de amapola",
+        "Plato rojo",
+        "Bandeja de raíces",
+        "Lenguado",
+        "Sopa Tom Kha"
+      ],
+      "leGusta": [
+        "Diente de león",
+        "Puerro",
+        "Todas las leches",
+        "Todos los artefactos"
+      ],
+      "neutral": [
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Avellana",
+        "Colmenilla",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Sopa de alga",
+        "Pluma de pato",
+        "Caldo pálido",
+        "Seta lila",
+        "Cuarzo",
+        "Seta roja",
+        "Frambuesa",
+        "Lana"
+      ],
+      "odia": [
+        "Cerveza",
+        "Uva",
+        "Acebo",
+        "Lúpulo",
+        "Hidromiel",
+        "Cerveza pálida",
+        "Pata de conejo",
+        "Vino",
+        "Piña Colada"
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "nombre": "Elliott",
+    "cumpleanos": "Otoño 5",
+    "imagen": "elliott.png",
+    "gustos": {
+      "leEncanta": [
+        "Tortas de cangrejo",
+        "Pluma de pato",
+        "Langosta",
+        "Granada",
+        "Tinta de calamar",
+        "Sopa Tom Kha"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Todos los Libros",
+        "Pulpo",
+        "Calamar"
+      ],
+      "neutral": [
+        "Concha arcoíris",
+        "Erizo de mar"
+      ],
+      "noLeGusta": [
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Pizza",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Amaranto",
+        "Cuarzo",
+        "Frambuesa",
+        "Pepino de mar",
+        "Superpepino"
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "nombre": "Jodi",
+    "cumpleanos": "Otoño 11",
+    "imagen": "jodi.png",
+    "gustos": {
+      "leEncanta": [
+        "Pastel de chocolate",
+        "Perca crujiente",
+        "Diamante",
+        "Berenjena al parmesano",
+        "Anguila frita",
+        "Tortitas",
+        "Tarta de ruibarbo",
+        "Estofado vegetal"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto el Ajo)",
+        "Todos los Huevos",
+        "Todas las Frutas",
+        "Todas las Leches"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales"
+      ],
+      "noLeGusta": [
+        "Chantarela",
+        "Seta común",
+        "Ajo",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Narciso",
+        "Diente de león",
+        "Baya especiada"
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "nombre": "Abigail",
+    "cumpleanos": "Otoño 13",
+    "imagen": "abigail.png",
+    "gustos": {
+      "leEncanta": [
+        "Cuarzo",
+        "Espada antigua",
+        "Garra de basilisco",
+        "Flauta de hueso",
+        "Trimestral de Combate"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto los Vegetales)"
+      ],
+      "neutral": [
+        "Todas las leches",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Azúcar",
+        "Rábano silvestre",
+        "Todos los Huevos",
+        "Todas las Frutas (excepto el Fruto de Árbol)",
+        "Todos los Vegetales (excepto las Hojas de té, Lúpulo, Trigo y Calabaza)"
+      ],
+      "odia": [
+        "Arcilla",
+        "Acebo"
+      ]
+    }
+  },
+  {
+    "id": 21,
+    "nombre": "Sandy",
+    "cumpleanos": "Otoño 15",
+    "imagen": "sandy.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Arroz pegajoso de mango",
+        "Azafrán",
+        "Narciso",
+        "Guisante dulce"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Todas las Frutas",
+        "Leche de cabra",
+        "Leche de cabra XXL",
+        "Cuarzo",
+        "Lana"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto la Lana)",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Avellana",
+        "Leche XXL",
+        "Puerro",
+        "Leche",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Acebo"
+      ]
+    }
+  },
+  {
+    "id": 22,
+    "nombre": "Marnie",
+    "cumpleanos": "Otoño 18",
+    "imagen": "marnie.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Diamante",
+        "Almuerzo de granjero",
+        "Pastel rosa",
+        "Tarta de calabaza"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Todas las Leches",
+        "Cuarzo"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todas las Frutas (excepto el Fruto de Árbol and Frambuesa)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto la Arcilla)",
+        "Frambuesa",
+        "Alga",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Arcilla",
+        "Acebo"
+      ]
+    }
+  },
+  {
+    "id": 23,
+    "nombre": "Robin",
+    "cumpleanos": "Otoño 21",
+    "imagen": "robin.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "El Secreto de Woody",
+        "Espagueti",
+        "Melocotón",
+        "Queso de cabra"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Todas las Leches",
+        "Todas las Frutas (excepto el Melocotón)",
+        "Madera noble",
+        "Semanal del Leñador",
+        "Cuarzo"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto la Madera noble)",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Acebo"
+      ]
+    }
+  },
+  {
+    "id": 24,
+    "nombre": "George",
+    "cumpleanos": "Otoño 24",
+    "imagen": "george.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Puerro",
+        "Setas salteadas"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto las Flores)",
+        "Narciso"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Todas las Frutas (excepto el Fruto de Árbol y Frambuesa)",
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Jengibre",
+        "Avellana",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto la Arcilla)",
+        "Todas las Flores (excepto la Amapola)",
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Arcilla",
+        "Diente de león",
+        "Acebo",
+        "Cuarzo"
+      ]
+    }
+  },
+  {
+    "id": 25,
+    "nombre": "Krobus",
+    "cumpleanos": "Invierno 1",
+    "imagen": "krobus.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Diamante",
+        "Lingote de iridio",
+        "Compendio de Monstruos",
+        "Almizcle de monstruo",
+        "Calabaza",
+        "Huevo sombrío",
+        "Mayonesa sombría",
+        "Rábano silvestre"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto Cocina y Elixir de vida)",
+        "Lingote de oro",
+        "Cuarzo",
+        "Budín de espuma de mar",
+        "Bollo extraño"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todos los Huevos (excepto Huevo sombrío)",
+        "Todas las Frutas (excepto Fruto de árbol and Frambuesa)",
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto Lingote de oro, Lingote de iridio and Huevo sombrío)",
+        "Toda la Cocina (excepto Pan, Huevo frito and Bollo extraño)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Elixir de vida",
+        "Colmenilla",
+        "Seta lila",
+        "Frambuesa",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados (excepto Mayonesa sombría)"
+      ]
+    }
+  },
+  {
+    "id": 26,
+    "nombre": "Linus",
+    "cumpleanos": "Invierno 3",
+    "imagen": "linus.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Coco",
+        "El Bufé del Callejón",
+        "Higo chumbo",
+        "Ñame",
+        "Plato de alta mar",
+        "Tarta de arándanos"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto Minerales and Gemas)",
+        "Todos los Huevos (excepto Huevo sombrío)",
+        "Todas las Leches",
+        "Todas las Frutas (excepto Higo chumbo and Coco)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Cebolleta",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todos los Peces (excepto Carpa and Caracol)"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto Peces and Cebolleta)",
+        "Todos los Minerales de forrajeo",
+        "Todas las Gemas (excepto Diamante and Esquirla prismática)"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados"
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "nombre": "Caroline",
+    "cumpleanos": "Invierno 7",
+    "imagen": "caroline.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Taco de pescado",
+        "Curry tropical",
+        "Té verde",
+        "Lentejuela de verano"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto Amaranto, Mayonesa de pato and Mayonesa)",
+        "Narciso",
+        "Hojas de té",
+        "Rábano silvestre"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto Hojas de té)",
+        "Todos los Huevos (excepto Huevo sombrío)",
+        "Todas las Frutas (excepto Fruto de árbol and Frambuesa)",
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables",
+        "Amaranto",
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Mayonesa de pato",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Mayonesa",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Cuarzo",
+        "Frambuesa"
+      ]
+    }
+  },
+  {
+    "id": 28,
+    "nombre": "Sebastian",
+    "cumpleanos": "Invierno 10",
+    "imagen": "sebastian.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Lágrima helada",
+        "Obsidiana",
+        "Sopa de calabaza",
+        "Sashimi",
+        "Huevo sombrío",
+        "Huevo de rana"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto Desayuno inglés, Almuerzo de granjero, Flores, Tortilla and Productos artesanales)",
+        "Compendio de Monstruos",
+        "Cuarzo",
+        "Platija",
+        "Trimestral de Combate"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todas las Frutas (excepto Fruto de árbol and Frambuesa)",
+        "Todos los Peces (excepto Carpa, Caracol and Platija)",
+        "Todas las Leches"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto Arcilla, Peces, Obsidiana and Huevo sombrío)",
+        "Todas las Flores (excepto Amapola)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Frambuesa",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Todos los Productos artesanales (excepto Café, Té verde and Aceite)",
+        "Todos los Huevos (excepto Huevo sombrío)",
+        "Arcilla",
+        "Desayuno inglés",
+        "Almuerzo de granjero",
+        "Tortilla",
+        "Piña Colada"
+      ]
+    }
+  },
+  {
+    "id": 29,
+    "nombre": "Harvey",
+    "cumpleanos": "Invierno 14",
+    "imagen": "harvey.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Café",
+        "Encurtidos",
+        "Supercomida",
+        "Aceite de trufa",
+        "Vino"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto Queso, Queso de cabra, Concha arcoíris and ciertos platos cocinados)",
+        "Todas las Frutas (excepto Frambuesa and Baya especiada)",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Huevo de pato",
+        "Pluma de pato",
+        "Jengibre",
+        "Leche de cabra",
+        "Leche de cabra XXL",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo",
+        "Ñame nival",
+        "Cebolleta",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto Pluma de pato, Pan, Coral and Concha de nautilo)",
+        "Todos los Huevos (excepto Huevo de pato and Huevo sombrío)",
+        "Leche XXL",
+        "Leche"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto Cebolleta)",
+        "Arroz con leche",
+        "Croquetas de patata",
+        "Galletas",
+        "Helado",
+        "Ñames glaseados",
+        "Pan",
+        "Pastel de chocolate",
+        "Pastel rosa",
+        "Pizza",
+        "Queso",
+        "Queso de cabra",
+        "Salsa de grosellas",
+        "Setas salteadas",
+        "Tarta de arándanos",
+        "Tarta de ruibarbo",
+        "Tortitas"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Coral",
+        "Concha de nautilo",
+        "Concha arcoíris",
+        "Frambuesa",
+        "Baya especiada"
+      ]
+    }
+  },
+  {
+    "id": 30,
+    "nombre": "Rasmodius",
+    "cumpleanos": "Invierno 17",
+    "imagen": "wizard.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Esencia solar",
+        "Esencia sombría",
+        "Libro de misterios",
+        "Seta lila",
+        "Superpepino"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables",
+        "Todas las Minerales de las geodas",
+        "Cuarzo",
+        "Lingote de iridio"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales",
+        "Todas las Frutas (excepto el Fruto de Árbol and Frambuesa)"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto los Minerales de las geodas, Amuletos, Esencia solar, Esencia sombría, Lingote de iridio and Superpepino)",
+        "Todos los Huevos",
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Frambuesa",
+        "Baba",
+        "Ñame nival",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados (excepto la Baba)"
+      ]
+    }
+  },
+  {
+    "id": 31,
+    "nombre": "Evelyn",
+    "cumpleanos": "Invierno 20",
+    "imagen": "evelyn.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Remolacha",
+        "Pastel de chocolate",
+        "Diamante",
+        "Rosa hada",
+        "Pasas",
+        "Relleno",
+        "Tulipán"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto la Anguila frita, Ajo, Rollitos maki, Sashimi, Anguila picante and Sopa de trucha)",
+        "Todas las Leches",
+        "Gafas rotas",
+        "Almeja",
+        "Berberecho",
+        "Coral",
+        "Narciso",
+        "Mejillón",
+        "Concha de nautilo",
+        "Ostra",
+        "Erizo de mar"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto el Coral and la Concha de nautilo)",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Todas las Frutas (excepto el Fruto de Árbol, Frambuesa and Baya especiada)",
+        "Chantarela",
+        "Seta común",
+        "Diente de león",
+        "Jengibre",
+        "Avellana",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto la Arcilla and Peces)",
+        "Cuarzo",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados"
+      ]
+    }
+  },
+  {
+    "id": 32,
+    "nombre": "Leah",
+    "cumpleanos": "Invierno 23",
+    "imagen": "leah.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Queso de cabra",
+        "Muffin de amapola",
+        "Ensalada",
+        "Sofrito",
+        "Trufa",
+        "Estofado vegetal",
+        "Vino"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto: Minerales de Forrajeo aparte del Cristal terrestre, Gemas aparte del Diamante and Esquirla prismática, Sorpresa de carpa, Galletas, Croquetas de patata, Helado, Tortitas, Pastel rosa, Pizza, Arroz con leche, Hamburguesa and Tortilla de maíz)",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Todas las Frutas",
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Narciso",
+        "Diente de león",
+        "Madera flotante",
+        "Jengibre",
+        "Avellana",
+        "Acebo",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Ñame nival",
+        "Cebolleta",
+        "Rábano silvestre",
+        "Raíz invernal"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto el Pan, Huevo frito and Trufa)"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto la Madera flotante, Cebolleta and Huevo sombrío)",
+        "Todos los Minerales de forrajeo (excepto el Cristal terrestre)",
+        "Todas las Gemas (excepto el Diamante and Esquirla prismática)",
+        "Sorpresa de carpa",
+        "Galletas",
+        "Huevo frito",
+        "Helado",
+        "Pastel rosa",
+        "Arroz con leche",
+        "Alga",
+        "Hamburguesa",
+        "Tortilla de maíz"
+      ],
+      "odia": [
+        "Todos los Regalos Universalmente Odiados (excepto la Alga)",
+        "Pan",
+        "Croquetas de patata",
+        "Tortitas",
+        "Pizza",
+        "Huevo sombrío"
+      ]
+    }
+  },
+  {
+    "id": 33,
+    "nombre": "Clint",
+    "cumpleanos": "Invierno 26",
+    "imagen": "clint.png",
+    "gustos": {
+      "leEncanta": [
+        "Todos los Universalmente Amados",
+        "Amatista",
+        "Aguamarina",
+        "Salsa de alcachofa",
+        "Esmeralda",
+        "Risotto de helecho",
+        "Lingote de oro",
+        "Lingote de iridio",
+        "Jade",
+        "Omnigeoda",
+        "Rubí",
+        "Topacio"
+      ],
+      "leGusta": [
+        "Todos los Universalmente Agradables (excepto las Flores)",
+        "Lingote de cobre",
+        "Lingote de hierro",
+        "Mensual Minero"
+      ],
+      "neutral": [
+        "Todos los Universalmente Neutrales (excepto Mensual Minero)",
+        "Todos los Huevos (excepto el Huevo sombrío)",
+        "Todas las Frutas (excepto el Fruto de Árbol y Frambuesa)",
+        "Todas las Leches",
+        "Chantarela",
+        "Seta común",
+        "Carbón",
+        "Narciso",
+        "Diente de león",
+        "Jengibre",
+        "Mena de oro",
+        "Avellana",
+        "Mena de iridio",
+        "Puerro",
+        "Seta magmática",
+        "Colmenilla",
+        "Seta lila",
+        "Cuarzo refinado",
+        "Ñame nival",
+        "Raíz invernal"
+      ],
+      "noLeGusta": [
+        "Todos los Universalmente Desagradables (excepto el Carbón, Lingote de cobre, Lingote de oro, Mena de oro, Lingote de iridio, Mena de iridio, Lingote de hierro, Omnigeoda y Cuarzo refinado)",
+        "Todas las Flores (excepto la Amapola)",
+        "Cuarzo",
+        "Frambuesa",
+        "Rábano silvestre"
+      ],
+      "odia": [
+        "Todos los Universalmente Odiados",
+        "Acebo"
+      ]
+    }
+  }
+]

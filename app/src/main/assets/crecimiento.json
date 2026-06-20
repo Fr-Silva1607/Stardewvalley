@@ -1,0 +1,406 @@
+[
+  {
+    "nombre": "Coliflor",
+    "fases": [
+      "fase1coliflor.webp",
+      "fase2coliflor.webp",
+      "fase3coliflor.webp",
+      "fase4coliflor.webp",
+      "fase5coliflor.webp",
+      "coliflor.webp"
+    ],
+    "duracionFases": [1, 2, 4, 4, 1]
+  },
+  {
+    "nombre": "Zanahoria",
+    "fases": [
+      "fase1zanahoria.webp",
+      "fase2zanahoria.webp",
+      "fase3zanahoria.webp",
+      "fase4zanahoria.webp",
+      "zanahoria.webp"
+    ],
+    "duracionFases": [1, 1, 1]
+  },
+  {
+    "nombre": "Fresa",
+    "fases": [
+      "fase1fresa.png",
+      "fase2fresa.png",
+      "fase3fresa.png",
+      "fase4fresa.png",
+      "fase5fresa.png",
+      "fresa.png"
+    ],
+    "duracionFases": [1, 1, 2, 2, 2]
+  },
+  {
+    "nombre": "Patata",
+    "fases": [
+      "fase1patata.webp",
+      "fase2patata.webp",
+      "fase3patata.webp",
+      "fase4patata.webp",
+      "fase5patata.webp",
+      "patata.webp"
+    ],
+    "duracionFases": [1, 1, 1, 2, 1]
+  },
+  {
+    "nombre": "Judía verde",
+    "fases": [
+      "fase1judia.png",
+      "fase2judia.png",
+      "fase3judia.png",
+      "fase4judia.png",
+      "fase5judia.png",
+      "judia.png"
+    ],
+    "duracionFases": [1, 1, 1, 3, 4]
+  },
+  {
+    "nombre": "Col rizada",
+    "fases": [
+      "fase1col.webp",
+      "fase2col.webp",
+      "fase3col.webp",
+      "fase4col.webp",
+      "col.webp"
+    ],
+    "duracionFases": [1, 2, 2, 1]
+  },
+  {
+    "nombre": "Chirivía",
+    "fases": [
+      "fase1chirivia.webp",
+      "fase2chirivia.webp",
+      "fase3chirivia.webp",
+      "fase4chirivia.webp",
+      "chirivia.webp"
+    ],
+    "duracionFases": [1, 1, 1, 1]
+  },
+  {
+    "nombre": "Tulipán",
+    "fases": [
+      "fase1tulipan.webp",
+      "fase2tulipan.webp",
+      "fase3tulipan.webp",
+      "fase4tulipan.webp",
+      "tulipan.webp"
+    ],
+    "duracionFases": [1, 1, 2, 2]
+  },
+  {
+    "nombre": "Ruibarbo",
+    "fases": [
+      "fase1ruibarbo.webp",
+      "fase2ruibarbo.webp",
+      "fase3ruibarbo.webp",
+      "fase4ruibarbo.webp",
+      "fase5ruibarbo.webp",
+      "ruibarbo.webp"
+    ],
+    "duracionFases": [2, 2, 2, 3, 4]
+  },
+  {
+    "nombre": "Allium azul",
+    "fases": [
+      "fase1allium.webp",
+      "fase2allium.webp",
+      "fase3allium.webp",
+      "fase4allium.webp",
+      "allium.webp"
+    ],
+    "duracionFases": [1, 2, 2, 2]
+  },
+  {
+    "nombre": "Arándano",
+    "fases": [
+      "fase1arandano.png",
+      "fase2arandano.png",
+      "fase3arandano.png",
+      "fase4arandano.png",
+      "fase5arandano.png",
+      "arandano.png"
+    ],
+    "duracionFases": [1, 3, 3, 4, 2]
+  },
+  {
+    "nombre": "Tomate",
+    "fases": [
+      "fase1tomate.png",
+      "fase2tomate.png",
+      "fase3tomate.png",
+      "fase4tomate.png",
+      "fase5tomate.png",
+      "tomate.png"
+    ],
+    "duracionFases": [2, 2, 2, 2, 3]
+  },
+  {
+    "nombre": "Chile",
+    "fases": [
+      "fase1chile.png",
+      "fase2chile.png",
+      "fase3chile.png",
+      "fase4chile.png",
+      "fase5chile.png",
+      "chile.png"
+    ],
+    "duracionFases": [1, 1, 1, 1, 1]
+  },
+  {
+    "nombre": "Lúpulo",
+    "fases": [
+      "fase1lupudo.png",
+      "fase2lupudo.png",
+      "fase3lupudo.png",
+      "fase4lupudo.png",
+      "fase5lupudo.png",
+      "lupudo.png"
+    ],
+    "duracionFases": [1, 1, 2, 3, 4]
+  },
+  {
+    "nombre": "Maíz",
+    "fases": [
+      "fase1maiz.png",
+      "fase2maiz.png",
+      "fase3maiz.png",
+      "fase4maiz.png",
+      "fase5maiz.png",
+      "maiz.png"
+    ],
+    "duracionFases": [2, 3, 3, 3, 3]
+  },
+  {
+    "nombre": "Grosella",
+    "fases": [
+      "fase1grosella.png",
+      "fase2grosella.png",
+      "fase3grosella.png",
+      "fase4grosella.png",
+      "fase5grosella.png",
+      "grosella.png"
+    ],
+    "duracionFases": [1, 2, 1, 1, 2]
+  },
+  {
+    "nombre": "Berenjena",
+    "fases": [
+      "fase1berenjena.png",
+      "fase2berenjena.png",
+      "fase3berenjena.png",
+      "fase4berenjena.png",
+      "fase5berenjena.png",
+      "berenjena.png"
+    ],
+    "duracionFases": [1, 1, 1, 1, 1]
+  },
+  {
+    "nombre": "Uva",
+    "fases": [
+      "fase1uva.png",
+      "fase2uva.png",
+      "fase3uva.png",
+      "fase4uva.png",
+      "fase5uva.png",
+      "uva.png"
+    ],
+    "duracionFases": [1, 2, 2, 2, 3]
+  },
+  {
+    "nombre": "Melón",
+    "fases": [
+      "fase1melon.png",
+      "fase2melon.png",
+      "fase3melon.png",
+      "fase4melon.png",
+      "fase5melon.png",
+      "melon.png"
+    ],
+    "duracionFases": [1, 2, 3, 3, 3]
+  },
+  {
+    "nombre": "Amapola",
+    "fases": [
+      "fase1amapola.png",
+      "fase2amapola.png",
+      "fase3amapola.png",
+      "fase4amapola.png",
+      "amapola.png"
+    ],
+    "duracionFases": [1, 2, 2, 2]
+  },
+  {
+    "nombre": "Rábano",
+    "fases": [
+      "fase1rabano.png",
+      "fase2rabano.png",
+      "fase3rabano.png",
+      "fase4rabano.png",
+      "rabano.png"
+    ],
+    "duracionFases": [2, 1, 2, 1]
+  },
+  {
+    "nombre": "Lombarda",
+    "fases": [
+      "fase1lombarda.png",
+      "fase2lombarda.png",
+      "fase3lombarda.png",
+      "fase4lombarda.png",
+      "fase5lombarda.png",
+      "lombarda.png"
+    ],
+    "duracionFases": [2, 1, 2, 2, 2]
+  },
+  {
+    "nombre": "Carambola",
+    "fases": [
+      "fase1carambola.png",
+      "fase2carambola.png",
+      "fase3carambola.png",
+      "fase4carambola.png",
+      "fase5carambola.png",
+      "carambola.png"
+    ],
+    "duracionFases": [2, 3, 2, 3, 3]
+  },
+  {
+    "nombre": "Lentejuela de verano",
+    "fases": [
+      "fase1lentejuela.png",
+      "fase2lentejuela.png",
+      "fase3lentejuela.png",
+      "fase4lentejuela.png",
+      "lenteguejadeverano.png"
+    ],
+    "duracionFases": [1, 2, 3, 2]
+  },
+  {
+    "nombre": "Girasol",
+    "fases": [
+      "fase1girasol.png",
+      "fase2girasol.png",
+      "fase3girasol.png",
+      "fase4girasol.png",
+      "girasol.png"
+    ],
+    "duracionFases": [1, 2, 3, 2]
+  },
+  {
+    "nombre": "Trigo",
+    "fases": [
+      "fase1trigo.png",
+      "fase2trigo.png",
+      "fase3trigo.png",
+      "fase4trigo.png",
+      "trigo.png"
+    ],
+    "duracionFases": [1, 1, 1, 1]
+  },
+  {
+    "nombre": "Calabaza",
+    "fases": [
+      "fase1calabaza.png",
+      "fase2calabaza.png",
+      "fase3calabaza.png",
+      "fase4calabaza.png",
+      "fase5calabaza.png",
+      "calabaza.png"
+    ],
+    "duracionFases": [1, 2, 3, 4, 3]
+  },
+  {
+    "nombre": "Amaranto",
+    "fases": [
+      "fase1amaranto.png",
+      "fase2amaranto.png",
+      "fase3amaranto.png",
+      "fase4amaranto.png",
+      "amaranto.png"
+    ],
+    "duracionFases": [1, 2, 2, 2]
+  },
+  {
+    "nombre": "Ñame",
+    "fases": [
+      "fase1ñame.png",
+      "fase2ñame.png",
+      "fase3ñame.png",
+      "fase4ñame.png",
+      "fase5ñame.png",
+      "ñame.png"
+    ],
+    "duracionFases": [1, 2, 2, 2, 3]
+  },
+  {
+    "nombre": "Ajo",
+    "fases": [
+      "fase1col.webp",
+      "fase2col.webp",
+      "fase3col.webp",
+      "fase4col.webp",
+      "col.webp"
+    ],
+    "duracionFases": [1, 1, 1, 1]
+  },
+  {
+    "nombre": "Grano de café",
+    "fases": [
+      "fase1puerro.png",
+      "fase2puerro.png",
+      "fase3puerro.png",
+      "fase4puerro.png",
+      "puerro.png"
+    ],
+    "duracionFases": [2, 3, 3, 2]
+  },
+  {
+    "nombre": "Alcachofa",
+    "fases": [
+      "fase1alcachofa.png",
+      "fase2alcachofa.png",
+      "fase3alcachofa.png",
+      "fase4alcachofa.png",
+      "alcachofa.png"
+    ],
+    "duracionFases": [2, 2, 2, 2]
+  },
+  {
+    "nombre": "Remolacha",
+    "fases": [
+      "fase1remolacha.png",
+      "fase2remolacha.png",
+      "fase3remolacha.png",
+      "fase4remolacha.png",
+      "remolacha.png"
+    ],
+    "duracionFases": [1, 1, 2, 2]
+  },
+  {
+    "nombre": "Bok Choy",
+    "fases": [
+      "fase1bokchoy.png",
+      "fase2bokchoy.png",
+      "fase3bokchoy.png",
+      "fase4bokchoy.png",
+      "bokchoy.png"
+    ],
+    "duracionFases": [1, 1, 1, 1]
+  },
+  {
+    "nombre": "Rosa hada",
+    "fases": [
+      "fase1rosahada.png",
+      "fase2rosahada.png",
+      "fase3rosahada.png",
+      "fase4rosahada.png",
+      "fase5rosahada.png",
+      "rosahada.png"
+    ],
+    "duracionFases": [2, 3, 3, 2, 2]
+  }
+]

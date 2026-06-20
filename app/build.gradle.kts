@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.example.stardewvalley"
         minSdk = 24
-        targetSdk = 36 // Actualizado a 36
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -34,8 +34,6 @@ android {
         dataBinding = false
     }
 
-    // ELIMINADO: composeOptions { ... } ya no va aquí en Kotlin 2.1.0
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -43,19 +41,6 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
-    }
-}
-
-// Mover esto aquí afuera es más seguro
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin") {
-            if (requested.name.startsWith("kotlin-stdlib-jre")) {
-                useTarget("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
-            } else {
-                useVersion("2.1.0")
-            }
-        }
     }
 }
 
@@ -74,6 +59,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.play.services.maps3d)
     implementation(libs.ui)
+    implementation(libs.foundation)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -90,9 +76,10 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.0")
-
-    // Base de datos Room
-    val room_version = "2.6.1"
+    implementation("com.google.accompanist:accompanist-drawablepainter:0.34.0")
+    
+    // Base de datos Room - Actualizado a 2.7.0-alpha11 para compatibilidad con Kotlin 2.1.0
+    val room_version = "2.7.0-alpha11" 
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
@@ -101,8 +88,4 @@ dependencies {
     constraints {
         implementation("com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava")
     }
-}
-configurations.all {
-    exclude(group = "androidx.databinding", module = "baseLibrary")
-    exclude(group = "androidx.databinding", module = "library")
 }

@@ -1,10 +1,13 @@
 package com.example.stardewvalley.viewmodel
 
+import android.app.Application
 import com.example.stardewvalley.R
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import android.util.Log
 
 sealed class ContenidoPopUp {
     data class Personaje(
@@ -19,75 +22,175 @@ sealed class ContenidoPopUp {
     data class Consejo(val texto: String) : ContenidoPopUp()
 }
 
-class CalendarioViewModel : ViewModel() {
+data class PersonajeJson(
+    val nombre: String,
+    val cumpleanos: String,
+    val gustos: GustosJson
+)
+
+data class GustosJson(
+    val leEncanta: List<String>,
+    val leGusta: List<String>,
+    val odia: List<String>
+)
+
+data class ConsejoJson(val dia: Int, val consejo: String)
+
+data class CrecimientoJson(
+    val nombre: String,
+    val fases: List<String>,
+    val duracionFases: List<Int>? = null
+)
+
+class CalendarioViewModel(application: Application) : AndroidViewModel(application) {
     private val temporadas = listOf("Primavera", "Verano", "Otoño", "Invierno")
 
-    // Estado del índice de la temporada
     private val _temporadaActualIndex = MutableStateFlow(0)
     val temporadaActualIndex = _temporadaActualIndex.asStateFlow()
 
-    // --- SECCIÓN: IMÁGENES DEL CALENDARIO ---
-    fun obtenerImagenCumpleanios(dia: Int, temporadaIndex: Int): Int? {
-        if (temporadaIndex != 0) return null // Solo Primavera por ahora
+    private var consejosData: Map<String, List<ConsejoJson>> = emptyMap()
+    private var personajesData: List<PersonajeJson> = emptyList()
+    private var crecimientoData: List<CrecimientoJson> = emptyList()
 
-        return when (dia) {
-            7 -> R.drawable.lewis_calendario
-            10 -> R.drawable.vicent_calendario
-            14 -> R.drawable.harley_calendario
-            18 -> R.drawable.pam_calendario
-            20 -> R.drawable.shane_calendario
-            26 -> R.drawable.pierre_calendario
-            27 -> R.drawable.emely_calendario
-            else -> null
+    init {
+        cargarDatos()
+    }
+
+    private fun cargarDatos() {
+        try {
+            val context = getApplication<Application>().applicationContext
+            
+            val consejosStream = context.assets.open("consejos.json")
+            val consejosString = consejosStream.bufferedReader().use { it.readText() }
+            val typeConsejos = object : TypeToken<Map<String, List<ConsejoJson>>>() {}.type
+            consejosData = Gson().fromJson(consejosString, typeConsejos)
+
+            val personajesStream = context.assets.open("Personajes.json")
+            val personajesString = personajesStream.bufferedReader().use { it.readText() }
+            val typePersonajes = object : TypeToken<List<PersonajeJson>>() {}.type
+            personajesData = Gson().fromJson(personajesString, typePersonajes)
+
+            val crecimientoStream = context.assets.open("crecimiento.json")
+            val crecimientoString = crecimientoStream.bufferedReader().use { it.readText() }
+            val typeCrecimiento = object : TypeToken<List<CrecimientoJson>>() {}.type
+            crecimientoData = Gson().fromJson(crecimientoString, typeCrecimiento)
+            
+        } catch (e: Exception) {
+            Log.e("CalendarioVM", "Error cargando datos: ${e.message}")
         }
     }
 
-    // --- SECCIÓN: LÓGICA DEL POP-UP (JSON + EVENTOS) ---
+    fun obtenerImagenCumpleanios(dia: Int, temporadaIndex: Int): Int? {
+        val temporada = temporadas[temporadaIndex]
+        val personaje = personajesData.find { it.cumpleanos == "$temporada $dia" }
+        val nombreOriginal = personaje?.nombre ?: return null
+        
+        val nombre = when(nombreOriginal.lowercase()) {
+            "emily" -> "emely"
+            "vincent" -> "vicent"
+            "haley" -> "harley"
+            else -> nombreOriginal.lowercase()
+        }
+        
+        val context = getApplication<Application>().applicationContext
+        val packageName = context.packageName
+        
+        val sufijos = listOf("_calendario", "_icono", "")
+        for (sufijo in sufijos) {
+            val resId = context.resources.getIdentifier("${nombre}$sufijo", "drawable", packageName)
+            if (resId != 0) return resId
+        }
+        
+        return R.drawable.placeholder
+    }
+
     fun obtenerContenidoDia(dia: Int, temporadaIndex: Int): ContenidoPopUp {
         val temporada = getNombreTemporada(temporadaIndex)
-
-        // 1. Lógica de Cumpleaños (Aquí conectamos los datos de tu JSON)
-        if (temporada == "Primavera") {
-            when (dia) {
-                27 -> return ContenidoPopUp.Personaje("Emily", listOf("Amatista", "Tela", "Esmeralda"), listOf("Narciso", "Cuarzo"), listOf("Sashimi", "Acebo", "Rollitos maki"))
-                26 -> return ContenidoPopUp.Personaje("Pierre", listOf("Calamares fritos", "Catálogo"), listOf("Leche", "Narciso", "Diente de león"), listOf("Maíz", "Ajo", "Peces"))
-                20 -> return ContenidoPopUp.Personaje("Shane", listOf("Cerveza", "Pizza", "Chile"), listOf("Leche"), listOf("Peces", "Maíz", "Ajo"))
-                // Agrega aquí a los otros personajes de primavera si quieres que abran su info
-            }
+        
+        val personaje = personajesData.find { it.cumpleanos == "$temporada $dia" }
+        if (personaje != null) {
+            return ContenidoPopUp.Personaje(
+                nombre = personaje.nombre,
+                ama = personaje.gustos.leEncanta,
+                gusta = personaje.gustos.leGusta,
+                odia = personaje.gustos.odia
+            )
         }
 
-        // 2. Lógica de Recetas y Eventos Especiales
-        if (temporada == "Primavera") {
-            if (dia in listOf(2, 10, 17, 24)) {
-                return ContenidoPopUp.Evento("¡Receta Nueva!", "Revisa la TV para aprender algo rico.")
-            }
-            if (dia in 15..17) {
-                return ContenidoPopUp.Evento("¡Día de frambuesas!", "Busca en los arbustos, ¡hay muchas!")
-            }
-            if (dia == 5) {
-                return ContenidoPopUp.Evento("Centro Cívico", "Ir al Centro Cívico desde las 8 am hasta las 1 pm.")
-            }
+        val listaConsejos = consejosData[temporada]
+        val consejoEncontrado = listaConsejos?.find { it.dia == dia }
+        
+        if (consejoEncontrado != null) {
+            return ContenidoPopUp.Consejo(consejoEncontrado.consejo)
         }
 
-        // 3. Si no hay nada especial, mostramos un consejo
-        return ContenidoPopUp.Consejo("Colocar consejo")
+        return ContenidoPopUp.Consejo("Día soleado en el valle.")
     }
 
-    // --- SECCIÓN: NAVEGACIÓN ---
-    fun siguienteTemporada() {
-        if (_temporadaActualIndex.value < 3) {
-            _temporadaActualIndex.value++
+    fun obtenerImagenFase(nombreCultivo: String, diaActual: Int, diaPlante: Int, diasTotales: Int, creceDeNuevo: Int = 0, replantar: Int = 1): String {
+        var diasPasados = (diaActual - diaPlante).coerceAtLeast(0)
+        
+        // Si no crece de nuevo, manejamos el replantado reseteando los diasPasados al ciclo actual
+        if (creceDeNuevo == 0 && replantar > 1) {
+            diasPasados %= diasTotales
         }
+        
+        val nombreNormalizado = normalizar(nombreCultivo)
+        val cultivoInfo = crecimientoData.find { normalizar(it.nombre) == nombreNormalizado } ?:
+                         crecimientoData.find { nombreNormalizado.contains(normalizar(it.nombre)) }
+
+        if (cultivoInfo != null && cultivoInfo.fases.isNotEmpty()) {
+            val fases = cultivoInfo.fases
+            val finalImg = fases.last().removeSuffix(".webp").removeSuffix(".png")
+            
+            if (diasPasados >= diasTotales) {
+                if (creceDeNuevo > 0) {
+                    val diasPostCrecimiento = (diaActual - diaPlante) - diasTotales
+                    val ciclo = diasPostCrecimiento % creceDeNuevo
+                    if (ciclo == 0) return finalImg
+                    return fases[fases.size - 2].removeSuffix(".webp").removeSuffix(".png")
+                }
+                return finalImg
+            }
+
+            val duraciones = cultivoInfo.duracionFases
+            if (duraciones != null && duraciones.isNotEmpty()) {
+                var diasAcumulados = 0
+                for (i in duraciones.indices) {
+                    diasAcumulados += duraciones[i]
+                    if (diasPasados < diasAcumulados) {
+                        return fases[i].removeSuffix(".webp").removeSuffix(".png")
+                    }
+                }
+                return finalImg
+            }
+
+            val numFasesCrecimiento = fases.size - 1
+            val indice = ((diasPasados.toFloat() / diasTotales.toFloat()) * numFasesCrecimiento).toInt()
+            return fases[indice.coerceIn(0, numFasesCrecimiento)].removeSuffix(".webp").removeSuffix(".png")
+        }
+        
+        val fase = if (diasPasados >= diasTotales) 6 else ((diasPasados.toFloat() / diasTotales.toFloat()) * 5).toInt() + 1
+        return "fase$fase${nombreNormalizado}"
+    }
+
+    private fun normalizar(texto: String): String =
+        texto.lowercase()
+            .replace(" ", "")
+            .replace("á", "a")
+            .replace("é", "e")
+            .replace("í", "i")
+            .replace("ó", "o")
+            .replace("ú", "u")
+            .replace("ñ", "n")
+
+    fun siguienteTemporada() {
+        if (_temporadaActualIndex.value < 3) _temporadaActualIndex.value++
     }
 
     fun anteriorTemporada() {
-        if (_temporadaActualIndex.value > 0) {
-            _temporadaActualIndex.value--
-        }
+        if (_temporadaActualIndex.value > 0) _temporadaActualIndex.value--
     }
 
-    fun getNombreTemporada(index: Int): String {
-        return temporadas[index]
-    }
+    fun getNombreTemporada(index: Int): String = temporadas[index]
 }
-

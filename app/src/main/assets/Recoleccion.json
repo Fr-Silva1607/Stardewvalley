@@ -1,0 +1,314 @@
+[
+  {
+    "id": 201,
+    "nombre": "Rábano silvestre",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 50,
+    "imagen": "rabanosilvestre",
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 52 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 42 },
+      { "ubicacion": "Montaña", "probabilidad": 42 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 }
+    ]
+  },
+  {
+    "id": 202,
+    "nombre": "Narciso",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 30,
+    "imagen": "narciso",
+    "lugares": [
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 100 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 45 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 45 }
+    ]
+  },
+  {
+    "id": 203,
+    "nombre": "Puerro",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 60,
+    "imagen": "puerro",
+    "lugares": [
+      { "ubicacion": "Bosque trasero", "probabilidad": 58 },
+      { "ubicacion": "Montaña", "probabilidad": 58 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 20 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 20 }
+    ]
+  },
+  {
+    "id": 204,
+    "nombre": "Diente de león",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 40,
+    "imagen": "dientedeleon",
+    "lugares": [
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 35 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 35 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 }
+    ]
+  },
+  {
+    "id": 205,
+    "nombre": "Cebolleta",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 8,
+    "imagen": "cebolleta",
+    "lugares": [
+      { "ubicacion": "Bosque Tizón", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 206,
+    "nombre": "Colmenilla",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 150,
+    "imagen": "colmenilla",
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 32 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 207,
+    "nombre": "Seta común",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 40,
+    "imagen": "stecomun",
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 16 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 208,
+    "nombre": "Frambuesa",
+    "tipo": "Recolección",
+    "temporada": "Primavera",
+    "precioBase": 5,
+    "imagen": "frambuesa",
+    "lugares": [
+      { "ubicacion": "Arbustos de temporada", "detalles": "Primavera 15 - 18" },
+      { "ubicacion": "Cueva de la Granja (Murciélagos)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 209,
+    "nombre": "Seta común",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 40,
+    "imagen": "stecomun",
+    "descripcion": "Con un ligero toque a frutos secos y buena textura.",
+    "restauracion": { "energia": 38, "salud": 17 },
+    "usos": ["Semillas otoñales", "Setas salteadas", "Sopa Tom Kha", "Sofrito", "Lote Recolección Otoñal"],
+    "lugares": [
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Bosque secreto", "probabilidad": 46 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Montaña", "probabilidad": 24 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 24 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 210,
+    "nombre": "Ciruela salvaje",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 80,
+    "imagen": "ciruelacomun",
+    "descripcion": "Ácida y jugosa, con un olor acre.",
+    "restauracion": { "energia": 25, "salud": 11 },
+    "usos": ["Semillas otoñales", "Pudin de ciruela", "Lote Recolección Otoñal", "Mermelada", "Vino"],
+    "lugares": [
+      { "ubicacion": "Parada de autobús", "probabilidad": 60 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 38 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 24 },
+      { "ubicacion": "Montaña", "probabilidad": 24 },
+      { "ubicacion": "Cueva de la Granja (Murciélagos)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 211,
+    "nombre": "Avellana",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 90,
+    "imagen": "avellana",
+    "descripcion": "¡Menuda avellana!",
+    "restauracion": { "energia": 30, "salud": 13 },
+    "usos": ["Semillas otoñales", "Avellanas tostadas", "Relleno", "Lote Recolección Otoñal"],
+    "lugares": [
+      { "ubicacion": "Bosque trasero", "probabilidad": 53 },
+      { "ubicacion": "Montaña", "probabilidad": 53 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 40 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 25 },
+      { "ubicacion": "Árboles de Arce", "detalles": "Sacudiendo a partir del día 14" }
+    ]
+  },
+  {
+    "id": 212,
+    "nombre": "Mora",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 20,
+    "imagen": "mora",
+    "descripcion": "Un manjar de principios de otoño.",
+    "restauracion": { "energia": 25, "salud": 11 },
+    "usos": ["Semillas otoñales", "Tarta de moras", "Lote Recolección Otoñal", "Mermelada", "Vino"],
+    "lugares": [
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 100 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 50 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 38 },
+      { "ubicacion": "Arbustos de temporada", "detalles": "Otoño 8 - 11" },
+      { "ubicacion": "Cueva de la Granja (Murciélagos)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 213,
+    "nombre": "Chantarela",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 160,
+    "imagen": "chantarela",
+    "descripcion": "Una seta sabrosa con olor afrutado y un sabor ligeramente picante.",
+    "restauracion": { "energia": 75, "salud": 33 },
+    "usos": ["Elixir de vida"],
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 38 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 214,
+    "nombre": "Seta roja",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 75,
+    "imagen": "setaroja",
+    "descripcion": "Una seta a topos que a veces se encuentra en las cuevas.",
+    "restauracion": { "energia": -50, "salud": 0 },
+    "usos": ["Lote Tinte", "Lote Recolección Exótica", "Elixir de vida"],
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 22 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Cueva de la Granja (Setas)", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 215,
+    "nombre": "Seta lila",
+    "tipo": "Recolección",
+    "temporada": "Otoño",
+    "precioBase": 250,
+    "imagen": "setalila",
+    "descripcion": "Una seta poco común que se encuentra en las profundidades de las cuevas.",
+    "restauracion": { "energia": 75, "salud": 33 },
+    "usos": ["Lote Recolección Exótica", "Elixir de vida"],
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 22 },
+      { "ubicacion": "Granja forestal", "probabilidad": 25 },
+      { "ubicacion": "Las Minas", "detalles": "Niveles profundos" }
+    ]
+  },
+  {
+    "id": 216,
+    "nombre": "Raíz invernal",
+    "tipo": "Recolección",
+    "temporada": "Invierno",
+    "precioBase": 70,
+    "imagen": "raizinvernal",
+    "descripcion": "Un tubérculo lleno de almidón.",
+    "restauracion": { "energia": 25, "salud": 11 },
+    "usos": [ "Semillas invernales", "Bandeja de raíces", "Lote Recolección Invernal" ],
+    "lugares": [
+      { "ubicacion": "Arando por todo Stardew Valley", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 217,
+    "nombre": "Fruta de cristal",
+    "tipo": "Recolección",
+    "temporada": "Invierno",
+    "precioBase": 150,
+    "imagen": "frutadecristal",
+    "descripcion": "Una delicada fruta que surge de la nieve.",
+    "restauracion": { "energia": 63, "salud": 28 },
+    "usos": [ "Semillas invernales", "Lote Recolección Invernal", "Mermelada", "Vino" ],
+    "lugares": [
+      { "ubicacion": "Las minas (Niveles 40-80)", "probabilidad": 100 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 50 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 39 },
+      { "ubicacion": "La montaña", "probabilidad": 38 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 23 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 22 },
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 8 }
+    ]
+  },
+  {
+    "id": 218,
+    "nombre": "Ñame nival",
+    "tipo": "Recolección",
+    "temporada": "Invierno",
+    "precioBase": 100,
+    "imagen": "nameinvernal",
+    "descripcion": "Este pequeño ñame se esconde bajo la nieve.",
+    "restauracion": { "energia": 30, "salud": 13 },
+    "usos": [ "Semillas invernales", "Lote Recolección Invernal" ],
+    "lugares": [
+      { "ubicacion": "Arando por todo Stardew Valley", "probabilidad": 100 }
+    ]
+  },
+  {
+    "id": 219,
+    "nombre": "Azafrán",
+    "tipo": "Recolección",
+    "temporada": "Invierno",
+    "precioBase": 60,
+    "imagen": "azafran",
+    "descripcion": "Una flor que puede florecer en invierno.",
+    "restauracion": { "energia": 0, "salud": 0 },
+    "usos": [ "Semillas invernales", "Lote Recolección Invernal", "Sandy (le encanta)" ],
+    "lugares": [
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 54 },
+      { "ubicacion": "Ferrocarril", "probabilidad": 50 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 42 },
+      { "ubicacion": "La montaña", "probabilidad": 40 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 39 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 35 }
+    ]
+  },
+  {
+    "id": 220,
+    "nombre": "Acebo",
+    "tipo": "Recolección",
+    "temporada": "Invierno",
+    "precioBase": 80,
+    "imagen": "acebo",
+    "descripcion": "Sus hojas y bayas de color rojo intenso lo convierten en una decoración de invierno muy popular.",
+    "restauracion": { "energia": -37, "salud": 0 },
+    "usos": [],
+    "lugares": [
+      { "ubicacion": "Bosque secreto", "probabilidad": 100 },
+      { "ubicacion": "Bosque trasero", "probabilidad": 43 },
+      { "ubicacion": "Pueblo Pelícano", "probabilidad": 38 },
+      { "ubicacion": "Parada de autobús", "probabilidad": 35 },
+      { "ubicacion": "Bosque Tizón", "probabilidad": 22 },
+      { "ubicacion": "La montaña", "probabilidad": 22 }
+    ]
+  }
+]

@@ -13,8 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/superior"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/superior" />
 
     </FrameLayout>
 </LinearLayout>

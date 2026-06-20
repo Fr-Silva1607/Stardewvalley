@@ -1,16 +1,22 @@
 package com.example.stardewvalley.ui
-import android.content.Intent
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.stardewvalley.ui.screen.EleccionGranjaScreen
-import com.example.stardewvalley.ui.screen.LoginScreen
 import com.example.stardewvalley.ui.screen.CalendarioScreen
+import com.example.stardewvalley.ui.screen.CheckListScreen
+import com.example.stardewvalley.ui.screen.MercaJojaScreen
+import com.example.stardewvalley.navigation.GestionarTiempoJuego
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.stardewvalley.viewmodel.CultivoViewModel
+import com.example.stardewvalley.viewmodel.CheckListViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,35 +26,52 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             val context = LocalContext.current
             val prefs = remember { context.getSharedPreferences("StardewPrefs", MODE_PRIVATE) }
+            
+            // ViewModels compartidos
+            val cultiVM: CultivoViewModel = viewModel()
+            val checkListVM: CheckListViewModel = viewModel()
 
-            // 1. Recuperamos el ID de la granja que viene del Login XML
-            val farmId = prefs.getInt("selected_farm_id", -1)
+            val farmId = remember { prefs.getInt("selected_farm_id", -1) }
 
-            // 2. Revisamos si ESTA granja específica ya eligió bando
-            // Buscamos "ruta_1", "ruta_2", etc.
-            val bandoDeEstaGranja = remember(farmId) {
-                prefs.getString("ruta_$farmId", null)
+            // Inicializar el ViewModel con la granja seleccionada
+            LaunchedEffect(farmId) {
+                if (farmId != -1) {
+                    cultiVM.initFarm(farmId)
+                }
             }
 
-            // 3. Si bando es null, vamos a elecciones. Si no, directo al calendario.
+            // Iniciamos la simulación del tiempo globalmente
+            GestionarTiempoJuego(context = context, cultiVM = cultiVM)
+
+            val bandoDeEstaGranja = remember(farmId) {
+                if (farmId != -1) prefs.getString("ruta_$farmId", null) else null
+            }
+
             val destinoInicial = if (bandoDeEstaGranja == null) "elecciones" else "calendario"
 
             NavHost(navController = navController, startDestination = destinoInicial) {
-
-                // Pantalla de Elección (Centro Cívico vs Joja)
                 composable("elecciones") {
                     EleccionGranjaScreen(navController) {
-                        // Al terminar de elegir en el XML inflado, navegamos al calendario
                         navController.navigate("calendario") {
-                            // Limpiamos el historial para que no pueda volver a elegir bando
                             popUpTo("elecciones") { inclusive = true }
                         }
                     }
                 }
 
-                // Pantalla del Calendario
+                composable("joja_screen") {
+                    MercaJojaScreen(navController) {
+                        navController.navigate("calendario") {
+                            popUpTo("elecciones") { inclusive = true }
+                        }
+                    }
+                }
+
                 composable("calendario") {
-                    CalendarioScreen(navController)
+                    CalendarioScreen(navController, cultiVM = cultiVM)
+                }
+
+                composable("centro_civico") {
+                    CheckListScreen(navController = navController, viewModel = checkListVM)
                 }
             }
         }

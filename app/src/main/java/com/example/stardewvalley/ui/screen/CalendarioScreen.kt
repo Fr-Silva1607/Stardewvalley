@@ -1,122 +1,108 @@
 package com.example.stardewvalley.ui.screen
 
-import android.graphics.drawable.Drawable
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.stardewvalley.viewmodel.CalendarioViewModel
+import androidx.navigation.NavController
 import com.example.stardewvalley.R
 import com.example.stardewvalley.ui.theme.StardewBeige
 import com.example.stardewvalley.ui.theme.StardewMarrone
 import com.example.stardewvalley.ui.theme.StardewTexto
+import com.example.stardewvalley.viewmodel.CalendarioViewModel
 import com.example.stardewvalley.viewmodel.ContenidoPopUp
 import com.example.stardewvalley.viewmodel.CultivoPlantado
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.window.Dialog
 import com.example.stardewvalley.viewmodel.CultivoCargado
 import com.example.stardewvalley.viewmodel.CultivoViewModel
+import com.google.accompanist.drawablepainter.rememberDrawablePainter
+import androidx.compose.runtime.collectAsState
 
-
-// --- 1. MODELOS DE DATOS ---
 @Composable
 fun CalendarioScreen(
     navController: NavController,
-    calVM: CalendarioViewModel = viewModel<CalendarioViewModel>(),
-    cultiVM: CultivoViewModel = viewModel<CultivoViewModel>()
+    calVM: CalendarioViewModel = viewModel(),
+    cultiVM: CultivoViewModel  = viewModel()
 ) {
-    // 1. Estados de los ViewModels (RECOLECTAR TODO AQUÍ)
-    val temporadaIndex by calVM.temporadaActualIndex.collectAsState()
-    val nombreTemporada = calVM.getNombreTemporada(temporadaIndex)
-
-    // Estos son los que te daban error por estar faltando:
+    val context = LocalContext.current
+    val temporadaIndex    by calVM.temporadaActualIndex.collectAsState()
+    val nombreTemporada    = calVM.getNombreTemporada(temporadaIndex)
     val cultivosPlantados by cultiVM.cultivosPlantados.collectAsState(initial = emptyList())
-    val todosLosCultivos by cultiVM.listaProcesadaDelJson.collectAsState()
+    val todosLosCultivos  by cultiVM.listaProcesadaDelJson.collectAsState()
     val diaActualSimulado by cultiVM.diaActual.collectAsState()
+    val energia           by cultiVM.energia.collectAsState()
 
     var diaSeleccionado by remember { mutableIntStateOf(1) }
+    var mostrarPopUp    by remember { mutableStateOf(false) }
 
-    // 2. Estados locales para UI
-    var mostrarPopUp by remember { mutableStateOf(false) }
+    // Estado único para el menú desplegable unificado
+    var gestionExpandida by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // Fondo
         Image(
-            painter = painterResource(id = R.drawable.fondo),
+            painter      = painterResource(id = R.drawable.fondo),
             contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
+            modifier     = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
 
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
-
-            // --- CABECERA ---
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(bottom = 32.dp)
+        ) {
             item {
-                Box(modifier = Modifier.fillMaxWidth().height(140.dp)) {
-                    AndroidView(factory = { ctx ->
-                        LayoutInflater.from(ctx).inflate(R.layout.superior2, null)
-                    })
-                    Column(
-                        modifier = Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                        Text("Año 1", color = Color.White, style = MaterialTheme.typography.titleMedium)
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            IconButton(onClick = { calVM.anteriorTemporada() }) {
-                                Image(painterResource(R.drawable.fi_civico_), null, modifier = Modifier.size(30.dp))
-                            }
-                            Text(nombreTemporada, color = Color(0xFFFFEB3B), style = MaterialTheme.typography.headlineMedium)
-                            IconButton(onClick = { calVM.siguienteTemporada() }) {
-                                Image(painterResource(R.drawable.fd_civico_), null, modifier = Modifier.size(30.dp))
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Box(modifier = Modifier.fillMaxWidth().height(140.dp)) {
+                        AndroidView(factory = { ctx ->
+                            LayoutInflater.from(ctx).inflate(R.layout.superior2, null)
+                        })
+                        
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Text("Año 1", color = Color.White, style = MaterialTheme.typography.titleMedium)
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                IconButton(onClick = { calVM.anteriorTemporada() }) {
+                                    Image(painterResource(R.drawable.fi_civico_), null, modifier = Modifier.size(30.dp))
+                                }
+                                Text(nombreTemporada, color = StardewMarrone, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.ExtraBold)
+                                IconButton(onClick = { calVM.siguienteTemporada() }) {
+                                    Image(painterResource(R.drawable.fd_civico_), null, modifier = Modifier.size(30.dp))
+                                }
                             }
                         }
                     }
                 }
             }
 
-            // --- GRID DEL CALENDARIO ---
+            // GRID CALENDARIO
             item {
                 Box(modifier = Modifier.padding(10.dp).background(Color(0xFF4E2C0A)).padding(4.dp)) {
                     Column {
@@ -125,16 +111,39 @@ fun CalendarioScreen(
                                 for (columna in 1..7) {
                                     val dia = (fila * 7) + columna
                                     val fotoCumple = calVM.obtenerImagenCumpleanios(dia, temporadaIndex)
-                                    val iconoTemporada = if (nombreTemporada == "Primavera" && dia in 15..17) R.drawable.fresa else null
+                                    val iconoExtra = if (nombreTemporada == "Primavera" && dia in 15..17) R.drawable.fresa else null
+
+                                    val cultivosCosecha = cultivosPlantados.filter { 
+                                        val diasDesdeSiembra = dia - it.diaPlante
+                                        if (it.creceDeNuevo > 0) {
+                                            if (diasDesdeSiembra == it.diasCrecimiento) true
+                                            else if (diasDesdeSiembra > it.diasCrecimiento) (diasDesdeSiembra - it.diasCrecimiento) % it.creceDeNuevo == 0
+                                            else false
+                                        } else {
+                                            if (diasDesdeSiembra > 0 && it.diasCrecimiento > 0 && diasDesdeSiembra % it.diasCrecimiento == 0) {
+                                                val numCosecha = diasDesdeSiembra / it.diasCrecimiento
+                                                numCosecha <= it.replantar
+                                            } else false
+                                        }
+                                    }
+                                    
+                                    val cultivosCreciendo = cultivosPlantados.filter {
+                                        val diasDesdeSiembra = dia - it.diaPlante
+                                        val duracionTotal = if (it.creceDeNuevo > 0) 28 else it.diasCrecimiento * it.replantar
+                                        diasDesdeSiembra >= 0 && diasDesdeSiembra <= duracionTotal && !cultivosCosecha.contains(it)
+                                    }
 
                                     Box(modifier = Modifier.weight(1f)) {
                                         DiaCelda(
-                                            dia = dia,
-                                            fotoRes = fotoCumple,
-                                            iconoExtra = iconoTemporada,
-                                            onClick = {
+                                            dia        = dia,
+                                            fotoRes    = fotoCumple,
+                                            iconoExtra = iconoExtra,
+                                            cultivosCosecha = cultivosCosecha,
+                                            cultivosCreciendo = cultivosCreciendo,
+                                            calVM = calVM,
+                                            onClick    = {
                                                 diaSeleccionado = dia
-                                                mostrarPopUp = true
+                                                mostrarPopUp    = true
                                                 cultiVM.setDiaActual(dia)
                                             }
                                         )
@@ -146,61 +155,64 @@ fun CalendarioScreen(
                 }
             }
 
-            // --- DETALLES Y TABLA ---
             item {
-                Card(
-                    modifier = Modifier.fillMaxWidth().padding(16.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF5E6D3)),
-                    border = BorderStroke(2.dp, StardewMarrone)
+                Button(
+                    onClick = { navController.navigate("centro_civico") },
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))
                 ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
-                        Text("DETALLES DEL DÍA $diaSeleccionado", fontWeight = FontWeight.Bold, color = StardewMarrone)
-                        HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-                        TablaCultivos(viewModel = cultiVM)
-                    }
+                    Text("Check-list", color = Color.White)
                 }
             }
 
-            // --- CALCULADORA DE GANANCIA ---
             item {
-                val sugerencia = cultiVM.obtenerMejorOpcion(todosLosCultivos, diaActualSimulado)
-                Card(
-                    modifier = Modifier.padding(16.dp).fillMaxWidth(),
-                    colors = CardDefaults.cardColors(containerColor = Color(0xFFF5E6D3))
+                // UNIFICACIÓN: Planificador + Tabla + Energía en un solo bloque visual
+                CardDesplegable(
+                    titulo = "GESTIÓN DE CULTIVOS Y ENERGÍA",
+                    expandido = gestionExpandida,
+                    onToggle = { gestionExpandida = !gestionExpandida },
+                    colorFondo = Color(0xFFF5E6D3)
                 ) {
-                    Text(
-                        text = " $sugerencia",
-                        modifier = Modifier.padding(16.dp),
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = Color(0xFF2E7D32),
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-
-            // --- TIENDA Y HUERTO ---
-            item { SeccionPlanificador(diaActual = diaActualSimulado, viewModel = cultiVM) }
-
-            item {
-                if (cultivosPlantados.isNotEmpty()) {
-                    Text(
-                        "Crecimiento en Tiempo Real (Día $diaActualSimulado)",
-                        modifier = Modifier.padding(16.dp),
-                        color = Color.White,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(horizontal = 16.dp)
-                    ) {
-                        cultivosPlantados.forEach { cultivo ->
-                            CrecimientoVisualItem(cultivo, diaActualSimulado, cultiVM)
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            // Planificador ARRIBA dentro del desplegable
+                            SeccionPlanificador(diaActual = diaActualSimulado, viewModel = cultiVM)
+                            
+                            Spacer(modifier = Modifier.height(16.dp))
+                            HorizontalDivider(color = StardewMarrone.copy(alpha = 0.3f))
+                            Spacer(modifier = Modifier.height(8.dp))
+                            
+                            Text("TABLA DE SEMILLAS ($nombreTemporada)", fontWeight = FontWeight.Bold, color = StardewMarrone, modifier = Modifier.padding(bottom = 8.dp))
+                            TablaCultivos(viewModel = cultiVM, temporada = nombreTemporada)
                         }
+                        
+                        // Barra de energía unificada al lado
+                        Spacer(modifier = Modifier.width(8.dp))
+                        BarraEnergiaVertical(energia)
                     }
                 }
             }
-        } // Fin LazyColumn
 
-        // PopUp de eventos
+            item {
+                IconButton(
+                    onClick = { 
+                        val intent = Intent(context, LoginScreen::class.java)
+                        context.startActivity(intent)
+                        (context as? Activity)?.finish()
+                    },
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .size(60.dp)
+                ) {
+                    Image(
+                        painterResource(R.drawable.fi_civico_), 
+                        contentDescription = "Retroceder a Login", 
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
+
         if (mostrarPopUp) {
             PopUpEventos(
                 dia = diaSeleccionado,
@@ -209,340 +221,215 @@ fun CalendarioScreen(
                     diaSeleccionado = nuevoDia
                     cultiVM.setDiaActual(nuevoDia)
                 },
-                viewModel = calVM
+                viewModel = calVM,
+                cultiVM = cultiVM
             )
         }
     }
 }
 
 @Composable
- fun CrecimientoVisualItem(cultivo: CultivoPlantado, diaActual: Int, viewModel: CultivoViewModel) {
-    val context = LocalContext.current
-
-    // IMPORTANTE: Asegúrate de que obtenerImagenFase acepte estos 4 parámetros en tu CultivoViewModel
-    val nombreImagen = viewModel.obtenerImagenFase(
-        nombre = cultivo.nombre,
-        diaPlante = cultivo.diaPlante,
-        diaActual = diaActual,
-        diasTotales = 12
-    )
-
-    val resId = context.resources.getIdentifier(nombreImagen, "drawable", context.packageName)
-    val drawable = ContextCompat.getDrawable(context, if(resId != 0) resId else android.R.drawable.ic_menu_report_image)
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(8.dp).width(80.dp)
-    ) {
-        Image(
-            painter = rememberDrawablePainter(drawable),
-            contentDescription = null,
-            modifier = Modifier.size(60.dp)
-        )
-        Text(cultivo.nombre, color = Color.White, style = MaterialTheme.typography.labelSmall)
-    }
-}
-@Composable
-fun SeccionCultivos(diaActual: Int, viewModel: CultivoViewModel = viewModel()) {
+fun BarraEnergiaVertical(energia: Float) {
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .background(StardewBeige, RoundedCornerShape(8.dp))
-            .border(3.dp, StardewMarrone, RoundedCornerShape(8.dp))
-            .padding(8.dp)
+            .width(40.dp)
+            .height(300.dp) // Más corta según solicitud
+            .padding(vertical = 10.dp, horizontal = 4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Text("Planificador de Siembra", color = StardewTexto, style = MaterialTheme.typography.headlineSmall)
-
-        // Tabla de Cultivos disponibles en el JSON
-        Row(modifier = Modifier.fillMaxWidth().background(StardewMarrone).padding(4.dp)) {
-            Text("Cultivo", color = Color.White, modifier = Modifier.weight(1f))
-            Text("Precio", color = Color.White, modifier = Modifier.weight(0.5f))
-            Text("Cantidad", color = Color.White, modifier = Modifier.weight(1f))
+        Text("E", color = StardewMarrone, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+        Box(
+            modifier = Modifier
+                .width(18.dp)
+                .weight(1f)
+                .background(Color(0xFF3E2723), RoundedCornerShape(4.dp))
+                .border(2.dp, Color(0xFF21130D), RoundedCornerShape(4.dp))
+                .padding(2.dp),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            val colorBarra = when {
+                energia > 60 -> Color(0xFF4CAF50)
+                energia > 30 -> Color(0xFFFF9800)
+                else -> Color(0xFFF44336)
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight((energia / 120f).coerceIn(0f, 1f))
+                    .background(colorBarra, RoundedCornerShape(2.dp))
+            )
         }
     }
 }
+
 @Composable
-fun ListaSeguimientoCultivos(
-    diaActual: Int,
-    cultivosPlantados: List<CultivoPlantado>,
-    viewModel: CultivoViewModel
+fun CardDesplegable(
+    titulo: String,
+    expandido: Boolean,
+    onToggle: () -> Unit,
+    colorFondo: Color,
+    contenido: @Composable () -> Unit
 ) {
-    val context = LocalContext.current
-
-    Column(modifier = Modifier.padding(16.dp)) {
-        cultivosPlantados.forEach { cultivo ->
-            // 1. Obtenemos el nombre del archivo desde el ViewModel (ej: "fase3_coliflor")
-            // Usamos 12 como ejemplo de días totales de crecimiento
-            val nombreImagen = viewModel.obtenerImagenFase(cultivo.nombre, cultivo.diaPlante, diaActual, 12)
-
-            // 2. Buscamos el ID del recurso dinámicamente
-            val drawableId = context.resources.getIdentifier(nombreImagen, "drawable", context.packageName)
-
+    Card(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp),
+        colors = CardDefaults.cardColors(containerColor = colorFondo),
+        border = BorderStroke(2.dp, StardewMarrone)
+    ) {
+        Column(modifier = Modifier.padding(12.dp)) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth().padding(8.dp).background(StardewBeige)
+                modifier = Modifier.clickable { onToggle() }.fillMaxWidth()
             ) {
-                // 3. Mostramos la imagen de la fase actual
-                Image(
-                    painter = painterResource(id = if (drawableId != 0) drawableId else R.drawable.placeholder),
-                    contentDescription = null,
-                    modifier = Modifier.size(40.dp)
-                )
-
-                Text(
-                    text = "${cultivo.nombre} (x${cultivo.cantidad})",
-                    color = StardewTexto,
-                    modifier = Modifier.padding(start = 8.dp)
-                )
+                Text(titulo, fontWeight = FontWeight.Bold, color = StardewMarrone, modifier = Modifier.weight(1f))
+                Text(if (expandido) "▲" else "▼", color = StardewMarrone, fontWeight = FontWeight.ExtraBold)
             }
-        }
-    }
-}
-@Composable
-fun SeguimientoCrecimiento(diaActual: Int, cultivos: List<CultivoPlantado>) {
-    if (cultivos.isEmpty()) return // No se muestra nada si no hay nada plantado
-
-    Card(modifier = Modifier.fillMaxWidth().padding(16.dp), colors = CardDefaults.cardColors(StardewBeige)) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            Text("Tus Plantaciones:", color = StardewTexto)
-            cultivos.forEach { cultivo ->
-                val diasPasados = diaActual - cultivo.diaPlante
-                val faltan = 12 - diasPasados // Ejemplo con Coliflor (12 días)
-
-                if (faltan >= 0) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("${cultivo.nombre}: Faltan $faltan días", color = StardewTexto)
-                        // Aquí podrías cambiar la imagen según el día (fase de crecimiento)
-                    }
+            AnimatedVisibility(visible = expandido) {
+                Column {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    contenido()
                 }
             }
         }
     }
 }
-@Composable
-fun ItemCultivoTabla(
-    nombre: String,
-    precio: Int,
-    onCantidadChange: (Int) -> Unit,
-    // Recibimos el Painter directamente (el objeto, no la función)
-    rememberDrawablePainter: Painter
-) {
-    // Estado local para la cantidad en esta fila
-    var cantidad by remember { mutableIntStateOf(0) }
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-            .background(Color(0xFFF5E6D3), shape = RoundedCornerShape(8.dp)) // Fondo crema suave
-            .padding(8.dp)
-    ) {
-        // 1. Imagen del cultivo usando el Painter que llega por parámetro
-        Image(
-            painter = rememberDrawablePainter,
-            contentDescription = "Imagen de $nombre",
-            modifier = Modifier
-                .size(48.dp)
-                .padding(4.dp)
-        )
-
-        // 2. Información del cultivo (Nombre y Precio)
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 12.dp)
-        ) {
-            Text(
-                text = nombre,
-                color = Color(0xFF4E2C0A), // StardewTexto
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "$$precio c/u",
-                color = Color(0xFF7A5C37),
-                style = MaterialTheme.typography.bodySmall
-            )
-        }
-
-        // 3. Controles de cantidad (+ / -)
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(Color(0xFFE1C699), shape = CircleShape)
-        ) {
-            IconButton(
-                onClick = {
-                    if (cantidad > 0) {
-                        cantidad--
-                        onCantidadChange(cantidad)
-                    }
-                },
-                modifier = Modifier.size(32.dp)
-            ) {
-                Text("-", color = Color(0xFF4E2C0A), fontWeight = FontWeight.Bold)
-            }
-
-            Text(
-                text = "$cantidad",
-                color = Color(0xFF4E2C0A),
-                modifier = Modifier.padding(horizontal = 8.dp),
-                style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.ExtraBold
-            )
-
-            IconButton(
-                onClick = {
-                    cantidad++
-                    onCantidadChange(cantidad)
-                },
-                modifier = Modifier.size(32.dp)
-            ) {
-                Text("+", color = Color(0xFF4E2C0A), fontWeight = FontWeight.Bold)
-            }
-        }
-    }
-}
-@Composable
-fun PopUpEventos(
-    dia: Int,
-    onDismiss: () -> Unit,
-    onDiaCambiar: (Int) -> Unit,
-    viewModel: CalendarioViewModel
-) {
-    val context = LocalContext.current
-    val contenido = viewModel.obtenerContenidoDia(dia, viewModel.temporadaActualIndex.collectAsState().value)
-
-    val painterIzquierda = rememberDrawablePainter(ContextCompat.getDrawable(context, R.drawable.fi_civico_))
-    val painterDerecha = rememberDrawablePainter(ContextCompat.getDrawable(context, R.drawable.fd_civico_))
-
-    Dialog(onDismissRequest = onDismiss) {
-        Surface(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(0.9f),
-            shape = RoundedCornerShape(16.dp),
-            color = Color(0xFFF5E6D3)
-        ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-
-                // --- CABECERA ---
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    IconButton(onClick = { if (dia > 1) onDiaCambiar(dia - 1) }, enabled = dia > 1) {
-                        Image(painter = painterIzquierda, contentDescription = null, modifier = Modifier.size(44.dp))
-                    }
-                    Text(text = "DÍA $dia", style = MaterialTheme.typography.headlineMedium, color = Color(0xFF4E2C0A), fontWeight = FontWeight.ExtraBold)
-                    IconButton(onClick = { if (dia < 28) onDiaCambiar(dia + 1) }, enabled = dia < 28) {
-                        Image(painter = painterDerecha, contentDescription = null, modifier = Modifier.size(44.dp))
-                    }
-                }
-
-                HorizontalDivider(color = Color(0xFF4E2C0A), thickness = 2.dp, modifier = Modifier.padding(vertical = 8.dp))
-
-                // --- LÓGICA DINÁMICA SEGÚN EL TIPO DE CONTENIDO ---
-                when (contenido) {
-                    is ContenidoPopUp.Consejo -> {
-                        Box(modifier = Modifier.fillMaxWidth().background(Color(0xFFE1C699), RoundedCornerShape(8.dp)).padding(12.dp)) {
-                            Text(text = contenido.texto, color = Color(0xFF4E2C0A))
-                        }
-                    }
-                    is ContenidoPopUp.Evento -> {
-                        Column(modifier = Modifier.fillMaxWidth().background(Color(0xFFB0E0E6), RoundedCornerShape(8.dp)).padding(12.dp)) {
-                            Text(text = contenido.titulo, fontWeight = FontWeight.Bold, color = Color(0xFF005073))
-                            Text(text = contenido.descripcion, color = Color(0xFF005073))
-                        }
-                    }
-                    is ContenidoPopUp.Personaje -> {
-                        Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
-                            // Imagen (la buscamos por nombre: "Emily" -> emily)
-                            val nombreRes = contenido.nombre.lowercase()
-                            val imageRes = context.resources.getIdentifier(nombreRes, "drawable", context.packageName)
-
-                            Image(
-                                painter = painterResource(id = if (imageRes != 0) imageRes else R.drawable.placeholder),
-                                contentDescription = contenido.nombre,
-                                modifier = Modifier.size(70.dp).clip(CircleShape).border(2.dp, Color(0xFF4E2C0A), CircleShape)
-                            )
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Column {
-                                Text(text = contenido.nombre, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold, color = Color(0xFF4E2C0A))
-                                // Las 3 tablas de gustos desde tu Personaje data class
-                                TablaGustos(titulo = "❤ LE ENCANTA", items = contenido.ama)
-                                TablaGustos(titulo = "😊 LE GUSTA", items = contenido.gusta)
-                                TablaGustos(titulo = "💢 LO ODIA", items = contenido.odia)
-                            }
-                        }
-                    }
-                }
-
-                Spacer(modifier = Modifier.weight(1f))
-
-                Button(
-                    onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4E2C0A))
-                ) {
-                    Text("Volver al Calendario", color = Color.White)
-                }
-            }
-        }
-    }
-}
-@Composable
-fun TablaGustos(titulo: String, items: List<String>) {
-    Column(modifier = Modifier.padding(vertical = 4.dp)) {
-        Text(titulo, style = MaterialTheme.typography.labelLarge, color = StardewMarrone)
-        // Solo mostramos hasta 3 ítems como pediste
-        items.take(3).forEach { item ->
-            Text("• $item", style = MaterialTheme.typography.bodySmall, color = StardewTexto)
-        }
-    }
-}
 @Composable
 fun DiaCelda(
     dia: Int,
     fotoRes: Int?,
     iconoExtra: Int?,
+    cultivosCosecha: List<CultivoPlantado>,
+    cultivosCreciendo: List<CultivoPlantado>,
+    calVM: CalendarioViewModel,
     onClick: () -> Unit
 ) {
+    val context = LocalContext.current
     Card(
-        modifier = Modifier
-            .aspectRatio(0.8f)
-            .padding(2.dp)
-            .clickable { onClick() },
+        modifier = Modifier.aspectRatio(0.7f).padding(1.dp).clickable { onClick() },
         colors = CardDefaults.cardColors(containerColor = StardewBeige),
-        border = BorderStroke(2.dp, StardewMarrone),
+        border = BorderStroke(1.dp, StardewMarrone),
         shape = RoundedCornerShape(0.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Text(
-                text = dia.toString(),
-                color = StardewTexto,
-                modifier = Modifier.align(Alignment.TopEnd).padding(4.dp)
-            )
+            Text(text = dia.toString(), color = StardewTexto, fontSize = 9.sp, modifier = Modifier.align(Alignment.TopEnd).padding(2.dp))
 
-            // Cumpleaños (Lewis, Emily, etc.)
-            if (fotoRes != null) {
-                Image(
-                    painter = painterResource(id = fotoRes),
-                    contentDescription = null,
-                    modifier = Modifier.size(50.dp).align(Alignment.Center)
-                )
+            Column(modifier = Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
+                // ALDEANO ARRIBA
+                if (fotoRes != null && fotoRes != 0) {
+                    Image(
+                        painter = painterResource(id = fotoRes),
+                        contentDescription = "Cumpleaños",
+                        modifier = Modifier
+                            .size(26.dp)
+                            .clip(CircleShape)
+                            .border(1.dp, Color.White, CircleShape)
+                    )
+                }
+
+                // CULTIVO ABAJO (FASES DEBAJO DE ALDEANOS)
+                if (cultivosCosecha.isNotEmpty()) {
+                    val cultivo = cultivosCosecha.first()
+                    val faseImg = calVM.obtenerImagenFase(cultivo.nombre, dia, cultivo.diaPlante, cultivo.diasCrecimiento, cultivo.creceDeNuevo, cultivo.replantar)
+                    val resId = context.resources.getIdentifier(faseImg, "drawable", context.packageName)
+                    if (resId != 0) Image(painterResource(resId), null, modifier = Modifier.size(16.dp))
+                } else if (cultivosCreciendo.isNotEmpty()) {
+                    val cultivo = cultivosCreciendo.first()
+                    val faseImg = calVM.obtenerImagenFase(cultivo.nombre, dia, cultivo.diaPlante, cultivo.diasCrecimiento, cultivo.creceDeNuevo, cultivo.replantar)
+                    val resId = context.resources.getIdentifier(faseImg, "drawable", context.packageName)
+                    if (resId != 0) Image(painterResource(resId), null, modifier = Modifier.size(12.dp).alpha(0.7f))
+                }
             }
 
-            // Eventos de temporada (Frambuesas)
             if (iconoExtra != null) {
-                Image(
-                    painter = painterResource(id = iconoExtra),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(30.dp)
-                        .align(Alignment.BottomStart)
-                        .padding(4.dp)
-                )
+                Image(painterResource(id = iconoExtra), null, modifier = Modifier.size(12.dp).align(Alignment.BottomStart).padding(1.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun TablaCultivos(viewModel: CultivoViewModel, temporada: String) {
+    val listaDisponible by viewModel.listaProcesadaDelJson.collectAsState()
+    val context = LocalContext.current
+    val diaActual by viewModel.diaActual.collectAsState()
+
+    val listaFiltrada = listaDisponible.filter { it.estacion.contains(temporada, ignoreCase = true) }
+
+    Column {
+        listaFiltrada.forEach { cultivo ->
+            val imgNombre = cultivo.imagen.substringBefore(".")
+            val resId = context.resources.getIdentifier(imgNombre, "drawable", context.packageName)
+            val drawable = ContextCompat.getDrawable(context, if (resId != 0) resId else android.R.drawable.ic_menu_gallery)
+            ItemCultivoTabla(
+                cultivo = cultivo,
+                viewModel = viewModel,
+                diaActual = diaActual,
+                onCantidadChange = { viewModel.actualizarSeleccion(cultivo.nombre, it) },
+                onReplantarChange = { viewModel.actualizarReplantar(cultivo.nombre, it) },
+                imagenPainter = rememberDrawablePainter(drawable)
+            )
+        }
+    }
+}
+
+@Composable
+fun ItemCultivoTabla(
+    cultivo: CultivoCargado, 
+    viewModel: CultivoViewModel,
+    diaActual: Int,
+    onCantidadChange: (Int) -> Unit,
+    onReplantarChange: (Int) -> Unit,
+    imagenPainter: androidx.compose.ui.graphics.painter.Painter
+) {
+    var cantidad by remember(cultivo.nombre) { mutableIntStateOf(cultivo.cantidad) }
+    var replantar by remember(cultivo.nombre) { mutableIntStateOf(cultivo.replantar) }
+    
+    LaunchedEffect(cultivo.cantidad) { if (cultivo.cantidad == 0) cantidad = 0 }
+    LaunchedEffect(cultivo.replantar) { replantar = cultivo.replantar }
+    
+    Column(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).background(Color(0xFFE1C699).copy(alpha = 0.5f), shape = RoundedCornerShape(8.dp)).padding(8.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Image(painter = imagenPainter, contentDescription = null, modifier = Modifier.size(36.dp))
+            Column(modifier = Modifier.weight(1f).padding(start = 8.dp)) {
+                Text(text = cultivo.nombre, color = Color(0xFF4E2C0A), style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(text = "Semilla: $${cultivo.precioSemilla} | Venta: $${cultivo.precioVenta}", color = Color(0xFF7A5C37), style = MaterialTheme.typography.bodySmall)
+            }
+            
+            Column(horizontalAlignment = Alignment.End) {
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFF5E6D3), shape = RoundedCornerShape(50))) {
+                    IconButton(onClick = { if (cantidad > 0) { cantidad--; onCantidadChange(cantidad) } }, modifier = Modifier.size(24.dp)) { Text("-", fontWeight = FontWeight.Bold) }
+                    Text(text = "$cantidad", modifier = Modifier.padding(horizontal = 4.dp), fontWeight = FontWeight.Bold, fontSize = 12.sp)
+                    IconButton(onClick = { cantidad++; onCantidadChange(cantidad) }, modifier = Modifier.size(24.dp)) { Text("+", fontWeight = FontWeight.Bold) }
+                }
+                
+                if (cultivo.creceDeNuevo == 0) {
+                    Spacer(Modifier.height(4.dp))
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Replantar: ", fontSize = 10.sp, color = Color(0xFF4E2C0A))
+                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFBCAAA4), shape = RoundedCornerShape(50))) {
+                            IconButton(onClick = { if (replantar > 1) { replantar--; onReplantarChange(replantar) } }, modifier = Modifier.size(18.dp)) { Text("-", fontSize = 10.sp) }
+                            Text(text = "$replantar", modifier = Modifier.padding(horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            IconButton(onClick = { replantar++; onReplantarChange(replantar) }, modifier = Modifier.size(18.dp)) { Text("+", fontSize = 10.sp) }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (cantidad > 0) {
+            val usoExtra = viewModel.verificarUsoExtra(cultivo.nombre)
+            val mejorCant = viewModel.calcularMejorCantidad(cultivo, diaActual)
+            val fasesCalc = viewModel.obtenerCalculoFases(cultivo.nombre, diaActual)
+            
+            Column(modifier = Modifier.padding(top = 4.dp, start = 40.dp)) {
+                if (usoExtra != null) {
+                    Text(text = usoExtra, color = Color(0xFF1B5E20), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                }
+                Text(text = mejorCant, color = Color(0xFF4E2C0A), fontSize = 10.sp)
+                if (fasesCalc.isNotEmpty()) {
+                    Text(text = "Fases: $fasesCalc", color = Color(0xFF5D4037), fontSize = 9.sp, fontWeight = FontWeight.Medium)
+                }
             }
         }
     }
@@ -551,205 +438,129 @@ fun DiaCelda(
 @Composable
 fun SeccionPlanificador(diaActual: Int, viewModel: CultivoViewModel) {
     val todosLosCultivos by viewModel.listaProcesadaDelJson.collectAsState()
-    val seleccionadosEfectivos = todosLosCultivos.filter { it.cantidad > 0 }
+    val seleccionados = todosLosCultivos.filter { it.cantidad > 0 }
+    val energia by viewModel.energia.collectAsState()
 
-    Column(modifier = Modifier.padding(16.dp).background(Color(0xFFF5E6D3)).padding(12.dp)) {
-        Text("Planificador de Siembra", color = Color(0xFF4E2C0A), style = MaterialTheme.typography.titleLarge)
-
-        seleccionadosEfectivos.forEach { cultivo ->
-            val mensaje = viewModel.calcularRentabilidad(
-                precio = cultivo.precioSemilla,
-                venta = cultivo.venta,
-                crecimiento = cultivo.diasCrecimiento,
-                dia = diaActual,
-                cant = cultivo.cantidad
-            )
-
-            Column(modifier = Modifier.padding(vertical = 4.dp)) {
-                Text("${cultivo.nombre} (x${cultivo.cantidad})", fontWeight = FontWeight.Bold)
-                Text(
-                    text = mensaje,
-                    color = if (mensaje.contains("PERDERÁS")) Color.Red else Color(0xFF2E7D32)
-                )
+    Column(modifier = Modifier.fillMaxWidth().padding(8.dp).background(Color(0xFFE1C699).copy(alpha = 0.3f), RoundedCornerShape(8.dp)).padding(8.dp)) {
+        Text("Planificador de Siembra", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = StardewMarrone)
+        if (seleccionados.isEmpty()) {
+            Text("Selecciona semillas para calcular costes.", color = Color.Gray, fontSize = 12.sp)
+        } else {
+            seleccionados.forEach { cultivo ->
+                val mensaje = viewModel.calcularRentabilidad(cultivo.precioSemilla, cultivo.precioVenta, cultivo.diasCrecimiento, diaActual, cultivo.cantidad, cultivo.replantar, cultivo.creceDeNuevo)
+                Text(text = "${cultivo.nombre} (x${cultivo.cantidad}): $mensaje", color = if (mensaje.contains("PERDERÁS")) Color.Red else Color(0xFF2E7D32), fontSize = 11.sp)
             }
         }
+        Spacer(modifier = Modifier.height(12.dp))
 
-        // Botón para mover de la tabla al huerto
-        Button(onClick = { viewModel.guardarCultivosMasivo() }) {
-            Text("Plantar Selección")
+        val costeTotalEnergia = seleccionados.sumOf { it.cantidad * 4 * (if(it.creceDeNuevo > 0) 1 else it.replantar) }
+
+        Button(
+            onClick = { viewModel.guardarCultivosMasivo() },
+            enabled = seleccionados.isNotEmpty() && energia >= costeTotalEnergia,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4E2C0A))
+        ) {
+            Text("¡Plantar Todo! (Coste: $costeTotalEnergia energía)", color = Color.White, fontSize = 12.sp)
+        }
+
+        if (energia < costeTotalEnergia) {
+            Text("No tienes suficiente energía para plantar todo.", color = Color.Red, fontSize = 10.sp, modifier = Modifier.align(Alignment.CenterHorizontally))
         }
     }
 }
 
-
 @Composable
-fun PantallaPrincipal(viewModel: CultivoViewModel = viewModel()) {
-    // Usamos los nombres de estado exactos de tu ViewModel
-    val cultivosPlantados by viewModel.cultivosPlantados.collectAsState()
-    val diaActual by viewModel.diaActual.collectAsState()
+fun PopUpEventos(dia: Int, onDismiss: () -> Unit, onDiaCambiar: (Int) -> Unit, viewModel: CalendarioViewModel, cultiVM: CultivoViewModel) {
+    val temporadaIndex by viewModel.temporadaActualIndex.collectAsState()
+    val contenido = viewModel.obtenerContenidoDia(dia, temporadaIndex)
+    val cultivosPlantados by cultiVM.cultivosPlantados.collectAsState()
     val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState())) {
+    val cultivosDelDia = cultivosPlantados.filter { it ->
+        val edad = dia - it.diaPlante
+        val duracionTotal = if (it.creceDeNuevo > 0) 28 else it.diasCrecimiento * it.replantar
+        edad >= 0 && edad <= duracionTotal
+    }
 
-        Text("Tu Huerto en Tiempo Real (Día $diaActual)", style = MaterialTheme.typography.headlineSmall)
-
-        Row(modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState())) {
-            // Filtramos los que realmente están plantados
-            cultivosPlantados.forEach { cultivo ->
-                // Obtenemos el nombre del recurso (ej: "fase3_chilito")
-                val nombreImagen = viewModel.obtenerImagenFase(
-                    nombre = cultivo.nombre,
-                    diaPlante = cultivo.diaPlante,
-                    diaActual = diaActual,
-                    diasTotales = 12 // O los días que use tu lógica
-                )
-
-                // Buscamos el ID del recurso dinámicamente
-                val resId = context.resources.getIdentifier(nombreImagen, "drawable", context.packageName)
-                val drawable = ContextCompat.getDrawable(context, if(resId != 0) resId else android.R.drawable.ic_menu_report_image)
-
-                Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(8.dp)) {
-                    // Usamos el helper corregido
-                    Image(
-                        painter = rememberDrawablePainter(drawable),
-                        contentDescription = null,
-                        modifier = Modifier.size(60.dp)
-                    )
-                    Text(cultivo.nombre, style = MaterialTheme.typography.bodySmall)
-                    Text("Día ${diaActual - cultivo.diaPlante}", fontWeight = FontWeight.Bold)
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.85f), shape = RoundedCornerShape(16.dp), color = Color(0xFFF5E6D3)) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(onClick = { if (dia > 1) onDiaCambiar(dia - 1) }, enabled = dia > 1) { Image(painterResource(R.drawable.fi_civico_), null, modifier = Modifier.size(30.dp)) }
+                    Text("DÍA $dia", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold, color = StardewMarrone)
+                    IconButton(onClick = { if (dia < 28) onDiaCambiar(dia + 1) }, enabled = dia < 28) { Image(painterResource(R.drawable.fd_civico_), null, modifier = Modifier.size(30.dp)) }
                 }
-            }
-        }
-    }
-}
-@Composable
-fun CrecimientoVisualItem(cultivo: CultivoCargado, diaActual: Int) {
-    val context = LocalContext.current
+                HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), color = StardewMarrone.copy(alpha = 0.5f))
+                
+                LazyColumn(modifier = Modifier.weight(1f)) {
+                    item {
+                        when (contenido) {
+                            is ContenidoPopUp.Consejo -> Text(contenido.texto, style = MaterialTheme.typography.bodyLarge, color = Color(0xFF4E2C0A))
+                            is ContenidoPopUp.Evento -> Column { Text(contenido.titulo, fontWeight = FontWeight.Bold, color = StardewMarrone); Text(contenido.descripcion) }
+                            is ContenidoPopUp.Personaje -> {
+                                Column {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        val imgId = viewModel.obtenerImagenCumpleanios(dia, temporadaIndex)
+                                        Image(painterResource(if (imgId != null && imgId != 0) imgId else R.drawable.placeholder), null, modifier = Modifier.size(80.dp).clip(CircleShape).border(2.dp, Color(0xFF4E2C0A), CircleShape))
+                                        Spacer(Modifier.width(12.dp))
+                                        Text(contenido.nombre, fontWeight = FontWeight.Bold, fontSize = 24.sp, color = Color(0xFF4E2C0A))
+                                    }
+                                    Spacer(Modifier.height(8.dp))
+                                    Text("❤ AMADOS", fontWeight = FontWeight.Bold, color = Color(0xFFC62828))
+                                    Text(contenido.ama.joinToString(), fontSize = 12.sp)
+                                    Spacer(Modifier.height(4.dp))
+                                    Text("😊 GUSTOS", fontWeight = FontWeight.Bold, color = Color(0xFF2E7D32))
+                                    Text(contenido.gusta.joinToString(), fontSize = 12.sp)
+                                    Spacer(Modifier.height(4.dp))
+                                    Text("💢 ODIA", fontWeight = FontWeight.Bold, color = Color(0xFF3E2723))
+                                    Text(contenido.odia.joinToString(), fontSize = 12.sp)
+                                }
+                            }
+                        }
+                    }
 
-    // Suponemos que todos se plantan el día 1 para el simulador,
-    // o puedes pasarle el día real de siembra.
-    val diaPlante = 1
-
-    // Usamos tu lógica del ViewModel para saber qué fase mostrar (fase1 a fase6)
-    val nombreImagen = obtenerNombreFaseManual(cultivo.nombre, diaPlante, diaActual, cultivo.diasCrecimiento)
-
-    val drawableId = remember(nombreImagen) {
-        val id = context.resources.getIdentifier(nombreImagen, "drawable", context.packageName)
-        if (id != 0) id else R.drawable.placeholder // Placeholder si no encuentra la fase
-    }
-
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(8.dp)
-    ) {
-        Text(cultivo.nombre, style = MaterialTheme.typography.labelSmall, color = Color(0xFF4E2C0A))
-
-        // Aquí usamos el Image con el ID dinámico que calculamos
-        Image(
-            painter = painterResource(id = drawableId),
-            contentDescription = "Fase de crecimiento de ${cultivo.nombre}",
-            modifier = Modifier.size(64.dp)
-        )
-
-        // Barra de progreso visual
-        val progreso = ((diaActual - diaPlante).toFloat() / cultivo.diasCrecimiento.toFloat()).coerceIn(0f, 1f)
-        LinearProgressIndicator(
-            progress = progreso,
-            modifier = Modifier.width(64.dp).height(4.dp),
-            color = Color(0xFF2E7D32),
-            trackColor = Color.LightGray
-        )
-    }
-}
-
-// Función auxiliar (puedes meterla en el ViewModel o dejarla aquí)
-fun obtenerNombreFaseManual(nombre: String, diaPlante: Int, diaActual: Int, diasTotales: Int): String {
-    val diasPasados = diaActual - diaPlante
-    if (diasPasados >= diasTotales) return "fase6_${nombre.lowercase().replace(" ", "_")}"
-
-    val fase = ((diasPasados.toFloat() / diasTotales.toFloat()) * 5).toInt() + 1
-    return "fase${fase}_${nombre.lowercase().replace(" ", "_")}"
-}
-
-@Composable
-fun TablaCultivos(viewModel: CultivoViewModel) {
-    val listaDisponible by viewModel.listaProcesadaDelJson.collectAsState()
-    val context = LocalContext.current
-
-    Column {
-        listaDisponible.forEach { cultivo ->
-            val nombreIcono = "fase1_${cultivo.nombre.lowercase().replace(" ", "_")}"
-            val resId = context.resources.getIdentifier(nombreIcono, "drawable", context.packageName)
-            val drawable = ContextCompat.getDrawable(context, if(resId != 0) resId else android.R.drawable.ic_menu_gallery)
-
-            ItemCultivoTabla(
-                nombre = cultivo.nombre,
-                precio = cultivo.precioSemilla,
-                onCantidadChange = { nuevaCantidad ->
-                    viewModel.actualizarSeleccion(cultivo.nombre, nuevaCantidad)
-                },
-                // Aquí ya no hay mismatch: pasas un Painter a un parámetro que pide Painter
-                rememberDrawablePainter = rememberDrawablePainter(drawable)
-            )
-        }
-    }
-}
-@Composable
-fun AnalisisFinanciero(
-    seleccionados: List<CultivoCargado>,
-    diaActual: Int, // <-- Agregamos el día como parámetro
-    viewModel: CultivoViewModel
-) {
-    // 1. Creamos las variables locales para asegurar el cálculo
-    val listaParaCalculo = seleccionados
-    val diaParaCalculo = diaActual
-
-    // 2. Usamos el 'viewModel' que entra por parámetro (no cultiVM)
-    val recomendacion = viewModel.obtenerMejorOpcion(listaParaCalculo, diaParaCalculo)
-    val presupuesto = 500
-
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text("ANÁLISIS DE RENTABILIDAD", fontWeight = FontWeight.Bold, color = Color.White)
-
-        // Mostrar ganancia de lo que el usuario YA seleccionó en la tabla
-        seleccionados.filter { it.cantidad > 0 }.forEach { cultivo ->
-            val gananciaTotal = (cultivo.venta - cultivo.precioSemilla) * cultivo.cantidad
-            Text(
-                text = "Si plantas ${cultivo.cantidad} de ${cultivo.nombre}, ganarás: $$gananciaTotal",
-                color = Color.White
-            )
-        }
-
-        HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
-
-        // El consejo de la IA para el portafolio
-        Text(
-            text = "💡 Sugerencia Técnica: $recomendacion",
-            color = Color(0xFFBBDEFB), // Un azul claro para que resalte en el fondo oscuro
-            style = MaterialTheme.typography.bodyLarge
-        )
-    }
-}
-
-
-@Composable
-fun rememberDrawablePainter(drawable: Drawable?): Painter {
-    return remember(drawable) {
-        object : Painter() {
-            override val intrinsicSize: androidx.compose.ui.geometry.Size
-                get() = drawable?.let {
-                    androidx.compose.ui.geometry.Size(it.intrinsicWidth.toFloat(), it.intrinsicHeight.toFloat())
-                } ?: androidx.compose.ui.geometry.Size.Unspecified
-
-            // Cambiado de 'draw' a 'onDraw' para cumplir con la clase abstracta
-            override fun DrawScope.onDraw() {
-                drawable?.let {
-                    drawIntoCanvas { canvas ->
-                        it.setBounds(0, 0, size.width.toInt(), size.height.toInt())
-                        it.draw(canvas.nativeCanvas)
+                    if (cultivosDelDia.isNotEmpty()) {
+                        item {
+                            Spacer(Modifier.height(16.dp))
+                            Text("CULTIVOS EN ESTE DÍA", fontWeight = FontWeight.ExtraBold, color = StardewMarrone, fontSize = 16.sp)
+                            HorizontalDivider(modifier = Modifier.padding(vertical = 4.dp))
+                        }
+                        items(cultivosDelDia.size) { index ->
+                            val c = cultivosDelDia[index]
+                            val faseImg = viewModel.obtenerImagenFase(c.nombre, dia, c.diaPlante, c.diasCrecimiento, c.creceDeNuevo, c.replantar)
+                            val resId = context.resources.getIdentifier(faseImg, "drawable", context.packageName)
+                            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(vertical = 4.dp)) {
+                                if (resId != 0) Image(painterResource(resId), null, modifier = Modifier.size(32.dp))
+                                Spacer(Modifier.width(8.dp))
+                                Column {
+                                    Text(c.nombre, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                    val diasRestantes = if (c.creceDeNuevo > 0) {
+                                        if (dia - c.diaPlante < c.diasCrecimiento) "Listo en ${c.diasCrecimiento - (dia - c.diaPlante)} días"
+                                        else "Produciendo cada ${c.creceDeNuevo} días"
+                                    } else {
+                                        "Cosecha ${ ( (dia - c.diaPlante) / c.diasCrecimiento ) + 1 } de ${c.replantar}"
+                                    }
+                                    Text(diasRestantes, fontSize = 11.sp, color = Color.Gray)
+                                }
+                            }
+                        }
                     }
                 }
+                
+                Spacer(modifier = Modifier.height(8.dp))
+                Button(onClick = onDismiss, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4E2C0A))) { Text("Volver", color = Color.White) }
             }
         }
     }
 }
+
+fun normalizarNombre(nombre: String): String =
+    nombre.lowercase()
+        .replace(" ", "")
+        .replace("á", "a")
+        .replace("é", "e")
+        .replace("í", "i")
+        .replace("ó", "o")
+        .replace("ú", "u")
+        .replace("ñ", "n")
