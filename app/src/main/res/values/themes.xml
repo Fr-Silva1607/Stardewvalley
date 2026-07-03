@@ -9,4 +9,11 @@
         <item name="android:windowBackground">#F3D091</item> <!-- Color crema/beige Stardew -->
         <item name="android:windowDisablePreview">false</item>
     </style>
+
+    <!-- Tema para la Splash Screen -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#F3D091</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/icono_stardewvalley</item>
+        <item name="postSplashScreenTheme">@style/Theme.Stardewvalley</item>
+    </style>
 </resources>

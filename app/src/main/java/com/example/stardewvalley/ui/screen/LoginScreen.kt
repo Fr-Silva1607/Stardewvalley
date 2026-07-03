@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,9 @@ class LoginScreen : AppCompatActivity() {
     private lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Instalamos la Splash Screen antes de llamar a super.onCreate()
+        installSplashScreen()
+        
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginlayout)
 
@@ -51,7 +55,7 @@ class LoginScreen : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
-        overridePendingTransition(0, 0)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         finish()
     }
 

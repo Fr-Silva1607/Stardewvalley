@@ -327,12 +327,12 @@
   {
     "nombre": "Ñame",
     "fases": [
-      "fase1ñame.png",
-      "fase2ñame.png",
-      "fase3ñame.png",
-      "fase4ñame.png",
-      "fase5ñame.png",
-      "ñame.png"
+      "fase1name.png",
+      "fase2name.png",
+      "fase3name.png",
+      "fase4name.png",
+      "fase5name.png",
+      "name.png"
     ],
     "duracionFases": [1, 2, 2, 2, 3]
   },
@@ -348,15 +348,16 @@
     "duracionFases": [1, 1, 1, 1]
   },
   {
-    "nombre": "Grano de café",
+    "nombre": "Café",
     "fases": [
-      "fase1puerro.png",
-      "fase2puerro.png",
-      "fase3puerro.png",
-      "fase4puerro.png",
-      "puerro.png"
+      "fase1cafe.png",
+      "fase2cafe.png",
+      "fase3cafe.png",
+      "fase4cafe.png",
+      "fase5cafe.png",
+      "cafe.png"
     ],
-    "duracionFases": [2, 3, 3, 2]
+    "duracionFases": [1, 2, 2, 3, 2]
   },
   {
     "nombre": "Alcachofa",

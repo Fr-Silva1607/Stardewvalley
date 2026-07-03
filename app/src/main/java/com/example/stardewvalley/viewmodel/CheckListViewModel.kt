@@ -7,27 +7,28 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import android.util.Log
 
 data class ElementoLote(
     val item: String,
     val detalles: String,
     val imagen: String,
-    var completado: Boolean = false
+    val completado: Boolean = false
 )
 
 data class Lote(
     val nombre: String,
     val recompensa: String,
     val elementos: List<ElementoLote>,
-    var completado: Boolean = false
+    val completado: Boolean = false
 )
 
 data class Sala(
     val nombre: String,
     val recompensa_zona: String,
     val lotes: List<Lote>,
-    var completado: Boolean = false
+    val completado: Boolean = false
 )
 
 class CheckListViewModel(application: Application) : AndroidViewModel(application) {
@@ -36,9 +37,6 @@ class CheckListViewModel(application: Application) : AndroidViewModel(applicatio
     val salas = _salas.asStateFlow()
 
     private val prefs = application.getSharedPreferences("CheckListPrefs", Context.MODE_PRIVATE)
-
-    // Eliminamos la carga en init para cargar específicamente por farmId
-    init {}
 
     fun cargarDatos(farmId: Int) {
         try {
@@ -64,7 +62,6 @@ class CheckListViewModel(application: Application) : AndroidViewModel(applicatio
                     val elementos = elementosListRaw.map { elemData ->
                         val elemMap = elemData as Map<*, *>
                         val itemNombre = elemMap["item"] as? String ?: ""
-                        // CLAVE POR GRANJA: farmId_sala_lote_item
                         val completado = prefs.getBoolean("f${farmId}_${nombreSala}_${nombreLote}_${itemNombre}", false)
                         ElementoLote(
                             item = itemNombre,
@@ -91,6 +88,26 @@ class CheckListViewModel(application: Application) : AndroidViewModel(applicatio
     fun toggleElemento(farmId: Int, nombreSala: String, nombreLote: String, elemento: ElementoLote) {
         val completadoNuevo = !elemento.completado
         prefs.edit().putBoolean("f${farmId}_${nombreSala}_${nombreLote}_${elemento.item}", completadoNuevo).apply()
-        cargarDatos(farmId)
+        
+        // Actualización reactiva inmediata usando update
+        _salas.update { actuales ->
+            actuales.map { sala ->
+                if (sala.nombre == nombreSala) {
+                    val nuevosLotes = sala.lotes.map { lote ->
+                        if (lote.nombre == nombreLote) {
+                            val nuevosElementos = lote.elementos.map { elem ->
+                                if (elem.item == elemento.item) {
+                                    elem.copy(completado = completadoNuevo)
+                                } else elem
+                            }
+                            val loteCompletado = nuevosElementos.all { it.completado }
+                            lote.copy(elementos = nuevosElementos, completado = loteCompletado)
+                        } else lote
+                    }
+                    val salaCompletada = nuevosLotes.all { it.completado }
+                    sala.copy(lotes = nuevosLotes, completado = salaCompletada)
+                } else sala
+            }
+        }
     }
 }

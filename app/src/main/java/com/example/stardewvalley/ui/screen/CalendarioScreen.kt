@@ -61,7 +61,7 @@ fun CalendarioScreen(
     // FILTRADO INTERNO: Solo mostramos cultivos que pertenezcan a la estación actual
     val todosLosCultivosPlantados by cultiVM.cultivosPlantados.collectAsState(initial = emptyList())
     val cultivosDelMes = remember(todosLosCultivosPlantados, nombreTemporada) {
-        todosLosCultivosPlantados.filter { it.estacion == nombreTemporada }
+        todosLosCultivosPlantados.filter { it.estacion == nombreTemporada || it.estacion.contains(nombreTemporada) }
     }
 
     val diaActualSimulado by cultiVM.diaActual.collectAsState()
@@ -397,21 +397,21 @@ fun ItemCultivoTabla(
             }
             
             Column(horizontalAlignment = Alignment.End) {
+                // PRIMER ITEM: Cantidad (Plantar de una vez)
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFF5E6D3), shape = RoundedCornerShape(50))) {
                     IconButton(onClick = { if (cantidad > 0) { cantidad--; onCantidadChange(cantidad) } }, modifier = Modifier.size(24.dp)) { Text("-", fontWeight = FontWeight.Bold) }
                     Text(text = "$cantidad", modifier = Modifier.padding(horizontal = 4.dp), fontWeight = FontWeight.Bold, fontSize = 12.sp)
                     IconButton(onClick = { cantidad++; onCantidadChange(cantidad) }, modifier = Modifier.size(24.dp)) { Text("+", fontWeight = FontWeight.Bold) }
                 }
                 
-                if (cultivo.creceDeNuevo == 0) {
-                    Spacer(Modifier.height(4.dp))
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text("Replantar: ", fontSize = 10.sp, color = Color(0xFF4E2C0A))
-                        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFBCAAA4), shape = RoundedCornerShape(50))) {
-                            IconButton(onClick = { if (replantar > 1) { replantar--; onReplantarChange(replantar) } }, modifier = Modifier.size(18.dp)) { Text("-", fontSize = 10.sp) }
-                            Text(text = "$replantar", modifier = Modifier.padding(horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                            IconButton(onClick = { replantar++; onReplantarChange(replantar) }, modifier = Modifier.size(18.dp)) { Text("+", fontSize = 10.sp) }
-                        }
+                // SEGUNDO ITEM: Replantar (Siempre visible para todos los cultivos)
+                Spacer(Modifier.height(4.dp))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Replantar: ", fontSize = 10.sp, color = Color(0xFF4E2C0A))
+                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.background(Color(0xFFBCAAA4), shape = RoundedCornerShape(50))) {
+                        IconButton(onClick = { if (replantar > 1) { replantar--; onReplantarChange(replantar) } }, modifier = Modifier.size(18.dp)) { Text("-", fontSize = 10.sp) }
+                        Text(text = "$replantar", modifier = Modifier.padding(horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                        IconButton(onClick = { replantar++; onReplantarChange(replantar) }, modifier = Modifier.size(18.dp)) { Text("+", fontSize = 10.sp) }
                     }
                 }
             }

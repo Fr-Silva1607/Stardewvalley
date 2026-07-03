@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.play.services.maps3d)
     implementation(libs.ui)
     implementation(libs.foundation)
+    implementation(libs.androidx.core.splashscreen)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

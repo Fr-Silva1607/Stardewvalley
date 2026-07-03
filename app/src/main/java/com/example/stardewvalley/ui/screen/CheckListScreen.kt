@@ -14,6 +14,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -26,9 +27,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.stardewvalley.R
 import com.example.stardewvalley.ui.components.TextoGorditoConBorde
-import com.example.stardewvalley.ui.theme.StardewTexto
-import com.example.stardewvalley.ui.theme.StardewBeige
-import com.example.stardewvalley.ui.theme.StardewMarrone
 import com.example.stardewvalley.viewmodel.CheckListViewModel
 import com.example.stardewvalley.viewmodel.ElementoLote
 import com.example.stardewvalley.viewmodel.Lote
@@ -41,23 +39,31 @@ fun CheckListScreen(navController: NavController, viewModel: CheckListViewModel 
     val farmId = remember { prefs.getInt("selected_farm_id", -1) }
     
     val salas by viewModel.salas.collectAsState()
-    var salaSeleccionada by remember { mutableStateOf<Sala?>(null) }
+    var nombreSalaSeleccionada by remember { mutableStateOf<String?>(null) }
+    val salaSeleccionada = salas.find { it.nombre == nombreSalaSeleccionada }
 
-    // Cargar datos específicos de la granja al iniciar
     LaunchedEffect(farmId) {
         viewModel.cargarDatos(farmId)
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Image(
-            painter = painterResource(id = R.drawable.fondo),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.FillBounds
-        )
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color(0xFF2E5A2E))) { // Color base verde oscuro
+        
+        // Simulación de rayas verticales del fondo
+        Row(modifier = Modifier.fillMaxSize()) {
+            repeat(20) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .background(if (it % 2 == 0) Color.Black.copy(alpha = 0.05f) else Color.Transparent)
+                )
+            }
+        }
 
         Column(modifier = Modifier.fillMaxSize()) {
-            // HEADER ESTILO STARDEW (Exactamente como en Login pero con texto dinámico)
+            // Cabecera
             Box(modifier = Modifier.fillMaxWidth().height(100.dp), contentAlignment = Alignment.Center) {
                 Image(
                     painter = painterResource(id = R.drawable.superior),
@@ -67,8 +73,8 @@ fun CheckListScreen(navController: NavController, viewModel: CheckListViewModel 
                 )
                 
                 TextoGorditoConBorde(
-                    texto = if (salaSeleccionada == null) "CENTRO CÍVICO" else salaSeleccionada!!.nombre.uppercase(),
-                    tamanio = 24f, // Título principal más pequeño
+                    texto = if (salaSeleccionada == null) "CENTRO CÍVICO" else salaSeleccionada.nombre.uppercase(),
+                    tamanio = 24f,
                     colorRelleno = Color.White,
                     colorBorde = Color.Black
                 )
@@ -76,11 +82,11 @@ fun CheckListScreen(navController: NavController, viewModel: CheckListViewModel 
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Área de contenido scrollable
+            // Lista de contenido
             Box(modifier = Modifier.weight(1f)) {
                 if (salas.isEmpty()) {
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text("Cargando paquetes...", color = StardewTexto, fontWeight = FontWeight.Bold)
+                        Text("Cargando...", color = Color.White, fontWeight = FontWeight.Bold)
                     }
                 } else {
                     LazyColumn(
@@ -92,33 +98,29 @@ fun CheckListScreen(navController: NavController, viewModel: CheckListViewModel 
                     ) {
                         if (salaSeleccionada == null) {
                             items(salas) { sala ->
-                                SalaResumenItem(sala, onClick = { salaSeleccionada = sala })
+                                SalaResumenItem(sala, onClick = { nombreSalaSeleccionada = sala.nombre })
                             }
                         } else {
-                            items(salaSeleccionada!!.lotes) { lote ->
-                                if (!lote.completado) {
-                                    LoteItem(farmId, salaSeleccionada!!.nombre, lote, viewModel)
-                                } else {
-                                    LoteCompletadoItem(lote.nombre)
-                                }
+                            items(salaSeleccionada.lotes) { lote ->
+                                LoteContenedorItem(farmId, salaSeleccionada.nombre, lote, viewModel)
                             }
                         }
                     }
                 }
             }
 
-            // Flecha de Volver
-            IconButton(
-                onClick = {
-                    if (salaSeleccionada != null) {
-                        salaSeleccionada = null
-                    } else {
-                        navController.popBackStack()
-                    }
-                },
+            // Botón atrás (Flecha) - Usando Box con clickable para evitar el componente IconButton
+            Box(
                 modifier = Modifier
                     .padding(16.dp)
                     .size(60.dp)
+                    .clickable {
+                        if (nombreSalaSeleccionada != null) {
+                            nombreSalaSeleccionada = null
+                        } else {
+                            navController.popBackStack()
+                        }
+                    }
             ) {
                 Image(
                     painterResource(R.drawable.fi_civico_),
@@ -136,75 +138,75 @@ fun SalaResumenItem(sala: Sala, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable { onClick() },
-        colors = CardDefaults.cardColors(containerColor = StardewBeige.copy(alpha = 0.9f)),
-        border = BorderStroke(2.dp, StardewMarrone),
-        shape = RoundedCornerShape(8.dp)
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFD7B899)), // Beige de la imagen
+        border = BorderStroke(2.dp, Color(0xFF7A5C37)), // Borde marrón
+        shape = RoundedCornerShape(12.dp)
     ) {
         Row(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(12.dp).fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(modifier = Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     sala.nombre.uppercase(),
                     fontWeight = FontWeight.ExtraBold,
-                    fontSize = 15.sp, // Título de sala más pequeño
-                    color = StardewTexto,
+                    fontSize = 17.sp,
+                    color = Color(0xFF3F2E1E), // Marrón oscuro
                     textAlign = TextAlign.Center
                 )
                 Text(
                     "Recompensa: ${sala.recompensa_zona}",
-                    fontSize = 10.sp,
+                    fontSize = 11.sp,
                     color = Color(0xFF7A5C37),
                     textAlign = TextAlign.Center
                 )
             }
-            if (sala.completado) {
-                Icon(
-                    painter = painterResource(id = android.R.drawable.checkbox_on_background),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp),
-                    tint = Color(0xFF4CAF50)
-                )
-            } else {
-                Text("➜", color = StardewTexto, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            // Añadiendo la flecha fi_civico_ al final de la tarjeta de sala (rotada 180 para apuntar a la derecha)
+            Image(
+                painter = painterResource(R.drawable.fi_civico_),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(24.dp)
+                    .rotate(180f)
+            )
+        }
+    }
+}
+
+@Composable
+fun LoteContenedorItem(farmId: Int, nombreSala: String, lote: Lote, viewModel: CheckListViewModel) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFF4A634A).copy(alpha = 0.8f), RoundedCornerShape(12.dp))
+            .padding(12.dp)
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                lote.nombre.uppercase(),
+                fontWeight = FontWeight.ExtraBold,
+                fontSize = 15.sp,
+                color = Color.White,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                "Recompensa: ${lote.recompensa}",
+                fontSize = 11.sp,
+                color = Color.White.copy(alpha = 0.8f),
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            lote.elementos.forEach { elemento ->
+                ItemCheckVisual(farmId, nombreSala, lote.nombre, elemento, viewModel)
             }
         }
     }
 }
 
 @Composable
-fun LoteItem(farmId: Int, nombreSala: String, lote: Lote, viewModel: CheckListViewModel) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(0xFFE1C699).copy(alpha = 0.5f), RoundedCornerShape(4.dp))
-            .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            lote.nombre.uppercase(), 
-            fontWeight = FontWeight.Bold, 
-            fontSize = 14.sp, // Título de lote más pequeño
-            color = StardewTexto, 
-            textAlign = TextAlign.Center
-        )
-        Text(
-            "Recompensa: ${lote.recompensa}", 
-            fontSize = 10.sp, 
-            color = StardewTexto, 
-            textAlign = TextAlign.Center
-        )
-        Spacer(modifier = Modifier.height(6.dp))
-
-        lote.elementos.forEach { elemento ->
-            ElementoCheckItem(farmId, nombreSala, lote.nombre, elemento, viewModel)
-        }
-    }
-}
-
-@Composable
-fun ElementoCheckItem(
+fun ItemCheckVisual(
     farmId: Int,
     nombreSala: String,
     nombreLote: String,
@@ -212,9 +214,16 @@ fun ElementoCheckItem(
     viewModel: CheckListViewModel
 ) {
     val context = LocalContext.current
-    val imageResId = remember(elemento.imagen) {
-        val cleanName = elemento.imagen.substringBefore(".")
-        val id = context.resources.getIdentifier(cleanName, "drawable", context.packageName)
+    val imageResId = remember(elemento.item, elemento.imagen) {
+        val itemName = elemento.item.lowercase()
+        val mappedName = when {
+            itemName.contains("huevo xxl") -> "huevoxxlblanco"
+            itemName.contains("concha de nautillo") -> "contanautillo"
+            itemName.contains("ciruela salvaje") || itemName.contains("cireula salvaje") -> "ciruelasalvaje"
+            else -> elemento.imagen.substringBefore(".")
+        }
+        
+        val id = context.resources.getIdentifier(mappedName, "drawable", context.packageName)
         if (id != 0) id else R.drawable.error
     }
 
@@ -223,68 +232,40 @@ fun ElementoCheckItem(
         modifier = Modifier
             .fillMaxWidth()
             .clickable { viewModel.toggleElemento(farmId, nombreSala, nombreLote, elemento) }
-            .padding(vertical = 3.dp)
-            .background(if (elemento.completado) Color(0xFFC8E6C9).copy(alpha = 0.3f) else Color.Transparent, RoundedCornerShape(4.dp))
-            .padding(4.dp)
+            .padding(vertical = 6.dp)
     ) {
         Image(
             painter = painterResource(imageResId),
-            contentDescription = elemento.item,
-            modifier = Modifier
-                .size(28.dp) // Imagen un poco más pequeña
-                .border(1.dp, StardewTexto, RoundedCornerShape(4.dp))
-                .padding(2.dp)
+            contentDescription = null,
+            modifier = Modifier.size(38.dp)
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(12.dp))
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 elemento.item,
-                fontSize = 13.sp,
-                fontWeight = if (elemento.completado) FontWeight.Normal else FontWeight.Bold,
-                color = if (elemento.completado) Color.Gray else StardewTexto
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
-            Text(elemento.detalles, fontSize = 9.sp, color = Color(0xFF7A5C37))
+            if (elemento.detalles.isNotEmpty()) {
+                Text(
+                    elemento.detalles,
+                    fontSize = 10.sp,
+                    color = Color.White.copy(alpha = 0.7f),
+                    lineHeight = 12.sp
+                )
+            }
         }
         
+        // Checkbox a la derecha (implementado con Box base)
         Box(
             modifier = Modifier
-                .size(24.dp)
+                .size(26.dp)
                 .background(
                     if (elemento.completado) Color(0xFF4CAF50) else Color.White, 
                     RoundedCornerShape(4.dp)
                 )
-                .border(1.5.dp, StardewTexto, RoundedCornerShape(4.dp)),
-            contentAlignment = Alignment.Center
-        ) {
-            if (elemento.completado) {
-                Icon(
-                    painter = painterResource(id = android.R.drawable.checkbox_on_background),
-                    contentDescription = null,
-                    modifier = Modifier.size(18.dp),
-                    tint = Color.White
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun LoteCompletadoItem(nombreLote: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(0xFF8BC34A).copy(alpha = 0.3f), RoundedCornerShape(4.dp))
-            .padding(6.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Icon(
-            painter = painterResource(id = android.R.drawable.checkbox_on_background),
-            contentDescription = null,
-            modifier = Modifier.size(16.dp),
-            tint = Color(0xFF2E7D32)
+                .border(1.5.dp, Color.White, RoundedCornerShape(4.dp))
         )
-        Spacer(modifier = Modifier.width(6.dp))
-        Text("$nombreLote - COMPLETADO", fontSize = 12.sp, fontWeight = FontWeight.Bold, color = Color(0xFF2E7D32), textAlign = TextAlign.Center)
     }
 }

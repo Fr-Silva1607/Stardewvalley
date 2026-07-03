@@ -121,8 +121,8 @@
   },
   {
     "id": 11,
-    "nombre": "Grano de café",
-    "imagen": "puerro.png",
+    "nombre": "Café",
+    "imagen": "cafe.png",
     "precioSemilla": 2500,
     "diasCrecimiento": 10,
     "creceDeNuevo": 2,
@@ -130,7 +130,7 @@
     "Venta": 15,
     "multiplicadorCosecha": 4,
     "beneficioPorDia": 25.56,
-    "estacion": "Primavera",
+    "estacion": "Primavera y Verano",
     "año": 1
   },
   {
@@ -172,20 +172,6 @@
     "Venta": 50,
     "multiplicadorCosecha": 3,
     "beneficioPorDia": 20.8,
-    "estacion": "Verano",
-    "año": 1
-  },
-  {
-    "id": 15,
-    "nombre": "Grano de café",
-    "imagen": "puerro.png",
-    "precioSemilla": 2500,
-    "diasCrecimiento": 10,
-    "creceDeNuevo": 2,
-    "cosechaMaximaPorEstacion": 9,
-    "Venta": 15,
-    "multiplicadorCosecha": 4,
-    "beneficioPorDia": 20.77,
     "estacion": "Verano",
     "año": 1
   },
@@ -410,7 +396,7 @@
   {
     "id": 34,
     "nombre": "Ñame",
-    "imagen": "ñame.png",
+    "imagen": "name.png",
     "precioSemilla": 60,
     "diasCrecimiento": 10,
     "cosechaMaximaPorEstacion": 2,
@@ -464,20 +450,6 @@
     "cosechaMaximaPorEstacion": 2,
     "Venta": 290,
     "beneficioPorDia": 7.5,
-    "estacion": "Otoño",
-    "año": 1
-  },
-  {
-    "id": 39,
-    "nombre": "Maíz",
-    "imagen": "maiz.png",
-    "precioSemilla": 150,
-    "diasCrecimiento": 14,
-    "creceDeNuevo": 4,
-    "cosechaMaximaPorEstacion": 4,
-    "Venta": 50,
-    "multiplicadorCosecha": 1,
-    "beneficioPorDia": 1.92,
     "estacion": "Otoño",
     "año": 1
   }

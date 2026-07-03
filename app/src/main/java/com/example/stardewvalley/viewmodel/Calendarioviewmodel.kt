@@ -129,10 +129,29 @@ class CalendarioViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun obtenerImagenFase(nombreCultivo: String, diaActual: Int, diaPlante: Int, diasTotales: Int, creceDeNuevo: Int = 0, replantar: Int = 1): String {
-        var diasPasados = (diaActual - diaPlante).coerceAtLeast(0)
+        val diasPasadosDesdePlante = (diaActual - diaPlante).coerceAtLeast(0)
         
-        if (creceDeNuevo == 0 && replantar > 1) {
-            diasPasados %= diasTotales
+        // Lógica de repetición: Si el usuario pidió replantar, las fases se repiten en ciclos
+        val mostrarCiclos = replantar > 1
+        var diasEnCicloActual = diasPasadosDesdePlante
+        
+        if (mostrarCiclos) {
+            // Si ya pasó el tiempo total de todos los replantes, se queda en la imagen final
+            if (diasPasadosDesdePlante >= (diasTotales * replantar)) {
+                diasEnCicloActual = diasTotales // Forzar última fase
+            } else {
+                // Repetir fases según el ciclo actual de replantado
+                diasEnCicloActual = diasPasadosDesdePlante % diasTotales
+                // Si es el día exacto de cosecha de un ciclo intermedio, mostrar como fase final
+                if (diasPasadosDesdePlante > 0 && diasPasadosDesdePlante % diasTotales == 0) {
+                    diasEnCicloActual = diasTotales
+                }
+            }
+        } else {
+            // Tirada única: No hay módulo, si pasa el tiempo se queda en la fase final (cosecha lista)
+            if (diasPasadosDesdePlante > diasTotales) {
+                diasEnCicloActual = diasTotales
+            }
         }
         
         val nombreNormalizado = normalizar(nombreCultivo)
@@ -143,35 +162,37 @@ class CalendarioViewModel(application: Application) : AndroidViewModel(applicati
             val fases = cultivoInfo.fases
             val finalImg = fases.last().removeSuffix(".webp").removeSuffix(".png")
             
-            if (diasPasados >= diasTotales) {
-                if (creceDeNuevo > 0) {
-                    val diasPostCrecimiento = (diaActual - diaPlante) - diasTotales
-                    val ciclo = diasPostCrecimiento % creceDeNuevo
-                    if (ciclo == 0) return finalImg
-                    return fases[fases.size - 2].removeSuffix(".webp").removeSuffix(".png")
-                }
-                return finalImg
+            // Caso especial: Cultivos que producen continuamente (Café, Judía, etc)
+            if (creceDeNuevo > 0 && diasPasadosDesdePlante >= diasTotales) {
+                val diasPostCrecimiento = diasPasadosDesdePlante - diasTotales
+                val ciclo = diasPostCrecimiento % creceDeNuevo
+                if (ciclo == 0) return finalImg
+                // Mostrar fase previa a la madurez mientras vuelve a crecer
+                return fases[fases.size - 2].removeSuffix(".webp").removeSuffix(".png")
             }
 
+            // Mapeo por duración de fases si el JSON lo tiene
             val duraciones = cultivoInfo.duracionFases
             if (duraciones != null && duraciones.isNotEmpty()) {
                 var diasAcumulados = 0
                 for (i in duraciones.indices) {
                     diasAcumulados += duraciones[i]
-                    if (diasPasados < diasAcumulados) {
+                    if (diasEnCicloActual < diasAcumulados) {
                         return fases[i].removeSuffix(".webp").removeSuffix(".png")
                     }
                 }
                 return finalImg
             }
 
+            // Mapeo proporcional si no hay duraciones específicas
             val numFasesCrecimiento = fases.size - 1
-            val indice = ((diasPasados.toFloat() / diasTotales.toFloat()) * numFasesCrecimiento).toInt()
+            val indice = ((diasEnCicloActual.toFloat() / diasTotales.toFloat()) * numFasesCrecimiento).toInt()
             return fases[indice.coerceIn(0, numFasesCrecimiento)].removeSuffix(".webp").removeSuffix(".png")
         }
         
-        val fase = if (diasPasados >= diasTotales) 6 else ((diasPasados.toFloat() / diasTotales.toFloat()) * 5).toInt() + 1
-        return "fase$fase${nombreNormalizado}"
+        // Fallback genérico si no hay datos en crecimiento.json
+        val faseCalculada = if (diasEnCicloActual >= diasTotales) 6 else ((diasEnCicloActual.toFloat() / diasTotales.toFloat()) * 5).toInt() + 1
+        return "fase$faseCalculada${nombreNormalizado}"
     }
 
     private fun normalizar(texto: String): String =
