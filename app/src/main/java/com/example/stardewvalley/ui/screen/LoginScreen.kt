@@ -1,13 +1,13 @@
 package com.example.stardewvalley.ui.screen
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavHostController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stardewvalley.R
@@ -28,14 +28,11 @@ class LoginScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginlayout)
 
-        // 1. Inicializar Base de Datos
         database = AppDatabase.getDatabase(this)
 
-        // 2. Configurar RecyclerView
         val rv = findViewById<RecyclerView>(R.id.rvFarmList)
         rv.layoutManager = LinearLayoutManager(this)
 
-        // 3. Adaptador con Lambdas corregidas
         adapter = FarmAdapter(
             listaGranjas,
             onDeleteClick = { farm -> deleteFarm(farm) },
@@ -43,30 +40,32 @@ class LoginScreen : AppCompatActivity() {
         )
         rv.adapter = adapter
 
-        // 4. Botón Agregar
         findViewById<ImageButton>(R.id.btnAddFarm).setOnClickListener {
             showNewFarmDialog()
         }
 
-        // 5. Cargar datos al iniciar
         loadFarms()
     }
 
-    // --- LÓGICA DE NAVEGACIÓN ---
     fun irAConfiguracion() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
+        overridePendingTransition(0, 0)
         finish()
     }
 
-    // --- LÓGICA DE BASE DE DATOS (Hilos secundarios) ---
     private fun loadFarms() {
         lifecycleScope.launch(Dispatchers.IO) {
-            val datos = database.farmDao().getAllFarms()
-            withContext(Dispatchers.Main) {
-                listaGranjas.clear()
-                listaGranjas.addAll(datos)
-                adapter.notifyDataSetChanged()
+            try {
+                val datos = database.farmDao().getAllFarms()
+                withContext(Dispatchers.Main) {
+                    listaGranjas.clear()
+                    listaGranjas.addAll(datos)
+                    adapter.notifyDataSetChanged()
+                }
+            } catch (e: Exception) {
+                // El fallbackToDestructiveMigration en AppDatabase se encargará
             }
         }
     }
@@ -74,11 +73,14 @@ class LoginScreen : AppCompatActivity() {
     private fun deleteFarm(farm: Farm) {
         lifecycleScope.launch(Dispatchers.IO) {
             database.farmDao().deleteFarm(farm)
-            loadFarms() // Recarga después de borrar
+            // LIMPIEZA: Al borrar la granja, borramos su bando elegido
+            val prefs = getSharedPreferences("StardewPrefs", Context.MODE_PRIVATE)
+            prefs.edit().remove("ruta_${farm.id}").apply()
+            
+            loadFarms()
         }
     }
 
-    // --- DIÁLOGOS (XML) ---
     private fun showNewFarmDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_new_farm)
@@ -92,8 +94,20 @@ class LoginScreen : AppCompatActivity() {
             val nombre = input.text.toString().trim()
             if (nombre.isNotEmpty()) {
                 lifecycleScope.launch(Dispatchers.IO) {
-                    database.farmDao().insertFarm(Farm(nombre = nombre))
-                    loadFarms()
+                    val newId = database.farmDao().insertFarm(Farm(nombre = nombre))
+                    withContext(Dispatchers.Main) {
+                        val prefs = getSharedPreferences("StardewPrefs", Context.MODE_PRIVATE)
+                        
+                        // SOLUCIÓN AL SALTO: Borramos cualquier ruta previa para este ID
+                        // (Por si el ID fue usado antes en otra granja borrada)
+                        prefs.edit()
+                            .remove("ruta_${newId.toInt()}") 
+                            .putInt("selected_farm_id", newId.toInt())
+                            .putString("selected_farm_name", nombre)
+                            .commit() 
+                        
+                        irAConfiguracion()
+                    }
                 }
                 dialog.dismiss()
             } else {

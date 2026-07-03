@@ -190,20 +190,6 @@
     "año": 1
   },
   {
-    "id": 16,
-    "nombre": "Maíz",
-    "imagen": "maiz.png",
-    "precioSemilla": 150,
-    "diasCrecimiento": 14,
-    "creceDeNuevo": 4,
-    "cosechaMaximaPorEstacion": 4,
-    "Venta": 50,
-    "multiplicadorCosecha": 1,
-    "beneficioPorDia": 1.92,
-    "estacion": "Verano",
-    "año": 1
-  },
-  {
     "id": 17,
     "nombre": "Maíz",
     "imagen": "maiz.png",

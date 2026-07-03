@@ -26,8 +26,8 @@
           "nombre": "Lote Recolección Otoñal",
           "recompensa": "Semillas otoñales (30)",
           "elementos": [
-            {"item": "Seta común", "detalles": "Recolección en Otoño (Bosque secreto 25%, Cueva de la Granja)", "imagen": "stecomun"},
-            {"item": "Ciruela salvaje", "detalles": "Recolección en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "ciruelasalvaje"},
+            {"item": "Seta común", "detalles": "Recolección en Otoño (Bosque secreto 25%, Cueva de la Granja)", "imagen": "setacomun"},
+            {"item": "Ciruela salvaje", "detalles": "Recolección en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "ciruelasalvaja"},
             {"item": "Avellana", "detalles": "Recolección en Otoño", "imagen": "avellana"},
             {"item": "Mora", "detalles": "Recolección en Otoño, La Cueva de Granja (Opción de Murciélagos de la fruta)", "imagen": "mora"}
           ]
@@ -38,7 +38,7 @@
           "elementos": [
             {"item": "Raíz invernal", "detalles": "Arando tierra o Lugares de Artefactos en Invierno, botín de Babas Azules en los pisos 41-79 de Las minas", "imagen": "raizinvernal"},
             {"item": "Fruta de cristal", "detalles": "Recolección en Invierno, botín de Duendes del polvo en los pisos 41-79 de Las minas", "imagen": "frutadecristal"},
-            {"item": "Ñame nival", "detalles": "Arando tierra o Lugares de Artefactos en Invierno", "imagen": "ñamenival"},
+            {"item": "Ñame nival", "detalles": "Arando tierra o Lugares de Artefactos en Invierno", "imagen": "nameinvernal"},
             {"item": "Azafrán", "detalles": "Recolección en Invierno", "imagen": "azafran"}
           ]
         },
@@ -57,7 +57,7 @@
           "recompensa": "Botín otoñal (5)",
           "elementos": [
             {"item": "Coco", "detalles": "Recolección en El Desierto, Oasis", "imagen": "coco"},
-            {"item": "Higo chumbo", "detalles": "Recolección en El Desierto, Oasis", "imagen": "higochumbo"},
+            {"item": "Higo chumbo", "detalles": "Recolección en El Desierto, Oasis", "imagen": "higo"},
             {"item": "Zanahoria cavernaria", "detalles": "Las Minas, ya sea rompiendo cajas o arando tierra blanda", "imagen": "zanahoriacavernaria"},
             {"item": "Seta roja", "detalles": "Recolección en Las minas, Bosque Secreto (22%), Cueva de Granja", "imagen": "setaroja"},
             {"item": "Seta lila", "detalles": "Las Minas, La Cueva de Granja (Opción de Setas), Recolectando en la Granja Forestal en Otoño", "imagen": "setalila"},
@@ -87,7 +87,6 @@
           "recompensa": "Aspersor de calidad (1)",
           "elementos": [
             {"item": "Arándano", "detalles": "Semilla: 80o. Crece: 13 días. Re-cosecha: 4 días. Produce 3 por planta. Venta: 50o (x3).", "imagen": "arandano"},
-            {"item": "Grano de café", "detalles": "Carro Ambulante: 2500o. Crece: 10 días. Re-cosecha: 2 días. Produce 4 por planta. (Primavera/Verano). Venta: 15o (x4).", "imagen": "granodecafe"},
             {"item": "Maíz", "detalles": "Semilla: 150o. Crece: 14 días. Re-cosecha: 4 días. (Verano/Otoño). Venta: 50o.", "imagen": "maiz"},
             {"item": "Lúpulo", "detalles": "Semilla: 60o. Crece: 11 días. Re-cosecha: 1 día. Venta: 25o.", "imagen": "lupudo"},
             {"item": "Chile", "detalles": "Semilla: 40o. Crece: 5 días. Re-cosecha: 3 días. Venta: 40o.", "imagen": "chile"},
@@ -102,7 +101,7 @@
             {"item": "Maíz", "detalles": "Semilla: 150o. Crece: 14 días. Re-cosecha: 4 días. (Verano/Otoño). Venta: 50o.", "imagen": "maiz"},
             {"item": "Berenjena", "detalles": "Cultivo de Otoño", "imagen": "berenjena"},
             {"item": "Calabaza", "detalles": "Cultivo de Otoño", "imagen": "calabaza"},
-            {"item": "Ñame", "detalles": "Cultivo de Otoño, botín de Cavadorín en los pisos 6-29 de Las Minas (3%)", "imagen": "ñame"}
+            {"item": "Ñame", "detalles": "Cultivo de Otoño, botín de Cavadorín en los pisos 6-29 de Las Minas (3%)", "imagen": "name"}
           ]
         },
         {
@@ -156,7 +155,7 @@
           "elementos": [
             {"item": "Pez sol", "detalles": "Se encuentra en Ríos, 6:00 AM – 7:00 PM, Primavera, y Verano durante clima soleado", "imagen": "pezsol"},
             {"item": "Pez gato", "detalles": "Se encuentra en Ríos y Bosque Secreto, 6:00 AM hasta la media noche, Primavera y Otoño. Solo cuando llueve. Puede ser encontrado en Verano mientras llueve en el Bosque Secreto y el Pantano de la Bruja, Invierno con un Tótem de lluvia.", "imagen": "pezgato"},
-            {"item": "Sábadolo", "detalles": "Se encuentra en Ríos, 9:00 AM hasta las 2:00 AM, Primavera, Verano y Otoño. Sólo cuando llueve.", "imagen": "sabadolo"},
+            {"item": "Sábalo", "detalles": "Se encuentra en Ríos, 9:00 AM hasta las 2:00 AM, Primavera, Verano y Otoño. Sólo cuando llueve.", "imagen": "sabalo"},
             {"item": "Trucha tigre", "detalles": "Se encuentra en Ríos, 6:00 AM – 7:00 PM, Otoño e Invierno. Puede pescarse en cualquier clima.", "imagen": "truchatigre"}
           ]
         },
@@ -224,9 +223,9 @@
           "nombre": "Lote Herrero",
           "recompensa": "Horno (1)",
           "elementos": [
-            {"item": "Lingote de cobre", "detalles": "Fundiendo Menas de cobre en un Horno", "imagen": "lingotedecobre"},
-            {"item": "Lingote de hierro", "detalles": "Fundiendo Menas de hierro en un Horno, Fabricándolo con la receta 'Transmutar (Fe)'", "imagen": "lingotedehierro"},
-            {"item": "Lingote de oro", "detalles": "Fundiendo Menas de oro en un Horno, Fabricándolo con la receta 'Transmutar (Au)'", "imagen": "lingotedeoro"}
+            {"item": "Lingote de cobre", "detalles": "Fundiendo Menas de cobre en un Horno", "imagen": "lingotecobre"},
+            {"item": "Lingote de hierro", "detalles": "Fundiendo Menas de hierro en un Horno, Fabricándolo con la receta 'Transmutar (Fe)'", "imagen": "lingotehierro"},
+            {"item": "Lingote de oro", "detalles": "Fundiendo Menas de oro en un Horno, Fabricándolo con la receta 'Transmutar (Au)'", "imagen": "lingoteoro"}
           ]
         },
         {
@@ -234,7 +233,7 @@
           "recompensa": "Omnigeoda (5)",
           "elementos": [
             {"item": "Cuarzo", "detalles": "Recolectándolo en cualquier piso de Las minas.", "imagen": "cuarzo"},
-            {"item": "Cristal terrestre", "detalles": "Recolectándolo en los pisos 1-39 de Las minas, Geodas, botín de Cavadorines en Las minas. (Pisos 6-29)", "imagen": "cristalterrestre"},
+            {"item": "Cristal terrestre", "detalles": "Recolectándolo en los pisos 1-39 de Las minas, Geodas, botín de Cavadorines en Las minas. (Pisos 6-29)", "imagen": "cristalterreste"},
             {"item": "Lágrima helada", "detalles": "Recolectándola en los pisos 41-79 de Las minas, Geodas de hielo, Omnigeodas, botín de Duendes del polvo en Las minas. (Pisos 41-79)", "imagen": "lagrimahelada"},
             {"item": "Cuarzo de fuego", "detalles": "Recolectándolo en los pisos 81-119 de Las minas, Geodas de magma, Omnigeodas.", "imagen": "cuarzodefuego"}
           ]
@@ -283,7 +282,7 @@
           "recompensa": "Máquina recicladora (1)",
           "elementos": [
             {"item": "Seta lila", "detalles": "Recolección en Las minas, La Cueva de Granja (Opción de Setas), Recolección en la Granja Forestal en Otoño", "imagen": "setalila"},
-            {"item": "Concha de nautilo", "detalles": "Recolección en La Playa en Invierno, Recolección en la Granja de la Playa en cualquier estación. Regalo aleatorio de Demetrius (Nota: No confundir con Fósil de nautilo)", "imagen": "conchadenautilo"},
+            {"item": "Concha de nautilo", "detalles": "Recolección en La Playa en Invierno, Recolección en la Granja de la Playa en cualquier estación. Regalo aleatorio de Demetrius (Nota: No confundir con Fósil de nautilo)", "imagen": "conchanautillo"},
             {"item": "Barbo", "detalles": "Se encuentra en Lago de la Montaña y los Ríos en todas las estaciones.", "imagen": "barbo"},
             {"item": "Geoda de hielo", "detalles": "Las minas (Pisos 41-79)", "imagen": "geodadehielo"}
           ]
@@ -315,22 +314,22 @@
         {
           "nombre": "Lote 2,500",
           "recompensa": "Pastel de chocolate (3)",
-          "elementos": [{"item": "2,500 Oro", "detalles": "Donación", "imagen": "oro"}]
+          "elementos": [{"item": "2,500 Oro", "detalles": "Donación", "imagen": "lote2500"}]
         },
         {
           "nombre": "Lote 5,000",
           "recompensa": "Fertilizante deluxe (30)",
-          "elementos": [{"item": "5,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+          "elementos": [{"item": "5,000 Oro", "detalles": "Donación", "imagen": "lote5000"}]
         },
         {
           "nombre": "Lote 10,000",
           "recompensa": "Pararrayos (1)",
-          "elementos": [{"item": "10,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+          "elementos": [{"item": "10,000 Oro", "detalles": "Donación", "imagen": "lote10000"}]
         },
         {
           "nombre": "Lote 25,000",
           "recompensa": "Cristalario (1)",
-          "elementos": [{"item": "25,000 Oro", "detalles": "Donación", "imagen": "oro"}]
+          "elementos": [{"item": "25,000 Oro", "detalles": "Donación", "imagen": "lote25000"}]
         }
       ]
     }

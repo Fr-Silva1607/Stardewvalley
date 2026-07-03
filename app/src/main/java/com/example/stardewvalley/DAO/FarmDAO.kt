@@ -13,7 +13,7 @@ interface FarmDao {
     fun getAllFarms(): List<Farm>
 
     @Insert
-    fun insertFarm(farm: Farm)
+    fun insertFarm(farm: Farm): Long
 
     @Update
     fun updateFarm(farm: Farm)

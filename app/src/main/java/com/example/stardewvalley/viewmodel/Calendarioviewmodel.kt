@@ -81,6 +81,7 @@ class CalendarioViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun obtenerImagenCumpleanios(dia: Int, temporadaIndex: Int): Int? {
+        if (temporadaIndex !in 0..3) return null
         val temporada = temporadas[temporadaIndex]
         val personaje = personajesData.find { it.cumpleanos == "$temporada $dia" }
         val nombreOriginal = personaje?.nombre ?: return null
@@ -130,7 +131,6 @@ class CalendarioViewModel(application: Application) : AndroidViewModel(applicati
     fun obtenerImagenFase(nombreCultivo: String, diaActual: Int, diaPlante: Int, diasTotales: Int, creceDeNuevo: Int = 0, replantar: Int = 1): String {
         var diasPasados = (diaActual - diaPlante).coerceAtLeast(0)
         
-        // Si no crece de nuevo, manejamos el replantado reseteando los diasPasados al ciclo actual
         if (creceDeNuevo == 0 && replantar > 1) {
             diasPasados %= diasTotales
         }
@@ -192,5 +192,13 @@ class CalendarioViewModel(application: Application) : AndroidViewModel(applicati
         if (_temporadaActualIndex.value > 0) _temporadaActualIndex.value--
     }
 
-    fun getNombreTemporada(index: Int): String = temporadas[index]
+    fun setTemporadaIndex(index: Int) {
+        if (index in 0..3) {
+            _temporadaActualIndex.value = index
+        }
+    }
+
+    fun getNombreTemporada(index: Int): String {
+        return if (index in 0..3) temporadas[index] else "Primavera"
+    }
 }

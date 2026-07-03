@@ -40,7 +40,8 @@ data class CultivoPlantado(
     val diasCrecimiento: Int = 12,
     val creceDeNuevo: Int = 0,
     val multiplicadorCosecha: Int = 1,
-    val replantar: Int = 1
+    val replantar: Int = 1,
+    val estacion: String = ""
 )
 
 data class BundleItem(val item: String, val bundleName: String)
@@ -157,7 +158,7 @@ class CultivoViewModel(application: Application) : AndroidViewModel(application)
         if (currentFarmId == -1) return
         val entities = cultivoDao.getCultivosByFarm(currentFarmId)
         val plantados = entities.map {
-            CultivoPlantado(it.nombre, it.cantidad, it.diaPlante, it.diasCrecimiento, it.creceDeNuevo, it.multiplicadorCosecha, it.replantar)
+            CultivoPlantado(it.nombre, it.cantidad, it.diaPlante, it.diasCrecimiento, it.creceDeNuevo, it.multiplicadorCosecha, it.replantar, it.estacion)
         }
         val global = globalProgressDao.getGlobalProgress(currentFarmId)
         
@@ -230,7 +231,7 @@ class CultivoViewModel(application: Application) : AndroidViewModel(application)
         _energia.value = (_energia.value - consumo).coerceAtLeast(0f)
         
         val nuevos = seleccionados.map {
-            CultivoPlantado(it.nombre, it.cantidad, _diaActual.value, it.diasCrecimiento, it.creceDeNuevo, it.multiplicadorCosecha, it.replantar)
+            CultivoPlantado(it.nombre, it.cantidad, _diaActual.value, it.diasCrecimiento, it.creceDeNuevo, it.multiplicadorCosecha, it.replantar, it.estacion)
         }
         
         _cultivosPlantados.value = _cultivosPlantados.value + nuevos
@@ -246,7 +247,8 @@ class CultivoViewModel(application: Application) : AndroidViewModel(application)
                         diasCrecimiento = it.diasCrecimiento,
                         creceDeNuevo = it.creceDeNuevo,
                         multiplicadorCosecha = it.multiplicadorCosecha,
-                        replantar = it.replantar
+                        replantar = it.replantar,
+                        estacion = it.estacion
                     )
                 }
                 cultivoDao.insertCultivos(entities)

@@ -1,10 +1,11 @@
 package com.example.stardewvalley.ui.screen
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,69 +20,124 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import com.example.stardewvalley.R
+import com.example.stardewvalley.ui.components.TextoGorditoConBorde
+import com.example.stardewvalley.ui.theme.StardewTexto
+import com.google.accompanist.drawablepainter.rememberDrawablePainter
 
 @Composable
-fun MercaJojaScreen(navController: NavController, onFinalizarEleccion: () -> Unit) {
+fun MercaJojaScreen(navController: NavController) {
     val context = LocalContext.current
     val prefs = remember { context.getSharedPreferences("StardewPrefs", Context.MODE_PRIVATE) }
     val farmId = prefs.getInt("selected_farm_id", -1)
 
-    // Estado global de dinero del jugador
+    // Estado global de dinero del jugador (Persistido por granja)
     var miDineroText by remember { mutableStateOf(prefs.getString("mi_dinero_$farmId", "0") ?: "0") }
     val miDinero = miDineroText.toIntOrNull() ?: 0
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    // Para forzar la recomposición al completar un proyecto
+    var refreshCount by remember { mutableStateOf(0) }
+
+    val fondoJoja = remember { ContextCompat.getDrawable(context, R.drawable.fondo_mercajoja) }
+    val lingoteOro = remember { ContextCompat.getDrawable(context, R.drawable.lingoteoro) }
+    val cartelVolver = remember { ContextCompat.getDrawable(context, R.drawable.cartel_mercajoja) }
+
+    // Añadimos background negro para evitar el flash blanco mientras carga la imagen
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(Color.Black)) {
+        // Fondo de mosaico azul corporativo
         Image(
-            painter = painterResource(id = R.drawable.fondo_mercajoja),
+            painter = rememberDrawablePainter(fondoJoja),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.FillBounds
         )
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(top = 20.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TextoGorditoConBorde("Proyectos Joja", tamanio = 60f)
+            Spacer(modifier = Modifier.height(20.dp))
 
-            // BARRA DE DINERO (SOLICITADA)
+            // Título: Proyectos Joja
+            TextoGorditoConBorde(
+                texto = "Proyectos Joja",
+                tamanio = 45f,
+                colorRelleno = Color.White,
+                colorBorde = Color.Black
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            // Tarjeta de Dinero Actual (Estilo Imagen)
             Card(
-                modifier = Modifier.padding(16.dp).fillMaxWidth(0.8f),
+                modifier = Modifier
+                    .fillMaxWidth(0.9f)
+                    .height(110.dp),
                 colors = CardDefaults.cardColors(containerColor = Color(0xFF1D3B8B).copy(alpha = 0.9f)),
-                border = BorderStroke(2.dp, Color(0xFFFFD700))
+                border = BorderStroke(2.dp, Color(0xFFFFD700)),
+                shape = RoundedCornerShape(16.dp)
             ) {
                 Row(
-                    modifier = Modifier.padding(12.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 20.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Image(painterResource(R.drawable.lingoteoro), null, modifier = Modifier.size(30.dp))
-                    Spacer(Modifier.width(8.dp))
-                    TextField(
-                        value = miDineroText,
-                        onValueChange = { 
-                            if (it.all { char -> char.isDigit() }) {
-                                miDineroText = it
-                                prefs.edit().putString("mi_dinero_$farmId", it).apply()
-                            }
-                        },
-                        label = { Text("Tu Dinero Actual", color = Color.White, fontSize = 12.sp) },
-                        modifier = Modifier.weight(1f),
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        colors = TextFieldDefaults.colors(
-                            focusedTextColor = Color.White,
-                            unfocusedTextColor = Color.White,
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent
-                        )
+                    Image(
+                        painter = rememberDrawablePainter(lingoteOro),
+                        contentDescription = null,
+                        modifier = Modifier.size(50.dp)
                     )
+                    Spacer(modifier = Modifier.width(15.dp))
+                    Column {
+                        Text(
+                            text = "Tu Dinero Actual",
+                            color = Color.White,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                        TextField(
+                            value = miDineroText,
+                            onValueChange = {
+                                if (it.all { char -> char.isDigit() }) {
+                                    miDineroText = it
+                                    prefs.edit().putString("mi_dinero_$farmId", it).apply()
+                                }
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            textStyle = TextStyle(
+                                color = Color.White,
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.Transparent,
+                                unfocusedContainerColor = Color.Transparent,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                                cursorColor = Color.White,
+                                focusedTextColor = Color.White,
+                                unfocusedTextColor = Color.White
+                            ),
+                            singleLine = true
+                        )
+                    }
                 }
             }
+
+            Spacer(modifier = Modifier.height(20.dp))
 
             val projects = listOf(
                 JojaProjectData("Vagonetas", "Repara el sistema de vagonetas que circula entre la Parada de autobús, Las Montañas y Pueblo Pelícano.", 15000),
@@ -92,59 +148,165 @@ fun MercaJojaScreen(navController: NavController, onFinalizarEleccion: () -> Uni
             )
 
             LazyColumn(
-                modifier = Modifier.weight(1f).padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
+                contentPadding = PaddingValues(bottom = 20.dp)
             ) {
                 items(projects) { project ->
-                    JojaItemRow(project, miDinero)
+                    val isCompleted = remember(project.name, farmId, refreshCount) {
+                        prefs.getBoolean("jo_completado_${project.name}_$farmId", false)
+                    }
+
+                    JojaProjectItem(
+                        project = project,
+                        dineroActual = miDinero,
+                        isCompleted = isCompleted,
+                        onComplete = {
+                            if (miDinero >= project.price) {
+                                val nuevo = miDinero - project.price
+                                miDineroText = nuevo.toString()
+                                prefs.edit()
+                                    .putString("mi_dinero_$farmId", nuevo.toString())
+                                    .putBoolean("jo_completado_${project.name}_$farmId", true)
+                                    .apply()
+                                refreshCount++
+                            }
+                        }
+                    )
                 }
             }
 
-            // Botón Volver usando cartel_mercajoja
+            // Botón VOLVER (Vuelve a LoginScreen Activity)
             Box(
-                modifier = Modifier.padding(bottom = 20.dp).clickable { navController.popBackStack() },
+                modifier = Modifier
+                    .width(220.dp)
+                    .height(80.dp)
+                    .clickable { 
+                        val intent = Intent(context, LoginScreen::class.java)
+                        // Limpiamos la pila para volver al inicio
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        context.startActivity(intent)
+                        (context as? Activity)?.finish()
+                    },
                 contentAlignment = Alignment.Center
             ) {
-                Image(painterResource(R.drawable.cartel_mercajoja), null, modifier = Modifier.width(180.dp))
-                Text("VOLVER", color = Color.White, fontWeight = FontWeight.Bold)
+                Image(
+                    painter = rememberDrawablePainter(cartelVolver),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.FillBounds
+                )
+                Text(
+                    text = "VOLVER",
+                    color = StardewTexto,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
             }
+            Spacer(modifier = Modifier.height(10.dp))
         }
     }
 }
 
 @Composable
-fun JojaItemRow(project: JojaProjectData, dineroActual: Int) {
+fun JojaProjectItem(
+    project: JojaProjectData,
+    dineroActual: Int,
+    isCompleted: Boolean,
+    onComplete: () -> Unit
+) {
     val falta = (project.price - dineroActual).coerceAtLeast(0)
-    
-    // Usamos el fondo de cartel para cada item si es posible, o una card azul estilo Joja
+    val puedePagar = dineroActual >= project.price
+    val progreso = (dineroActual.toFloat() / project.price.toFloat()).coerceIn(0f, 1f)
+
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1D3B8B).copy(alpha = 0.8f)),
-        border = BorderStroke(1.dp, Color(0xFF4CAF50))
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF1D3B8B).copy(alpha = 0.85f)),
+        border = BorderStroke(2.dp, Color(0xFF3F51B5)),
+        shape = RoundedCornerShape(12.dp)
     ) {
-        Column(modifier = Modifier.padding(12.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(project.name, color = Color.White, fontWeight = FontWeight.Bold, fontSize = 18.sp, modifier = Modifier.weight(1f))
-                Text("${project.price}g", color = Color(0xFFFFD700), fontWeight = FontWeight.ExtraBold)
-            }
-            Text(project.description, color = Color.LightGray, fontSize = 11.sp, lineHeight = 14.sp)
-            
-            Spacer(Modifier.height(8.dp))
-            
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                LinearProgressIndicator(
-                    progress = (dineroActual.toFloat() / project.price.toFloat()).coerceIn(0f, 1f),
-                    modifier = Modifier.weight(1f).height(8.dp),
-                    color = if (falta == 0) Color(0xFF4CAF50) else Color(0xFFFFD700),
-                    trackColor = Color.White.copy(alpha = 0.2f)
-                )
-                Spacer(Modifier.width(8.dp))
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
-                    text = if (falta > 0) "Faltan: ${falta}g" else "¡COMPLETADO!",
-                    color = if (falta > 0) Color.White else Color(0xFF4CAF50),
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 12.sp
+                    text = project.name,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
                 )
+                Text(
+                    text = "${project.price}g",
+                    color = Color(0xFFFFD700),
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+            }
+
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = project.description,
+                color = Color.LightGray,
+                fontSize = 12.sp,
+                lineHeight = 16.sp
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // Barra de progreso y Estado interactivo
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(14.dp)
+                        .background(Color.DarkGray, RoundedCornerShape(7.dp))
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(if (isCompleted) 1f else progreso)
+                            .fillMaxHeight()
+                            .background(
+                                if (isCompleted) Color(0xFF4CAF50) else Color(0xFFFFD700),
+                                RoundedCornerShape(7.dp)
+                            )
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                if (isCompleted) {
+                    Text(
+                        text = "¡COMPLETADO!",
+                        color = Color(0xFF4CAF50),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                } else if (puedePagar) {
+                    Button(
+                        onClick = onComplete,
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                        modifier = Modifier.height(32.dp),
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text("COMPLETAR", color = Color.White, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                    }
+                } else {
+                    Text(
+                        text = "Faltan: ${falta}g",
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
     }

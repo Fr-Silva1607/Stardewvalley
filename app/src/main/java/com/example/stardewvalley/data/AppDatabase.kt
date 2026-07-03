@@ -18,7 +18,7 @@ import com.example.stardewvalley.DAO.JojaDao
         JojaProjectEntity::class,
         GlobalProgressEntity::class
     ],
-    version = 6, // Incrementado a 6 para forzar la limpieza y asegurar la integridad por partida
+    version = 1000, // Versión 1000 para resetear integridad de Room definitivamente
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -40,8 +40,8 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "stardew_database"
                 )
-                    .allowMainThreadQueries() // Útil para prototipado
-                    .fallbackToDestructiveMigration() // Esto borrará los datos incompatibles y evitará el cierre de la app
+                    .fallbackToDestructiveMigration() // Borra la DB vieja si el esquema cambió
+                    .allowMainThreadQueries()
                     .build()
                 INSTANCE = instance
                 instance

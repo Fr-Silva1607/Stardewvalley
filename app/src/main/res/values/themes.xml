@@ -1,18 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- El nombre debe coincidir con el que tienes en el AndroidManifest.xml -->
     <style name="Theme.Stardewvalley" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-        <!-- Color de la barra de estado (donde sale la hora y batería) -->
+        <!-- Colores principales -->
         <item name="colorPrimary">#4E2C12</item>
         <item name="colorPrimaryVariant">#351E0C</item>
         <item name="colorOnPrimary">#FFFFFF</item>
 
-        <!-- Color de acento (para botones y controles) -->
-        <item name="colorSecondary">#FFEB3B</item>
-        <item name="colorSecondaryVariant">#FBC02D</item>
-        <item name="colorOnSecondary">#000000</item>
-
-        <!-- Esto hace que el fondo de las ventanas sea transparente si es necesario -->
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- Fondo de la ventana para evitar el flash blanco -->
+        <item name="android:windowBackground">#F3D091</item> <!-- Color crema/beige Stardew -->
+        <item name="android:windowDisablePreview">false</item>
     </style>
 </resources>

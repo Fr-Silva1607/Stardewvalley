@@ -1,6 +1,7 @@
 package com.example.stardewvalley.ui.screen
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.compose.animation.AnimatedVisibility
@@ -50,17 +51,24 @@ fun CalendarioScreen(
     cultiVM: CultivoViewModel  = viewModel()
 ) {
     val context = LocalContext.current
+    val prefs = remember { context.getSharedPreferences("StardewPrefs", Context.MODE_PRIVATE) }
+    val farmId = prefs.getInt("selected_farm_id", -1)
+    val rutaElegida = remember(farmId) { prefs.getString("ruta_$farmId", "centro_civico") }
+
     val temporadaIndex    by calVM.temporadaActualIndex.collectAsState()
     val nombreTemporada    = calVM.getNombreTemporada(temporadaIndex)
-    val cultivosPlantados by cultiVM.cultivosPlantados.collectAsState(initial = emptyList())
-    val todosLosCultivos  by cultiVM.listaProcesadaDelJson.collectAsState()
+    
+    // FILTRADO INTERNO: Solo mostramos cultivos que pertenezcan a la estación actual
+    val todosLosCultivosPlantados by cultiVM.cultivosPlantados.collectAsState(initial = emptyList())
+    val cultivosDelMes = remember(todosLosCultivosPlantados, nombreTemporada) {
+        todosLosCultivosPlantados.filter { it.estacion == nombreTemporada }
+    }
+
     val diaActualSimulado by cultiVM.diaActual.collectAsState()
     val energia           by cultiVM.energia.collectAsState()
 
     var diaSeleccionado by remember { mutableIntStateOf(1) }
     var mostrarPopUp    by remember { mutableStateOf(false) }
-
-    // Estado único para el menú desplegable unificado
     var gestionExpandida by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -71,144 +79,138 @@ fun CalendarioScreen(
             contentScale = ContentScale.FillBounds
         )
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 32.dp)
-        ) {
-            item {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Box(modifier = Modifier.fillMaxWidth().height(140.dp)) {
-                        AndroidView(factory = { ctx ->
-                            LayoutInflater.from(ctx).inflate(R.layout.superior2, null)
-                        })
-                        
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
-                        ) {
-                            Text("Año 1", color = Color.White, style = MaterialTheme.typography.titleMedium)
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                IconButton(onClick = { calVM.anteriorTemporada() }) {
-                                    Image(painterResource(R.drawable.fi_civico_), null, modifier = Modifier.size(30.dp))
-                                }
-                                Text(nombreTemporada, color = StardewMarrone, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.ExtraBold)
-                                IconButton(onClick = { calVM.siguienteTemporada() }) {
-                                    Image(painterResource(R.drawable.fd_civico_), null, modifier = Modifier.size(30.dp))
-                                }
-                            }
+        Column(modifier = Modifier.fillMaxSize()) {
+            // CABECERA CON PANTALLAS INDEPENDIENTES (Flechas de navegación)
+            Box(modifier = Modifier.fillMaxWidth().height(140.dp)) {
+                AndroidView(factory = { ctx ->
+                    LayoutInflater.from(ctx).inflate(R.layout.superior2, null)
+                })
+                
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text("Año 1", color = Color.White, style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        IconButton(onClick = { calVM.anteriorTemporada() }) {
+                            Image(painterResource(R.drawable.fi_civico_), null, modifier = Modifier.size(30.dp))
+                        }
+                        Text(nombreTemporada.uppercase(), color = StardewMarrone, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.ExtraBold)
+                        IconButton(onClick = { calVM.siguienteTemporada() }) {
+                            Image(painterResource(R.drawable.fd_civico_), null, modifier = Modifier.size(30.dp))
                         }
                     }
                 }
             }
 
-            // GRID CALENDARIO
-            item {
-                Box(modifier = Modifier.padding(10.dp).background(Color(0xFF4E2C0A)).padding(4.dp)) {
-                    Column {
-                        for (fila in 0..3) {
-                            Row(modifier = Modifier.fillMaxWidth()) {
-                                for (columna in 1..7) {
-                                    val dia = (fila * 7) + columna
-                                    val fotoCumple = calVM.obtenerImagenCumpleanios(dia, temporadaIndex)
-                                    val iconoExtra = if (nombreTemporada == "Primavera" && dia in 15..17) R.drawable.fresa else null
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(bottom = 32.dp)
+            ) {
+                // GRID DEL CALENDARIO (Días 1 a 28 aislados por mes)
+                item {
+                    Box(modifier = Modifier.padding(10.dp).background(Color(0xFF4E2C0A)).padding(4.dp)) {
+                        Column {
+                            for (fila in 0..3) {
+                                Row(modifier = Modifier.fillMaxWidth()) {
+                                    for (columna in 1..7) {
+                                        val dia = (fila * 7) + columna
+                                        val fotoCumple = calVM.obtenerImagenCumpleanios(dia, temporadaIndex)
+                                        
+                                        // Usamos la lista filtrada por mes para la lógica de iconos
+                                        val cultivosCosecha = cultivosDelMes.filter { 
+                                            val diasDesdeSiembra = dia - it.diaPlante
+                                            if (it.creceDeNuevo > 0) {
+                                                if (diasDesdeSiembra == it.diasCrecimiento) true
+                                                else if (diasDesdeSiembra > it.diasCrecimiento) (diasDesdeSiembra - it.diasCrecimiento) % it.creceDeNuevo == 0
+                                                else false
+                                            } else {
+                                                if (diasDesdeSiembra > 0 && it.diasCrecimiento > 0 && diasDesdeSiembra % it.diasCrecimiento == 0) {
+                                                    val numCosecha = diasDesdeSiembra / it.diasCrecimiento
+                                                    numCosecha <= it.replantar
+                                                } else false
+                                            }
+                                        }
+                                        
+                                        val cultivosCreciendo = cultivosDelMes.filter {
+                                            val diasDesdeSiembra = dia - it.diaPlante
+                                            val duracionTotal = if (it.creceDeNuevo > 0) 28 else it.diasCrecimiento * it.replantar
+                                            diasDesdeSiembra >= 0 && diasDesdeSiembra <= duracionTotal && !cultivosCosecha.contains(it)
+                                        }
 
-                                    val cultivosCosecha = cultivosPlantados.filter { 
-                                        val diasDesdeSiembra = dia - it.diaPlante
-                                        if (it.creceDeNuevo > 0) {
-                                            if (diasDesdeSiembra == it.diasCrecimiento) true
-                                            else if (diasDesdeSiembra > it.diasCrecimiento) (diasDesdeSiembra - it.diasCrecimiento) % it.creceDeNuevo == 0
-                                            else false
-                                        } else {
-                                            if (diasDesdeSiembra > 0 && it.diasCrecimiento > 0 && diasDesdeSiembra % it.diasCrecimiento == 0) {
-                                                val numCosecha = diasDesdeSiembra / it.diasCrecimiento
-                                                numCosecha <= it.replantar
-                                            } else false
+                                        Box(modifier = Modifier.weight(1f)) {
+                                            DiaCelda(
+                                                dia        = dia,
+                                                fotoRes    = fotoCumple,
+                                                iconoExtra = if (nombreTemporada == "Primavera" && dia in 15..17) R.drawable.fresa else null,
+                                                cultivosCosecha = cultivosCosecha,
+                                                cultivosCreciendo = cultivosCreciendo,
+                                                calVM = calVM,
+                                                onClick    = {
+                                                    diaSeleccionado = dia
+                                                    mostrarPopUp    = true
+                                                    cultiVM.setDiaActual(dia)
+                                                }
+                                            )
                                         }
                                     }
-                                    
-                                    val cultivosCreciendo = cultivosPlantados.filter {
-                                        val diasDesdeSiembra = dia - it.diaPlante
-                                        val duracionTotal = if (it.creceDeNuevo > 0) 28 else it.diasCrecimiento * it.replantar
-                                        diasDesdeSiembra >= 0 && diasDesdeSiembra <= duracionTotal && !cultivosCosecha.contains(it)
-                                    }
-
-                                    Box(modifier = Modifier.weight(1f)) {
-                                        DiaCelda(
-                                            dia        = dia,
-                                            fotoRes    = fotoCumple,
-                                            iconoExtra = iconoExtra,
-                                            cultivosCosecha = cultivosCosecha,
-                                            cultivosCreciendo = cultivosCreciendo,
-                                            calVM = calVM,
-                                            onClick    = {
-                                                diaSeleccionado = dia
-                                                mostrarPopUp    = true
-                                                cultiVM.setDiaActual(dia)
-                                            }
-                                        )
-                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            item {
-                Button(
-                    onClick = { navController.navigate("centro_civico") },
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))
-                ) {
-                    Text("Check-list", color = Color.White)
-                }
-            }
-
-            item {
-                // UNIFICACIÓN: Planificador + Tabla + Energía en un solo bloque visual
-                CardDesplegable(
-                    titulo = "GESTIÓN DE CULTIVOS Y ENERGÍA",
-                    expandido = gestionExpandida,
-                    onToggle = { gestionExpandida = !gestionExpandida },
-                    colorFondo = Color(0xFFF5E6D3)
-                ) {
-                    Row(modifier = Modifier.fillMaxWidth()) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            // Planificador ARRIBA dentro del desplegable
-                            SeccionPlanificador(diaActual = diaActualSimulado, viewModel = cultiVM)
-                            
-                            Spacer(modifier = Modifier.height(16.dp))
-                            HorizontalDivider(color = StardewMarrone.copy(alpha = 0.3f))
-                            Spacer(modifier = Modifier.height(8.dp))
-                            
-                            Text("TABLA DE SEMILLAS ($nombreTemporada)", fontWeight = FontWeight.Bold, color = StardewMarrone, modifier = Modifier.padding(bottom = 8.dp))
-                            TablaCultivos(viewModel = cultiVM, temporada = nombreTemporada)
-                        }
-                        
-                        // Barra de energía unificada al lado
-                        Spacer(modifier = Modifier.width(8.dp))
-                        BarraEnergiaVertical(energia)
+                item {
+                    val esJoja = rutaElegida == "mercajoja"
+                    Button(
+                        onClick = { 
+                            if (esJoja) navController.navigate("joja_screen")
+                            else navController.navigate("centro_civico")
+                        },
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (esJoja) Color(0xFF1D3B8B) else Color(0xFF2E7D32)
+                        )
+                    ) {
+                        Text(if (esJoja) "Proyectos Joja" else "Centro Cívico", color = Color.White)
                     }
                 }
-            }
 
-            item {
-                IconButton(
-                    onClick = { 
-                        val intent = Intent(context, LoginScreen::class.java)
-                        context.startActivity(intent)
-                        (context as? Activity)?.finish()
-                    },
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .size(60.dp)
-                ) {
-                    Image(
-                        painterResource(R.drawable.fi_civico_), 
-                        contentDescription = "Retroceder a Login", 
-                        modifier = Modifier.fillMaxSize()
-                    )
+                item {
+                    CardDesplegable(
+                        titulo = "GESTIÓN DE CULTIVOS Y ENERGÍA",
+                        expandido = gestionExpandida,
+                        onToggle = { gestionExpandida = !gestionExpandida },
+                        colorFondo = Color(0xFFF5E6D3)
+                    ) {
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            Column(modifier = Modifier.weight(1f)) {
+                                SeccionPlanificador(diaActual = diaActualSimulado, viewModel = cultiVM)
+                                Spacer(modifier = Modifier.height(16.dp))
+                                HorizontalDivider(color = StardewMarrone.copy(alpha = 0.3f))
+                                Spacer(modifier = Modifier.height(8.dp))
+                                
+                                Text("TABLA DE SEMILLAS ($nombreTemporada)", fontWeight = FontWeight.Bold, color = StardewMarrone)
+                                TablaCultivos(viewModel = cultiVM, temporada = nombreTemporada)
+                            }
+                            Spacer(modifier = Modifier.width(8.dp))
+                            BarraEnergiaVertical(energia)
+                        }
+                    }
+                }
+
+                item {
+                    IconButton(
+                        onClick = { 
+                            val intent = Intent(context, LoginScreen::class.java)
+                            context.startActivity(intent)
+                            (context as? Activity)?.finish()
+                        },
+                        modifier = Modifier.padding(16.dp).size(60.dp)
+                    ) {
+                        Image(painterResource(R.drawable.fi_civico_), contentDescription = null, modifier = Modifier.fillMaxSize())
+                    }
                 }
             }
         }
@@ -233,7 +235,7 @@ fun BarraEnergiaVertical(energia: Float) {
     Column(
         modifier = Modifier
             .width(40.dp)
-            .height(300.dp) // Más corta según solicitud
+            .height(300.dp)
             .padding(vertical = 10.dp, horizontal = 4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -315,7 +317,6 @@ fun DiaCelda(
             Text(text = dia.toString(), color = StardewTexto, fontSize = 9.sp, modifier = Modifier.align(Alignment.TopEnd).padding(2.dp))
 
             Column(modifier = Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
-                // ALDEANO ARRIBA
                 if (fotoRes != null && fotoRes != 0) {
                     Image(
                         painter = painterResource(id = fotoRes),
@@ -327,7 +328,6 @@ fun DiaCelda(
                     )
                 }
 
-                // CULTIVO ABAJO (FASES DEBAJO DE ALDEANOS)
                 if (cultivosCosecha.isNotEmpty()) {
                     val cultivo = cultivosCosecha.first()
                     val faseImg = calVM.obtenerImagenFase(cultivo.nombre, dia, cultivo.diaPlante, cultivo.diasCrecimiento, cultivo.creceDeNuevo, cultivo.replantar)
@@ -554,13 +554,3 @@ fun PopUpEventos(dia: Int, onDismiss: () -> Unit, onDiaCambiar: (Int) -> Unit, v
         }
     }
 }
-
-fun normalizarNombre(nombre: String): String =
-    nombre.lowercase()
-        .replace(" ", "")
-        .replace("á", "a")
-        .replace("é", "e")
-        .replace("í", "i")
-        .replace("ó", "o")
-        .replace("ú", "u")
-        .replace("ñ", "n")

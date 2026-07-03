@@ -24,7 +24,8 @@ data class CultivoPlantadoEntity(
     val diasCrecimiento: Int,
     val creceDeNuevo: Int,
     val multiplicadorCosecha: Int,
-    val replantar: Int
+    val replantar: Int,
+    val estacion: String = ""
 )
 
 @Entity(
